@@ -1,0 +1,2 @@
+# ManualQATester
+Demonstration
