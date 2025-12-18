@@ -32,7 +32,7 @@ My journey started with the **uTest Academy**, where I became a **Rated Tester**
 
 Worked as a dedicated freelance tester on the world's leading digital testing platform, ensuring the quality of web and mobile applications for international clients.
 
-- **Test Execution**: Executed over **150+ test cycles** covering functional, regression, and payment testing for e-commerce, media, and fintech apps.
+- **Test Execution**: Executed over **150 test cycles** covering functional, regression, and payment testing for e-commerce, media, and fintech apps.
 
 - **Bug Reporting**: Reported critical and high-severity bugs with professional documentation, including logs (Logcat/Charles), screenshots, and screen recordings, maintaining a high bug approval rate.
 
@@ -55,7 +55,7 @@ Worked as a dedicated freelance tester on the world's leading digital testing pl
 
 ### SQL Practice for QA
 - **Description**: A repository of complex SQL queries used for data validation.
-- **Goal**: Demonstrating ability to perform backend validation (Joins, Aggregates) independent of the UI.
+- **Goal**: Demonstrating ability to perform backend validation (JOINs, Aggregates) independent of the UI.
 
 ---
 
