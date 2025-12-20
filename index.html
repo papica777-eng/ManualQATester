@@ -1,79 +1,1391 @@
-Dimitar Prodromov
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dimitar Prodromov - Manual QA Engineer | uTest Rated Tester | Professional Portfolio showcasing 2+ years of testing experience">
+    <meta name="keywords" content="Manual QA, Quality Assurance, Software Testing, uTest, Rated Tester, QA Engineer, Test Automation, Dimitar Prodromov">
+    <meta name="author" content="Dimitar Prodromov">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Dimitar Prodromov - Manual QA Engineer Portfolio">
+    <meta property="og:description" content="Professional QA Engineer with 2+ years experience. Rated Tester on uTest platform with 150+ test cycles completed.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dpengeneering.site">
+    
+    <title>Dimitar Prodromov | Manual QA Engineer Portfolio</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* --- CSS Variables for Theming --- */
+        :root {
+            /* Dark Mode Defaults */
+            --primary-color: #4ECDC4; /* Vibrant Teal */
+            --secondary-color: #A2D5C6; /* Lighter Teal */
+            --background-color: #0A192F; /* Deep Dark Blue */
+            --secondary-background-color: #172A45; /* Slightly Lighter Dark Blue */
+            --tertiary-background-color: #263859; /* For cards/panels */
+            --text-color: #F8F8F2; /* Light Text */
+            --subtle-text-color: #AAB7C4; /* Greyish for descriptions */
+            --accent-color: #FF6B6B; /* Reddish accent for errors/warnings */
+            --success-color: #8BC34A; /* Light Green */
+            --info-color: #87CEEB; /* Sky Blue */
+            --warning-color: #FFC107; /* Amber */
+            --border-color: #2F415D;
+            --shadow-light: rgba(78, 205, 196, 0.2);
+            --shadow-dark: rgba(0, 0, 0, 0.4);
+            
+            --font-main: 'Montserrat', sans-serif;
+            --font-mono: 'Fira Code', monospace;
+            --transition-speed: 0.3s;
+            --radius-default: 8px;
+        }
 
-**Manual QA Engineer | uTest Rated Tester | Aspiring Automation Engineer**
+        /* --- Light Mode Variables --- */
+        body.light-mode {
+            --primary-color: #007BFF; /* Bright Blue */
+            --secondary-color: #6C757D; /* Greyish */
+            --background-color: #F8F9FA; /* Light Grey */
+            --secondary-background-color: #FFFFFF; /* White */
+            --tertiary-background-color: #E9ECEF; /* Light Grey for cards */
+            --text-color: #212529; /* Dark Text */
+            --subtle-text-color: #495057; /* Darker grey for descriptions */
+            --accent-color: #DC3545; /* Red */
+            --success-color: #28A745; /* Green */
+            --info-color: #17A2B8; /* Cyan */
+            --warning-color: #FFC107; /* Yellow */
+            --border-color: #CED4DA;
+            --shadow-light: rgba(0, 123, 255, 0.2);
+            --shadow-dark: rgba(0, 0, 0, 0.1);
+        }
 
----
+        /* --- General Styling --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-## 👨‍💻 Professional Summary
+        html {
+            scroll-behavior: smooth;
+        }
 
-Detail-oriented QA Engineer with 2+ years of intensive experience as a freelance tester for **uTest (Applause)**. I have successfully participated in numerous test cycles for global brands, specializing in functional, usability, and localization testing.
+        body {
+            font-family: var(--font-main);
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+        }
 
-My journey started with the **uTest Academy**, where I became a **Rated Tester** due to high-quality bug reports and reliability. I am now transitioning into a full-time role, bringing strong manual testing expertise and growing skills in **Test Automation (Python)** and **SQL**.
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color var(--transition-speed);
+        }
 
----
+        a:hover {
+            color: var(--secondary-color);
+        }
 
-## 🛠 Technical Skills
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
 
-| Category | Skills |
-|----------|--------|
-| **Testing Types** | Functional, Regression, Exploratory, Usability, Payment Testing, Localization |
-| **Tools & Platforms** | uTest Platform, Jira, TestRail, Charles Proxy (Basic), Android Studio (Logs) |
-| **API & Database** | Postman (REST API validation), SQL (SELECT, JOINs for data verification) |
-| **Version Control** | Git, GitHub (Basic commands, Markdown) |
-| **OS & Devices** | Windows, Linux (Ubuntu), Android, iOS, Chrome DevTools |
+        /* --- Header --- */
+        header {
+            background-color: var(--secondary-background-color);
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px var(--shadow-dark);
+            transition: background-color var(--transition-speed), border-color var(--transition-speed);
+        }
 
----
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+        }
 
-## 💼 Professional Experience
+        .logo {
+            font-family: var(--font-mono);
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--primary-color);
+            letter-spacing: -1px;
+        }
 
-### Freelance QA / Rated Tester
-**uTest (by Applause)** | Remote / Sofia, Bulgaria  
-*Jan 2021 – Jan 2023*
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
 
-Worked as a dedicated freelance tester on the world's leading digital testing platform, ensuring the quality of web and mobile applications for international clients.
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
 
-- **Test Execution**: Executed over **150 test cycles** covering functional, regression, and payment testing for e-commerce, media, and fintech apps.
+        nav a {
+            font-size: 1em;
+            font-weight: 600;
+            color: var(--subtle-text-color);
+            padding: 5px 10px;
+            transition: color var(--transition-speed), background-color var(--transition-speed);
+            border-radius: var(--radius-default);
+        }
 
-- **Bug Reporting**: Reported critical and high-severity bugs with professional documentation, including logs (Logcat/Charles), screenshots, and screen recordings, maintaining a high bug approval rate.
+        nav a:hover,
+        nav a.active {
+            color: var(--primary-color);
+            background-color: var(--shadow-light);
+        }
 
-- **Environment Coverage**: Tested across multiple environments (Staging/Production) and devices to ensure cross-browser compatibility and responsive design.
+        .theme-toggle-btn {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.2em;
+            cursor: pointer;
+            padding: 5px;
+            transition: color var(--transition-speed), transform 0.2s ease;
+        }
 
-- **Specialized Testing**:
-  - **Payment Testing**: Verified real-money transactions using various payment methods to ensure secure processing.
-  - **Localization (L10n)**: Validated linguistic accuracy and cultural appropriateness for the Bulgarian market.
+        .theme-toggle-btn:hover {
+            color: var(--primary-color);
+            transform: rotate(30deg);
+        }
 
-- **Skill Growth**: Progressed from "Unrated" to "Rated" tier by consistently delivering valuable feedback and adhering to strict NDA and deadline requirements.
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.5em;
+            cursor: pointer;
+            padding: 5px;
+        }
 
----
+        /* --- Hero Section --- */
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(135deg, var(--secondary-background-color) 0%, var(--background-color) 100%);
+            position: relative;
+            overflow: hidden;
+        }
 
-## 🚀 Portfolio Projects (GitHub)
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(78, 205, 196, 0.1) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
 
-### E-Commerce API Testing Framework
-- **Description**: A collection of Postman collections and environment variables to test a dummy e-commerce API.
-- **Tech Stack**: Postman, JSON, JavaScript (for test scripts).
-- **Role**: Created automated test scripts within Postman to verify status codes (200, 400, 500) and response bodies.
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
 
-### SQL Practice for QA
-- **Description**: A repository of complex SQL queries used for data validation.
-- **Goal**: Demonstrating ability to perform backend validation (JOINs, Aggregates) independent of the UI.
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
 
----
+        .hero h1 {
+            font-size: 3.5em;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-family: var(--font-mono);
+            animation: fadeInUp 1s ease-out;
+        }
 
-## 🎓 Education & Certifications
+        .hero .subtitle {
+            font-size: 1.5em;
+            color: var(--subtle-text-color);
+            margin-bottom: 30px;
+            min-height: 50px;
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+        }
 
-### uTest Academy
-**Rated Testing Specialist** | 2021
-- Completed comprehensive training on Bug Reports, Functional Testing, API Basics, and UX.
-- Mastered the "Applause Quality Standard" for defect reporting.
+        .hero-cta {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 40px;
+            animation: fadeInUp 1s ease-out 0.4s backwards;
+        }
 
-### Self-Taught Developer & QA
-**Ongoing Independent Learning**
-- **Focus**: Python, Selenium WebDriver, AI/ML basics.
-- **Methodology**: Official documentation, Udemy courses, and open-source contributions.
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            border-radius: var(--radius-default);
+            font-size: 1.1em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all var(--transition-speed);
+            border: none;
+            text-align: center;
+        }
 
----
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            box-shadow: 0 5px 15px var(--shadow-light);
+        }
 
-## 🗣 Languages
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px var(--shadow-light);
+        }
 
-- **Bulgarian**: Native
-- **English**: Professional Working Prof
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            transform: translateY(-2px);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- Section Styling --- */
+        section {
+            padding: 80px 0;
+        }
+
+        section h2 {
+            font-size: 2.5em;
+            color: var(--primary-color);
+            margin-bottom: 50px;
+            text-align: center;
+            position: relative;
+        }
+
+        section h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        /* --- About Section --- */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-photo {
+            text-align: center;
+        }
+
+        .about-photo i {
+            font-size: 200px;
+            color: var(--primary-color);
+            background: linear-gradient(135deg, var(--tertiary-background-color) 0%, var(--secondary-background-color) 100%);
+            padding: 50px;
+            border-radius: 50%;
+            box-shadow: 0 10px 30px var(--shadow-dark);
+        }
+
+        .about-text h3 {
+            font-size: 1.8em;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            font-size: 1.1em;
+            color: var(--subtle-text-color);
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 25px;
+            background-color: var(--tertiary-background-color);
+            border-radius: var(--radius-default);
+            box-shadow: 0 5px 15px var(--shadow-dark);
+            transition: transform var(--transition-speed);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 3em;
+            font-weight: 700;
+            color: var(--primary-color);
+            font-family: var(--font-mono);
+        }
+
+        .stat-label {
+            font-size: 1em;
+            color: var(--subtle-text-color);
+            margin-top: 10px;
+        }
+
+        /* --- Skills Section --- */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-category {
+            background-color: var(--secondary-background-color);
+            padding: 30px;
+            border-radius: var(--radius-default);
+            box-shadow: 0 5px 15px var(--shadow-dark);
+            border: 1px solid var(--border-color);
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px var(--shadow-dark);
+        }
+
+        .skill-category h3 {
+            font-size: 1.5em;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            background-color: var(--tertiary-background-color);
+            color: var(--text-color);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            border: 1px solid var(--border-color);
+            transition: all var(--transition-speed);
+        }
+
+        .skill-tag:hover {
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            transform: scale(1.05);
+        }
+
+        /* --- Experience Section --- */
+        .experience-timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            background-color: var(--secondary-background-color);
+            padding: 30px;
+            border-radius: var(--radius-default);
+            box-shadow: 0 5px 15px var(--shadow-dark);
+            border-left: 4px solid var(--primary-color);
+            margin-bottom: 30px;
+            transition: transform var(--transition-speed);
+        }
+
+        .timeline-item:hover {
+            transform: translateX(10px);
+        }
+
+        .timeline-item h3 {
+            font-size: 1.8em;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .timeline-meta {
+            color: var(--subtle-text-color);
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .timeline-item ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .timeline-item li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+            color: var(--subtle-text-color);
+        }
+
+        .timeline-item li::before {
+            content: '\f00c';
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--success-color);
+        }
+
+        /* --- Projects Section --- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background-color: var(--secondary-background-color);
+            border-radius: var(--radius-default);
+            overflow: hidden;
+            box-shadow: 0 5px 15px var(--shadow-dark);
+            border: 1px solid var(--border-color);
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px var(--shadow-dark);
+        }
+
+        .project-icon {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            padding: 40px;
+            text-align: center;
+        }
+
+        .project-icon i {
+            font-size: 4em;
+            color: var(--background-color);
+        }
+
+        .project-content {
+            padding: 30px;
+        }
+
+        .project-content h3 {
+            font-size: 1.5em;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .project-content p {
+            color: var(--subtle-text-color);
+            margin-bottom: 20px;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tech-badge {
+            background-color: var(--tertiary-background-color);
+            color: var(--primary-color);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary-color);
+            font-weight: 600;
+            transition: gap var(--transition-speed);
+        }
+
+        .project-link:hover {
+            gap: 15px;
+        }
+
+        /* --- Certifications Section --- */
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+        }
+
+        .cert-card {
+            background-color: var(--secondary-background-color);
+            padding: 30px;
+            border-radius: var(--radius-default);
+            box-shadow: 0 5px 15px var(--shadow-dark);
+            border: 1px solid var(--border-color);
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            transition: transform var(--transition-speed);
+        }
+
+        .cert-card:hover {
+            transform: translateX(10px);
+        }
+
+        .cert-icon {
+            font-size: 3em;
+            color: var(--primary-color);
+        }
+
+        .cert-info h3 {
+            font-size: 1.3em;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .cert-info p {
+            color: var(--subtle-text-color);
+        }
+
+        /* --- Contact Section --- */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            background-color: var(--secondary-background-color);
+            padding: 40px;
+            border-radius: var(--radius-default);
+            box-shadow: 0 5px 15px var(--shadow-dark);
+            border: 1px solid var(--border-color);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-color);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            background-color: var(--tertiary-background-color);
+            color: var(--text-color);
+            border-radius: var(--radius-default);
+            font-family: var(--font-main);
+            font-size: 1em;
+            transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px var(--shadow-light);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .contact-item {
+            background-color: var(--secondary-background-color);
+            padding: 25px;
+            border-radius: var(--radius-default);
+            box-shadow: 0 5px 15px var(--shadow-dark);
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: transform var(--transition-speed);
+        }
+
+        .contact-item:hover {
+            transform: translateX(10px);
+        }
+
+        .contact-item i {
+            font-size: 2em;
+            color: var(--primary-color);
+        }
+
+        .contact-item-content h3 {
+            font-size: 1.2em;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .contact-item-content p {
+            color: var(--subtle-text-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background-color: var(--tertiary-background-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            color: var(--primary-color);
+            transition: all var(--transition-speed);
+            border: 2px solid var(--border-color);
+        }
+
+        .social-link:hover {
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            transform: translateY(-5px);
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--secondary-background-color);
+            padding: 40px 0;
+            border-top: 1px solid var(--border-color);
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.3em;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: var(--subtle-text-color);
+            transition: color var(--transition-speed);
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+            color: var(--subtle-text-color);
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background-color: var(--secondary-background-color);
+                padding: 20px;
+                box-shadow: 0 5px 15px var(--shadow-dark);
+            }
+
+            nav ul.mobile-menu-active {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5em;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2em;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .about-photo i {
+                font-size: 150px;
+                padding: 30px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .certifications-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* --- Animations --- */
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .slide-up {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .slide-up.animate {
+            animation: slideUp 0.8s ease-out forwards;
+        }
+
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">DP_QA</div>
+            <nav>
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul id="navMenu">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#skills" class="nav-link">Skills</a></li>
+                    <li><a href="#experience" class="nav-link">Experience</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+                <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle dark/light mode">
+                    <i class="fas fa-sun"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Dimitar Prodromov</h1>
+            <div class="subtitle">
+                <span id="typedText"></span><span class="cursor">|</span>
+            </div>
+            <div class="hero-cta">
+                <a href="#projects" class="btn btn-primary">
+                    <i class="fas fa-briefcase"></i> View My Work
+                </a>
+                <a href="#contact" class="btn btn-secondary">
+                    <i class="fas fa-download"></i> Download CV
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <div class="about-photo">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <div class="about-text">
+                    <h3>Professional QA Engineer</h3>
+                    <p>
+                        Detail-oriented QA Engineer with 2+ years of intensive experience as a freelance tester for <strong>uTest (Applause)</strong>. 
+                        I have successfully participated in numerous test cycles for global brands, specializing in functional, usability, and localization testing.
+                    </p>
+                    <p>
+                        My journey started with the <strong>uTest Academy</strong>, where I became a <strong>Rated Tester</strong> due to high-quality bug reports 
+                        and reliability. I am now transitioning into a full-time role, bringing strong manual testing expertise and growing skills in 
+                        <strong>Test Automation (Python)</strong> and <strong>SQL</strong>.
+                    </p>
+                    <div class="stats">
+                        <div class="stat-item">
+                            <div class="stat-number" data-target="2">0</div>
+                            <div class="stat-label">Years Experience</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-target="150">0</div>
+                            <div class="stat-label">Test Cycles</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">Rated</div>
+                            <div class="stat-label">Tester Status</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2>Technical Skills</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3><i class="fas fa-clipboard-check"></i> Testing Types</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Functional Testing</span>
+                        <span class="skill-tag">Regression Testing</span>
+                        <span class="skill-tag">Exploratory Testing</span>
+                        <span class="skill-tag">Usability Testing</span>
+                        <span class="skill-tag">Payment Testing</span>
+                        <span class="skill-tag">Localization</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-tools"></i> Tools & Platforms</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">uTest Platform</span>
+                        <span class="skill-tag">Jira</span>
+                        <span class="skill-tag">TestRail</span>
+                        <span class="skill-tag">Charles Proxy</span>
+                        <span class="skill-tag">Android Studio</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-code"></i> API & Database</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Postman</span>
+                        <span class="skill-tag">REST API</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">Database Validation</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-code-branch"></i> Version Control</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">GitHub</span>
+                        <span class="skill-tag">Markdown</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-laptop"></i> OS & Devices</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Windows</span>
+                        <span class="skill-tag">Linux</span>
+                        <span class="skill-tag">Android</span>
+                        <span class="skill-tag">iOS</span>
+                        <span class="skill-tag">Chrome DevTools</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-robot"></i> Automation (Learning)</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Selenium WebDriver</span>
+                        <span class="skill-tag">Test Automation</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <h2>Professional Experience</h2>
+            <div class="experience-timeline">
+                <div class="timeline-item">
+                    <h3>Freelance QA / Rated Tester</h3>
+                    <div class="timeline-meta">
+                        <i class="fas fa-building"></i> uTest (Applause) | 
+                        <i class="fas fa-map-marker-alt"></i> Remote / Sofia, Bulgaria | 
+                        <i class="fas fa-calendar"></i> Jan 2021 – Jan 2023
+                    </div>
+                    <p>Worked as a dedicated freelance tester on the world's leading digital testing platform, ensuring the quality of web and mobile applications for international clients.</p>
+                    <ul>
+                        <li><strong>Test Execution:</strong> Executed over 150 test cycles covering functional, regression, and payment testing for e-commerce, media, and fintech apps.</li>
+                        <li><strong>Bug Reporting:</strong> Reported critical and high-severity bugs with professional documentation, including logs (Logcat/Charles), screenshots, and screen recordings, maintaining a high bug approval rate.</li>
+                        <li><strong>Environment Coverage:</strong> Tested across multiple environments (Staging/Production) and devices to ensure cross-browser compatibility and responsive design.</li>
+                        <li><strong>Payment Testing:</strong> Verified real-money transactions using various payment methods to ensure secure processing.</li>
+                        <li><strong>Localization (L10n):</strong> Validated linguistic accuracy and cultural appropriateness for the Bulgarian market.</li>
+                        <li><strong>Skill Growth:</strong> Progressed from "Unrated" to "Rated" tier by consistently delivering valuable feedback and adhering to strict NDA and deadline requirements.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2>Portfolio Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>E-Commerce API Testing Framework</h3>
+                        <p>A collection of Postman collections and environment variables to test a dummy e-commerce API with automated test scripts.</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">Postman</span>
+                            <span class="tech-badge">JSON</span>
+                            <span class="tech-badge">JavaScript</span>
+                            <span class="tech-badge">REST API</span>
+                        </div>
+                        <a href="https://github.com/papica777-eng" class="project-link" target="_blank">
+                            View on GitHub <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>SQL Practice for QA</h3>
+                        <p>A repository of complex SQL queries used for data validation, demonstrating backend validation independent of the UI.</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">SQL</span>
+                            <span class="tech-badge">Database</span>
+                            <span class="tech-badge">JOINs</span>
+                            <span class="tech-badge">Aggregates</span>
+                        </div>
+                        <a href="https://github.com/papica777-eng" class="project-link" target="_blank">
+                            View on GitHub <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>ManualQATester Portfolio</h3>
+                        <p>This professional portfolio website showcasing my QA skills, experience, and projects. Built with modern web technologies.</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">HTML5</span>
+                            <span class="tech-badge">CSS3</span>
+                            <span class="tech-badge">JavaScript</span>
+                            <span class="tech-badge">Responsive Design</span>
+                        </div>
+                        <a href="https://github.com/papica777-eng/ManualQATester" class="project-link" target="_blank">
+                            View on GitHub <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications">
+        <div class="container">
+            <h2>Education & Certifications</h2>
+            <div class="certifications-grid">
+                <div class="cert-card">
+                    <div class="cert-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <div class="cert-info">
+                        <h3>uTest Academy - Rated Testing Specialist</h3>
+                        <p>2021 | Comprehensive training on Bug Reports, Functional Testing, API Basics, and UX. Mastered the "Applause Quality Standard" for defect reporting.</p>
+                    </div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="cert-info">
+                        <h3>Self-Taught Developer & QA</h3>
+                        <p>Ongoing | Focus on Python, Selenium WebDriver, and AI/ML basics through official documentation, Udemy courses, and open-source contributions.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-form">
+                    <h3>Send me a message</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div class="contact-item-content">
+                            <h3>Location</h3>
+                            <p>Sofia, Bulgaria</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div class="contact-item-content">
+                            <h3>Email</h3>
+                            <p>your.email@example.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div class="contact-item-content">
+                            <h3>Phone</h3>
+                            <p>Available upon request</p>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://github.com/papica777-eng" target="_blank" class="social-link" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/yourprofile" target="_blank" class="social-link" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="mailto:your.email@example.com" class="social-link" aria-label="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Dimitar Prodromov</h3>
+                    <p>Manual QA Engineer passionate about delivering quality software through comprehensive testing and attention to detail.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#skills">Skills</a></li>
+                        <li><a href="#experience">Experience</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <ul>
+                        <li><a href="https://github.com/papica777-eng" target="_blank"><i class="fab fa-github"></i> GitHub</a></li>
+                        <li><a href="https://linkedin.com/in/yourprofile" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                        <li><a href="mailto:your.email@example.com"><i class="fas fa-envelope"></i> Email</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Dimitar Prodromov. All rights reserved. | Built with <i class="fas fa-heart" style="color: var(--accent-color);"></i> and dedication to quality.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Dark/Light Mode Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+
+        // Load theme preference
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        if (currentTheme === 'light') {
+            body.classList.add('light-mode');
+            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+            const theme = body.classList.contains('light-mode') ? 'light' : 'dark';
+            localStorage.setItem('theme', theme);
+            themeToggle.innerHTML = theme === 'light' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('mobile-menu-active');
+            const icon = mobileMenuToggle.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // Smooth Scroll Navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    // Close mobile menu if open
+                    navMenu.classList.remove('mobile-menu-active');
+                    const icon = mobileMenuToggle.querySelector('i');
+                    icon.classList.add('fa-bars');
+                    icon.classList.remove('fa-times');
+                }
+            });
+        });
+
+        // Active Nav Link Highlighting
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Typing Animation
+        const typedTextElement = document.getElementById('typedText');
+        const phrases = [
+            'Manual QA Engineer',
+            'uTest Rated Tester',
+            'Aspiring Automation Engineer',
+            'Quality Assurance Specialist'
+        ];
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typingSpeed = 100;
+
+        function typeText() {
+            const currentPhrase = phrases[phraseIndex];
+            
+            if (isDeleting) {
+                typedTextElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+                typingSpeed = 50;
+            } else {
+                typedTextElement.textContent = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+                typingSpeed = 100;
+            }
+
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                typingSpeed = 2000; // Pause at end
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                typingSpeed = 500; // Pause before next phrase
+            }
+
+            setTimeout(typeText, typingSpeed);
+        }
+
+        // Start typing animation
+        typeText();
+
+        // Stats Counter Animation
+        function animateCounter(element) {
+            const target = parseInt(element.getAttribute('data-target'));
+            const duration = 2000; // 2 seconds
+            const increment = target / (duration / 16); // 60fps
+            let current = 0;
+
+            const updateCounter = () => {
+                current += increment;
+                if (current < target) {
+                    element.textContent = Math.floor(current);
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    element.textContent = target;
+                }
+            };
+
+            updateCounter();
+        }
+
+        // Intersection Observer for Scroll Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                    
+                    // Animate counters when about section is visible
+                    if (entry.target.id === 'about') {
+                        const counters = entry.target.querySelectorAll('.stat-number[data-target]');
+                        counters.forEach(counter => {
+                            if (!counter.classList.contains('animated')) {
+                                animateCounter(counter);
+                                counter.classList.add('animated');
+                            }
+                        });
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections for scroll animations
+        sections.forEach(section => {
+            section.classList.add('slide-up');
+            observer.observe(section);
+        });
+
+        // Contact Form Submission (Frontend only - no backend)
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(contactForm);
+            const data = Object.fromEntries(formData);
+            
+            // Simulate form submission
+            alert('Thank you for your message! This is a demo contact form. In a production environment, this would send your message.');
+            
+            // Reset form
+            contactForm.reset();
+            
+            // In a real application, you would send this data to a backend server
+            console.log('Form data:', data);
+        });
+    </script>
+</body>
+</html>
