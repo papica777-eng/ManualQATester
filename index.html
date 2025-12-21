@@ -1403,10 +1403,65 @@
             color: var(--subtle-text-color);
         }
 
+        /* --- Back to Top Button --- */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.2em;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px var(--shadow-dark);
+            transition: all var(--transition-speed);
+            z-index: 999;
+        }
+
+        .back-to-top:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px var(--shadow-light);
+        }
+
+        .back-to-top.show {
+            display: flex;
+        }
+
+        /* --- Skip to Content Link (Accessibility) --- */
+        .skip-to-content {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            padding: 10px 20px;
+            text-decoration: none;
+            z-index: 1001;
+            transition: top var(--transition-speed);
+        }
+
+        .skip-to-content:focus {
+            top: 0;
+        }
+
         /* --- Responsive Design --- */
         @media (max-width: 768px) {
             .mobile-menu-toggle {
                 display: block;
+            }
+            
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
             }
 
             nav ul {
@@ -1502,6 +1557,9 @@
     </style>
 </head>
 <body>
+    <!-- Skip to Content Link for Accessibility -->
+    <a href="#home" class="skip-to-content">Skip to main content</a>
+
     <!-- Header -->
     <header>
         <div class="container">
@@ -1551,8 +1609,32 @@
                     <i class="fas fa-briefcase"></i> View My Work
                 </a>
                 <a href="#contact" class="btn btn-secondary">
-                    <i class="fas fa-download"></i> Download CV
+                    <i class="fas fa-envelope"></i> Get In Touch
                 </a>
+            </div>
+            
+            <!-- Quick Navigation Help -->
+            <div style="margin-top: 50px; padding: 20px; background: rgba(255, 255, 255, 0.02); border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.05); max-width: 900px; margin-left: auto; margin-right: auto;">
+                <h3 style="color: var(--primary-color); margin-bottom: 15px; font-size: 1.2em;">
+                    <i class="fas fa-compass"></i> Quick Navigation Guide
+                </h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; text-align: left; font-size: 0.95em;">
+                    <div>
+                        <strong style="color: var(--text-color);">🎯 For Recruiters:</strong>
+                        <p style="color: var(--subtle-text-color); margin: 5px 0;">Check <a href="#experience" style="color: var(--primary-color);">Experience</a> and <a href="#case-studies" style="color: var(--primary-color);">Case Studies</a></p>
+                    </div>
+                    <div>
+                        <strong style="color: var(--text-color);">💻 For Technical Review:</strong>
+                        <p style="color: var(--subtle-text-color); margin: 5px 0;">Explore <a href="#test-examples" style="color: var(--primary-color);">Terminal</a> and <a href="#projects" style="color: var(--primary-color);">Projects</a></p>
+                    </div>
+                    <div>
+                        <strong style="color: var(--text-color);">📞 Quick Contact:</strong>
+                        <p style="color: var(--subtle-text-color); margin: 5px 0;">Jump to <a href="#contact" style="color: var(--primary-color);">Contact</a> section below</p>
+                    </div>
+                </div>
+                <p style="margin-top: 15px; font-size: 0.9em; color: var(--subtle-text-color); text-align: center;">
+                    <i class="fas fa-info-circle"></i> Use the navigation menu above or scroll to explore • <i class="fas fa-arrow-up"></i> Back-to-top button available
+                </p>
             </div>
         </div>
     </section>
@@ -2064,6 +2146,11 @@
             </div>
         </div>
     </section>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" aria-label="Back to top" title="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
     <!-- Footer -->
     <footer>
@@ -2853,6 +2940,66 @@ ${progressBar}
 
         // Load GitHub activity on page load
         fetchGitHubActivity();
+
+        // Back to Top Button Functionality
+        const backToTopButton = document.getElementById('backToTop');
+        
+        // Show/hide back to top button based on scroll position
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+
+        // Scroll to top when button is clicked
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Improved mobile menu functionality
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        // Close mobile menu when clicking on a nav link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    navMenu.classList.remove('mobile-menu-active');
+                    const icon = mobileMenuToggle.querySelector('i');
+                    icon.classList.add('fa-bars');
+                    icon.classList.remove('fa-times');
+                }
+            });
+        });
+
+        // Add loading indicator for contact form
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            const originalSubmitHandler = contactForm.onsubmit;
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const submitButton = contactForm.querySelector('button[type="submit"]');
+                const originalText = submitButton.innerHTML;
+                submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                submitButton.disabled = true;
+                
+                setTimeout(() => {
+                    submitButton.innerHTML = originalText;
+                    submitButton.disabled = false;
+                    if (originalSubmitHandler) originalSubmitHandler.call(contactForm, e);
+                }, 500);
+            });
+        }
+
+        // Add console message for developers
+        console.log('%c👋 Hello Developer!', 'color: #2563EB; font-size: 20px; font-weight: bold;');
+        console.log('%cInterested in my work? Let\'s connect!', 'color: #60A5FA; font-size: 14px;');
+        console.log('%cEmail: papica777@gmail.com', 'color: #10B981; font-size: 12px;');
     </script>
 </body>
 </html>
