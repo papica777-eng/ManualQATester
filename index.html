@@ -1451,6 +1451,125 @@
             top: 0;
         }
 
+        /* --- Quick Jump Navigation (Fixed Sidebar) --- */
+        .quick-jump-nav {
+            position: fixed;
+            right: 80px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 998;
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+            padding: 15px 10px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-default);
+            box-shadow: 0 5px 15px var(--shadow-dark);
+        }
+
+        .quick-jump-nav.show {
+            display: flex;
+        }
+
+        .quick-jump-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--subtle-text-color);
+            cursor: pointer;
+            transition: all var(--transition-speed);
+            position: relative;
+        }
+
+        .quick-jump-dot:hover {
+            background: var(--primary-color);
+            transform: scale(1.3);
+        }
+
+        .quick-jump-dot.active {
+            background: var(--primary-color);
+            box-shadow: 0 0 10px var(--primary-color);
+        }
+
+        .quick-jump-dot::before {
+            content: attr(data-tooltip);
+            position: absolute;
+            right: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--secondary-background-color);
+            color: var(--text-color);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.85em;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--transition-speed);
+            border: 1px solid var(--border-color);
+        }
+
+        .quick-jump-dot:hover::before {
+            opacity: 1;
+        }
+
+        /* --- Scroll Progress Bar --- */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            z-index: 1001;
+            transition: width 0.1s ease-out;
+        }
+
+        /* --- Section Spacing Optimization --- */
+        section {
+            padding: 60px 0;
+            scroll-margin-top: 80px; /* Offset for fixed header */
+        }
+
+        /* Reduce padding for adjacent sections */
+        section + section {
+            padding-top: 40px;
+        }
+
+        /* --- Keyboard Shortcuts Hint --- */
+        .keyboard-hint {
+            position: fixed;
+            bottom: 90px;
+            right: 30px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            padding: 10px 15px;
+            border-radius: var(--radius-default);
+            font-size: 0.85em;
+            color: var(--subtle-text-color);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--transition-speed);
+            z-index: 997;
+            max-width: 200px;
+        }
+
+        .keyboard-hint.show {
+            opacity: 1;
+        }
+
+        .keyboard-hint kbd {
+            background: var(--tertiary-background-color);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: var(--font-mono);
+            font-size: 0.9em;
+            border: 1px solid var(--border-color);
+        }
+
         /* --- Responsive Design --- */
         @media (max-width: 768px) {
             .mobile-menu-toggle {
@@ -1462,6 +1581,22 @@
                 right: 20px;
                 width: 45px;
                 height: 45px;
+            }
+
+            .quick-jump-nav {
+                display: none !important; /* Hide on mobile to avoid clutter */
+            }
+
+            .keyboard-hint {
+                display: none; /* Hide keyboard hints on mobile */
+            }
+
+            section {
+                padding: 40px 0;
+            }
+
+            section + section {
+                padding-top: 30px;
             }
 
             nav ul {
@@ -1557,6 +1692,9 @@
     </style>
 </head>
 <body>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
     <!-- Skip to Content Link for Accessibility -->
     <a href="#home" class="skip-to-content">Skip to main content</a>
 
@@ -2151,6 +2289,29 @@
     <button id="backToTop" class="back-to-top" aria-label="Back to top" title="Back to top">
         <i class="fas fa-arrow-up"></i>
     </button>
+
+    <!-- Quick Jump Navigation -->
+    <div class="quick-jump-nav" id="quickJumpNav">
+        <div class="quick-jump-dot" data-tooltip="Home" data-section="home"></div>
+        <div class="quick-jump-dot" data-tooltip="About" data-section="about"></div>
+        <div class="quick-jump-dot" data-tooltip="Skills" data-section="skills"></div>
+        <div class="quick-jump-dot" data-tooltip="Terminal" data-section="test-examples"></div>
+        <div class="quick-jump-dot" data-tooltip="Cases" data-section="case-studies"></div>
+        <div class="quick-jump-dot" data-tooltip="Philosophy" data-section="philosophy"></div>
+        <div class="quick-jump-dot" data-tooltip="Experience" data-section="experience"></div>
+        <div class="quick-jump-dot" data-tooltip="Projects" data-section="projects"></div>
+        <div class="quick-jump-dot" data-tooltip="Contact" data-section="contact"></div>
+    </div>
+
+    <!-- Keyboard Shortcuts Hint -->
+    <div class="keyboard-hint" id="keyboardHint">
+        <div style="margin-bottom: 5px; font-weight: 600; color: var(--primary-color);">
+            <i class="fas fa-keyboard"></i> Quick Keys
+        </div>
+        <div><kbd>Home</kbd> - Top</div>
+        <div><kbd>End</kbd> - Bottom</div>
+        <div><kbd>↑↓</kbd> - Scroll</div>
+    </div>
 
     <!-- Footer -->
     <footer>
@@ -2941,25 +3102,149 @@ ${progressBar}
         // Load GitHub activity on page load
         fetchGitHubActivity();
 
-        // Back to Top Button Functionality
+        // ==================== SCROLL ENHANCEMENTS ====================
+        
+        // Scroll Progress Bar
+        const scrollProgress = document.getElementById('scrollProgress');
+        const quickJumpNav = document.getElementById('quickJumpNav');
+        const keyboardHint = document.getElementById('keyboardHint');
         const backToTopButton = document.getElementById('backToTop');
         
-        // Show/hide back to top button based on scroll position
+        // Update scroll progress bar
+        function updateScrollProgress() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollPercentage = (scrollTop / scrollHeight) * 100;
+            scrollProgress.style.width = scrollPercentage + '%';
+        }
+
+        // Show/hide elements based on scroll position
         window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
+            const scrollTop = window.pageYOffset;
+            
+            // Update progress bar
+            updateScrollProgress();
+            
+            // Show/hide back to top button
+            if (scrollTop > 300) {
                 backToTopButton.classList.add('show');
+                quickJumpNav.classList.add('show');
             } else {
                 backToTopButton.classList.remove('show');
+                quickJumpNav.classList.remove('show');
             }
+            
+            // Update active dot in quick jump navigation
+            updateQuickJumpActive();
         });
 
-        // Scroll to top when button is clicked
+        // Back to Top Button Functionality
         backToTopButton.addEventListener('click', () => {
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
         });
+
+        // Quick Jump Navigation
+        const quickJumpDots = document.querySelectorAll('.quick-jump-dot');
+        
+        quickJumpDots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const sectionId = dot.getAttribute('data-section');
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Update active quick jump dot based on scroll position
+        function updateQuickJumpActive() {
+            const sections = ['home', 'about', 'skills', 'test-examples', 'case-studies', 'philosophy', 'experience', 'projects', 'contact'];
+            let currentSection = 'home';
+            
+            sections.forEach(sectionId => {
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    const rect = section.getBoundingClientRect();
+                    if (rect.top <= 150 && rect.bottom >= 150) {
+                        currentSection = sectionId;
+                    }
+                }
+            });
+            
+            quickJumpDots.forEach(dot => {
+                if (dot.getAttribute('data-section') === currentSection) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+
+        // Keyboard Shortcuts
+        let keyboardHintTimeout;
+        
+        document.addEventListener('keydown', (e) => {
+            // Home key - scroll to top
+            if (e.key === 'Home') {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                showKeyboardHint();
+            }
+            
+            // End key - scroll to bottom
+            if (e.key === 'End') {
+                e.preventDefault();
+                window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+                showKeyboardHint();
+            }
+            
+            // Page Up/Down - scroll by section
+            if (e.key === 'PageUp' || e.key === 'PageDown') {
+                e.preventDefault();
+                const sections = document.querySelectorAll('section[id]');
+                const currentScroll = window.pageYOffset;
+                let targetSection = null;
+                
+                if (e.key === 'PageUp') {
+                    // Find previous section
+                    for (let i = sections.length - 1; i >= 0; i--) {
+                        if (sections[i].offsetTop < currentScroll - 100) {
+                            targetSection = sections[i];
+                            break;
+                        }
+                    }
+                } else {
+                    // Find next section
+                    for (let i = 0; i < sections.length; i++) {
+                        if (sections[i].offsetTop > currentScroll + 100) {
+                            targetSection = sections[i];
+                            break;
+                        }
+                    }
+                }
+                
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+                showKeyboardHint();
+            }
+        });
+
+        function showKeyboardHint() {
+            keyboardHint.classList.add('show');
+            clearTimeout(keyboardHintTimeout);
+            keyboardHintTimeout = setTimeout(() => {
+                keyboardHint.classList.remove('show');
+            }, 3000);
+        }
+
+        // Show keyboard hint briefly on page load
+        setTimeout(() => {
+            showKeyboardHint();
+        }, 2000);
 
         // Improved mobile menu functionality
         const mobileMenuToggle = document.getElementById('mobileMenuToggle');
