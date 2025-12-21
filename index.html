@@ -1101,6 +1101,36 @@
             transition: width 0.3s ease;
         }
 
+        .terminal-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 12px 20px;
+            background: #121212;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .terminal-action-btn {
+            border: 1px solid var(--border-color);
+            background: var(--tertiary-background-color);
+            color: var(--text-color);
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: all var(--transition-speed);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .terminal-action-btn:hover {
+            background: var(--primary-color);
+            color: var(--background-color);
+            border-color: var(--primary-color);
+            transform: translateY(-1px);
+        }
+
         /* --- Case Studies Section --- */
         .case-studies-container {
             display: grid;
@@ -1706,6 +1736,14 @@
                     <div class="window-dot yellow"></div>
                     <div class="window-dot green"></div>
                     <div class="test-window-title">dimitar@qa-portfolio:~$</div>
+                </div>
+                <div class="terminal-actions" aria-label="Quick commands">
+                    <button class="terminal-action-btn" data-cmd="help" aria-label="Run help command"><i class="fas fa-question-circle"></i> help</button>
+                    <button class="terminal-action-btn" data-cmd="run-tests" aria-label="Run tests command"><i class="fas fa-play"></i> run-tests</button>
+                    <button class="terminal-action-btn" data-cmd="skills" aria-label="Show skills command"><i class="fas fa-tools"></i> skills</button>
+                    <button class="terminal-action-btn" data-cmd="about" aria-label="Show about command"><i class="fas fa-id-badge"></i> about</button>
+                    <button class="terminal-action-btn" data-cmd="contact" aria-label="Show contact command"><i class="fas fa-envelope"></i> contact</button>
+                    <button class="terminal-action-btn" data-cmd="clear" aria-label="Clear terminal command"><i class="fas fa-eraser"></i> clear</button>
                 </div>
                 <div class="terminal-output" id="terminalOutput">
                     <div class="terminal-line">
@@ -2350,6 +2388,10 @@
             const testButtons = document.querySelectorAll('.test-control-btn');
             const indicators = document.querySelectorAll('.indicator-dot');
 
+            if (!testCodeDisplay || !testFileName || testButtons.length === 0 || indicators.length === 0) {
+                return;
+            }
+
             // Remove animation class
             testCodeDisplay.style.animation = 'none';
             
@@ -2375,6 +2417,8 @@
 
         function startAutoRotate() {
             stopAutoRotate();
+            const testCodeDisplay = document.getElementById('test-code-display');
+            if (!testCodeDisplay) return;
             autoRotateInterval = setInterval(() => {
                 currentTestIndex = (currentTestIndex + 1) % testExamples.length;
                 displayTest(currentTestIndex);
@@ -2405,6 +2449,7 @@
         // ==================== INTERACTIVE TERMINAL ====================
         const terminalOutput = document.getElementById('terminalOutput');
         const terminalInput = document.getElementById('terminalInput');
+        const quickActionButtons = document.querySelectorAll('.terminal-action-btn');
         let commandHistory = [];
         let historyIndex = -1;
 
@@ -2566,18 +2611,6 @@ ${progressBar}
         };
 
         // Type text with animation
-        async function typeText(element, text, speed = 20) {
-            const lines = text.split('\n');
-            for (const line of lines) {
-                const lineDiv = document.createElement('div');
-                lineDiv.className = 'terminal-line';
-                lineDiv.innerHTML = line;
-                element.appendChild(lineDiv);
-                await new Promise(resolve => setTimeout(resolve, speed));
-            }
-            scrollTerminalToBottom();
-        }
-
         // Append text to terminal
         function appendToTerminal(text, animate = true) {
             if (animate) {
@@ -2632,6 +2665,22 @@ ${progressBar}
                 appendToTerminal('<span class="terminal-prompt">dimitar@qa-portfolio:~$</span>', false);
             }
         }
+
+        // Quick command buttons for instant interaction
+        quickActionButtons.forEach(btn => {
+            btn.addEventListener('click', async () => {
+                const cmd = btn.getAttribute('data-cmd');
+                terminalInput.value = '';
+                await executeCommand(cmd);
+                terminalInput.focus();
+            });
+        });
+
+        // Auto-focus terminal on load and show help so output is visible immediately
+        window.addEventListener('load', async () => {
+            terminalInput.focus();
+            await executeCommand('help');
+        });
 
         // Terminal input event listener
         terminalInput.addEventListener('keydown', async (e) => {
