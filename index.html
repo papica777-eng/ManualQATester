@@ -707,6 +707,139 @@
             transform: translateY(-5px);
         }
 
+        /* --- Playwright Test Examples Section --- */
+        .test-examples-section {
+            background: linear-gradient(135deg, var(--secondary-background-color) 0%, var(--tertiary-background-color) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .test-window {
+            background-color: #1e1e1e;
+            border-radius: var(--radius-default);
+            box-shadow: 0 10px 40px var(--shadow-dark);
+            overflow: hidden;
+            max-width: 900px;
+            margin: 0 auto;
+            border: 1px solid var(--border-color);
+        }
+
+        .test-window-header {
+            background-color: #2d2d2d;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .window-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .window-dot.red { background-color: #ff5f56; }
+        .window-dot.yellow { background-color: #ffbd2e; }
+        .window-dot.green { background-color: #27c93f; }
+
+        .test-window-title {
+            color: var(--subtle-text-color);
+            font-size: 0.85em;
+            margin-left: 10px;
+            font-family: var(--font-mono);
+        }
+
+        .test-code-container {
+            padding: 25px;
+            background-color: #1e1e1e;
+            min-height: 400px;
+            position: relative;
+        }
+
+        .test-code {
+            font-family: var(--font-mono);
+            font-size: 0.9em;
+            line-height: 1.6;
+            color: #d4d4d4;
+            opacity: 0;
+            animation: fadeInCode 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeInCode {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .test-code .keyword { color: #569cd6; }
+        .test-code .string { color: #ce9178; }
+        .test-code .function { color: #dcdcaa; }
+        .test-code .comment { color: #6a9955; font-style: italic; }
+        .test-code .constant { color: #4ec9b0; }
+        .test-code .operator { color: #d4d4d4; }
+
+        .test-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .test-control-btn {
+            background-color: var(--tertiary-background-color);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            padding: 10px 20px;
+            border-radius: var(--radius-default);
+            cursor: pointer;
+            font-family: var(--font-main);
+            font-size: 0.9em;
+            font-weight: 600;
+            transition: all var(--transition-speed);
+        }
+
+        .test-control-btn:hover {
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .test-control-btn.active {
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            border-color: var(--primary-color);
+        }
+
+        .test-indicator {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+            font-size: 0.85em;
+            color: var(--subtle-text-color);
+        }
+
+        .indicator-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--subtle-text-color);
+            transition: all var(--transition-speed);
+        }
+
+        .indicator-dot.active {
+            background-color: var(--primary-color);
+            transform: scale(1.5);
+        }
+
         /* --- Footer --- */
         footer {
             background-color: var(--secondary-background-color);
@@ -862,6 +995,7 @@
                 <ul id="navMenu">
                     <li><a href="#home" class="nav-link active">Overview</a></li>
                     <li><a href="#skills" class="nav-link">Skills</a></li>
+                    <li><a href="#test-examples" class="nav-link">Tests</a></li>
                     <li><a href="#about" class="nav-link">Analysis</a></li>
                     <li><a href="#experience" class="nav-link">Experience</a></li>
                     <li><a href="#projects" class="nav-link">Projects</a></li>
@@ -1002,6 +1136,43 @@
                         <span class="skill-tag">Test Automation</span>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Playwright Test Examples Section -->
+    <section id="test-examples" class="test-examples-section">
+        <div class="container">
+            <h2><i class="fas fa-terminal"></i> Live Playwright Test Examples</h2>
+            <p style="text-align: center; color: var(--subtle-text-color); max-width: 800px; margin: 0 auto 40px; font-size: 1.1em;">
+                Real-world test automation examples demonstrating end-to-end testing with Playwright. Watch the code rotate through different test scenarios.
+            </p>
+            
+            <div class="test-window">
+                <div class="test-window-header">
+                    <div class="window-dot red"></div>
+                    <div class="window-dot yellow"></div>
+                    <div class="window-dot green"></div>
+                    <div class="test-window-title">test/<span id="test-file-name">login.spec.ts</span></div>
+                </div>
+                <div class="test-code-container">
+                    <pre class="test-code" id="test-code-display"></pre>
+                </div>
+            </div>
+
+            <div class="test-controls">
+                <button class="test-control-btn active" data-test="0">Login Test</button>
+                <button class="test-control-btn" data-test="1">API Test</button>
+                <button class="test-control-btn" data-test="2">E2E Test</button>
+                <button class="test-control-btn" data-test="3">Mobile Test</button>
+            </div>
+
+            <div class="test-indicator">
+                <span>Auto-rotating</span>
+                <div class="indicator-dot active" data-indicator="0"></div>
+                <div class="indicator-dot" data-indicator="1"></div>
+                <div class="indicator-dot" data-indicator="2"></div>
+                <div class="indicator-dot" data-indicator="3"></div>
             </div>
         </div>
     </section>
@@ -1198,6 +1369,7 @@
                     <ul>
                         <li><a href="#home">Overview</a></li>
                         <li><a href="#skills">Skills</a></li>
+                        <li><a href="#test-examples">Tests</a></li>
                         <li><a href="#about">Analysis</a></li>
                         <li><a href="#experience">Experience</a></li>
                         <li><a href="#projects">Projects</a></li>
@@ -1394,6 +1566,167 @@
             
             // In a real application, you would send this data to a backend server
             console.log('Form data:', data);
+        });
+
+        // Playwright Test Examples Rotation
+        const testExamples = [
+            {
+                name: 'login.spec.ts',
+                code: `<span class="comment">// Test: User Login Functionality</span>
+<span class="keyword">import</span> { test, expect } <span class="keyword">from</span> <span class="string">'@playwright/test'</span>;
+
+<span class="function">test</span>(<span class="string">'successful login with valid credentials'</span>, <span class="keyword">async</span> ({ page }) => {
+  <span class="comment">// Navigate to login page</span>
+  <span class="keyword">await</span> page.<span class="function">goto</span>(<span class="string">'https://example.com/login'</span>);
+  
+  <span class="comment">// Fill in credentials</span>
+  <span class="keyword">await</span> page.<span class="function">fill</span>(<span class="string">'#email'</span>, <span class="string">'user@test.com'</span>);
+  <span class="keyword">await</span> page.<span class="function">fill</span>(<span class="string">'#password'</span>, <span class="string">'SecurePass123'</span>);
+  
+  <span class="comment">// Click login button</span>
+  <span class="keyword">await</span> page.<span class="function">click</span>(<span class="string">'button[type="submit"]'</span>);
+  
+  <span class="comment">// Assert successful login</span>
+  <span class="keyword">await</span> <span class="function">expect</span>(page).<span class="function">toHaveURL</span>(<span class="string">'/dashboard'</span>);
+  <span class="keyword">await</span> <span class="function">expect</span>(page.<span class="function">locator</span>(<span class="string">'.welcome-message'</span>))
+    .<span class="function">toContainText</span>(<span class="string">'Welcome back'</span>);
+});`
+            },
+            {
+                name: 'api-test.spec.ts',
+                code: `<span class="comment">// Test: API Endpoint Validation</span>
+<span class="keyword">import</span> { test, expect } <span class="keyword">from</span> <span class="string">'@playwright/test'</span>;
+
+<span class="function">test</span>(<span class="string">'GET /api/users returns correct data'</span>, <span class="keyword">async</span> ({ request }) => {
+  <span class="comment">// Make API request</span>
+  <span class="keyword">const</span> response = <span class="keyword">await</span> request.<span class="function">get</span>(<span class="string">'https://api.example.com/users'</span>, {
+    headers: {
+      <span class="string">'Authorization'</span>: <span class="string">'Bearer TOKEN'</span>,
+      <span class="string">'Content-Type'</span>: <span class="string">'application/json'</span>
+    }
+  });
+  
+  <span class="comment">// Validate response status</span>
+  <span class="function">expect</span>(response.<span class="function">status</span>()).<span class="function">toBe</span>(<span class="constant">200</span>);
+  
+  <span class="comment">// Parse and validate JSON response</span>
+  <span class="keyword">const</span> data = <span class="keyword">await</span> response.<span class="function">json</span>();
+  <span class="function">expect</span>(data).<span class="function">toHaveProperty</span>(<span class="string">'users'</span>);
+  <span class="function">expect</span>(data.users).<span class="function">toBeInstanceOf</span>(Array);
+  <span class="function">expect</span>(data.users.<span class="constant">length</span>).<span class="function">toBeGreaterThan</span>(<span class="constant">0</span>);
+});`
+            },
+            {
+                name: 'e2e-checkout.spec.ts',
+                code: `<span class="comment">// Test: E-Commerce Checkout Flow</span>
+<span class="keyword">import</span> { test, expect } <span class="keyword">from</span> <span class="string">'@playwright/test'</span>;
+
+<span class="function">test</span>(<span class="string">'complete purchase workflow'</span>, <span class="keyword">async</span> ({ page }) => {
+  <span class="comment">// Add item to cart</span>
+  <span class="keyword">await</span> page.<span class="function">goto</span>(<span class="string">'https://shop.example.com/products'</span>);
+  <span class="keyword">await</span> page.<span class="function">click</span>(<span class="string">'.product-card:first-child .add-to-cart'</span>);
+  
+  <span class="comment">// Verify cart badge updated</span>
+  <span class="keyword">await</span> <span class="function">expect</span>(page.<span class="function">locator</span>(<span class="string">'.cart-count'</span>)).<span class="function">toHaveText</span>(<span class="string">'1'</span>);
+  
+  <span class="comment">// Navigate to checkout</span>
+  <span class="keyword">await</span> page.<span class="function">click</span>(<span class="string">'.cart-icon'</span>);
+  <span class="keyword">await</span> page.<span class="function">click</span>(<span class="string">'text=Proceed to Checkout'</span>);
+  
+  <span class="comment">// Fill shipping details</span>
+  <span class="keyword">await</span> page.<span class="function">fill</span>(<span class="string">'#fullName'</span>, <span class="string">'John Doe'</span>);
+  <span class="keyword">await</span> page.<span class="function">fill</span>(<span class="string">'#address'</span>, <span class="string">'123 Test St'</span>);
+  
+  <span class="comment">// Complete order</span>
+  <span class="keyword">await</span> page.<span class="function">click</span>(<span class="string">'button:text("Place Order")'</span>);
+  <span class="keyword">await</span> <span class="function">expect</span>(page).<span class="function">toHaveURL</span>(<span class="string">/order-confirmation/</span>);
+});`
+            },
+            {
+                name: 'mobile-responsive.spec.ts',
+                code: `<span class="comment">// Test: Mobile Responsive Design</span>
+<span class="keyword">import</span> { test, expect, devices } <span class="keyword">from</span> <span class="string">'@playwright/test'</span>;
+
+<span class="function">test</span>.<span class="function">use</span>(devices[<span class="string">'iPhone 13'</span>]);
+
+<span class="function">test</span>(<span class="string">'mobile navigation menu works correctly'</span>, <span class="keyword">async</span> ({ page }) => {
+  <span class="comment">// Load page in mobile viewport</span>
+  <span class="keyword">await</span> page.<span class="function">goto</span>(<span class="string">'https://example.com'</span>);
+  
+  <span class="comment">// Verify hamburger menu is visible</span>
+  <span class="keyword">const</span> hamburger = page.<span class="function">locator</span>(<span class="string">'.mobile-menu-toggle'</span>);
+  <span class="keyword">await</span> <span class="function">expect</span>(hamburger).<span class="function">toBeVisible</span>();
+  
+  <span class="comment">// Click to open menu</span>
+  <span class="keyword">await</span> hamburger.<span class="function">click</span>();
+  <span class="keyword">await</span> <span class="function">expect</span>(page.<span class="function">locator</span>(<span class="string">'.mobile-menu'</span>)).<span class="function">toBeVisible</span>();
+  
+  <span class="comment">// Test navigation item</span>
+  <span class="keyword">await</span> page.<span class="function">click</span>(<span class="string">'text=About'</span>);
+  <span class="keyword">await</span> <span class="function">expect</span>(page).<span class="function">toHaveURL</span>(<span class="string">/about/</span>);
+});`
+            }
+        ];
+
+        let currentTestIndex = 0;
+        let autoRotateInterval;
+
+        function displayTest(index) {
+            const testCodeDisplay = document.getElementById('test-code-display');
+            const testFileName = document.getElementById('test-file-name');
+            const testButtons = document.querySelectorAll('.test-control-btn');
+            const indicators = document.querySelectorAll('.indicator-dot');
+
+            // Remove animation class
+            testCodeDisplay.style.animation = 'none';
+            
+            // Update content
+            setTimeout(() => {
+                testCodeDisplay.innerHTML = testExamples[index].code;
+                testFileName.textContent = testExamples[index].name;
+                
+                // Reset animation
+                testCodeDisplay.style.animation = 'fadeInCode 0.5s ease-out forwards';
+                
+                // Update button states
+                testButtons.forEach((btn, i) => {
+                    btn.classList.toggle('active', i === index);
+                });
+                
+                // Update indicators
+                indicators.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === index);
+                });
+            }, 50);
+        }
+
+        function startAutoRotate() {
+            stopAutoRotate();
+            autoRotateInterval = setInterval(() => {
+                currentTestIndex = (currentTestIndex + 1) % testExamples.length;
+                displayTest(currentTestIndex);
+            }, 5000); // Rotate every 5 seconds
+        }
+
+        function stopAutoRotate() {
+            if (autoRotateInterval) {
+                clearInterval(autoRotateInterval);
+            }
+        }
+
+        // Initialize test examples
+        displayTest(0);
+        startAutoRotate();
+
+        // Handle manual test selection
+        document.querySelectorAll('.test-control-btn').forEach((btn, index) => {
+            btn.addEventListener('click', () => {
+                currentTestIndex = index;
+                displayTest(index);
+                stopAutoRotate();
+                // Restart auto-rotate after 10 seconds of inactivity
+                setTimeout(startAutoRotate, 10000);
+            });
         });
     </script>
 </body>
