@@ -1,3 +1,17 @@
+    <!-- Interactive Terminal Section -->
+    <section id="terminal-section" class="max-w-2xl mx-auto my-12">
+        <div class="glass-panel p-6 rounded-xl shadow-md">
+            <h2 class="text-xl font-bold mb-2"><i class="fas fa-terminal"></i> Interactive Terminal</h2>
+            <div id="terminal" style="background:#18181b;color:#fafaf9;font-family:monospace;padding:18px 16px;min-height:180px;border-radius:8px;box-shadow:0 2px 8px #0001;overflow:auto;max-width:100%;font-size:1.05em;">
+                <div class="terminal-line">Type <span style="color:#4ECDC4">help</span> for available commands.</div>
+            </div>
+            <form id="terminal-form" autocomplete="off" style="margin-top:12px;display:flex;gap:8px;">
+                <span style="color:#4ECDC4">$</span>
+                <input id="terminal-input" type="text" class="flex-1 px-2 py-1 rounded border border-stone-200" style="background:#23232a;color:#fafaf9;outline:none;" placeholder="Enter command..." autofocus />
+                <button type="submit" class="px-3 py-1 rounded bg-blue-600 text-white font-semibold">Run</button>
+            </form>
+        </div>
+    </section>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -561,6 +575,47 @@
             });
         });
 
-    </script>
+        // Interactive Terminal Logic
+        (function() {
+            const terminal = document.getElementById('terminal');
+            const form = document.getElementById('terminal-form');
+            const input = document.getElementById('terminal-input');
+            const commands = {
+                help: () => {
+                    return `<span style='color:#4ECDC4'>Available commands:</span><br>help - Show this help<br>run-tests - Simulate running Playwright tests<br>about - About this terminal<br>clear - Clear the terminal`;
+                },
+                'run-tests': () => {
+                    let output = `<span style='color:#87CEEB'>Running Playwright tests...</span><br>`;
+                    output += `<span style='color:#A2D5C6'>[PASS]</span> login.spec.ts<br>`;
+                    output += `<span style='color:#A2D5C6'>[PASS]</span> api.spec.ts<br>`;
+                    output += `<span style='color:#A2D5C6'>[PASS]</span> checkout.spec.ts<br>`;
+                    output += `<span style='color:#8BC34A'>All tests passed! <span style='color:#FFC107'>3</span> tests executed.</span>`;
+                    return output;
+                },
+                about: () => {
+                    return `Interactive terminal demo. Try <span style='color:#4ECDC4'>help</span> or <span style='color:#4ECDC4'>run-tests</span>.`;
+                },
+                clear: () => {
+                    terminal.innerHTML = '';
+                    return '';
+                }
+            };
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const cmd = input.value.trim();
+                if (!cmd) return;
+                const line = `<div class='terminal-line'><span style='color:#4ECDC4'>$</span> ${cmd}</div>`;
+                terminal.innerHTML += line;
+                if (commands[cmd]) {
+                    const result = commands[cmd]();
+                    if (cmd !== 'clear') terminal.innerHTML += `<div class='terminal-line'>${result}</div>`;
+                } else {
+                    terminal.innerHTML += `<div class='terminal-line' style='color:#FF6B6B'>Unknown command: ${cmd}</div>`;
+                }
+                terminal.scrollTop = terminal.scrollHeight;
+                input.value = '';
+            });
+        })();
+        </script>
 </body>
 </html>
