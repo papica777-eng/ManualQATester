@@ -854,18 +854,18 @@
     <!-- Header -->
     <header>
         <div class="container">
-            <div class="logo">DP_QA</div>
+            <div class="logo">Dimitar Prodromov<span style="color: var(--text-color);">.QA</span></div>
             <nav>
                 <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
                     <i class="fas fa-bars"></i>
                 </button>
                 <ul id="navMenu">
-                    <li><a href="#home" class="nav-link active">Home</a></li>
-                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#home" class="nav-link active">Overview</a></li>
                     <li><a href="#skills" class="nav-link">Skills</a></li>
+                    <li><a href="#about" class="nav-link">Analysis</a></li>
                     <li><a href="#experience" class="nav-link">Experience</a></li>
                     <li><a href="#projects" class="nav-link">Projects</a></li>
-                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                    <li><a href="#contact" class="nav-link">Contact Me</a></li>
                 </ul>
                 <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle dark/light mode">
                     <i class="fas fa-sun"></i>
@@ -877,9 +877,20 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
+            <div style="display: inline-block; background-color: var(--success-color); color: var(--background-color); padding: 5px 15px; border-radius: 20px; font-size: 0.9em; font-weight: 600; margin-bottom: 20px;">
+                <i class="fas fa-circle" style="font-size: 0.6em; margin-right: 5px;"></i> Open to Work
+            </div>
             <h1>Dimitar Prodromov</h1>
             <div class="subtitle">
                 <span id="typedText"></span><span class="cursor">|</span>
+            </div>
+            <p style="max-width: 800px; margin: 20px auto; color: var(--subtle-text-color); font-size: 1.1em;">
+                Detail-oriented professional with 2+ years of intensive experience testing for global brands via uTest (Applause). Specializing in functional, usability, and localization testing. Currently transitioning to full-stack QA with Python & SQL.
+            </p>
+            <div style="display: flex; justify-content: center; gap: 30px; margin: 30px 0; color: var(--subtle-text-color); flex-wrap: wrap;">
+                <span><i class="fas fa-map-marker-alt"></i> Sofia, Bulgaria</span>
+                <span><i class="fas fa-envelope"></i> papica777@gmail.com</span>
+                <span><i class="fas fa-globe"></i> English (C1)</span>
             </div>
             <div class="hero-cta">
                 <a href="#projects" class="btn btn-primary">
@@ -913,16 +924,16 @@
                     </p>
                     <div class="stats">
                         <div class="stat-item">
-                            <div class="stat-number" data-target="2">0</div>
-                            <div class="stat-label">Years Experience</div>
-                        </div>
-                        <div class="stat-item">
                             <div class="stat-number" data-target="150">0</div>
-                            <div class="stat-label">Test Cycles</div>
+                            <div class="stat-label">Test Cycles Executed</div>
                         </div>
                         <div class="stat-item">
                             <div class="stat-number">Rated</div>
-                            <div class="stat-label">Tester Status</div>
+                            <div class="stat-label">uTest Tester Status</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-target="2">0</div>
+                            <div class="stat-label">+ Years Commercial Experience</div>
                         </div>
                     </div>
                 </div>
@@ -1148,7 +1159,7 @@
                         <i class="fas fa-envelope"></i>
                         <div class="contact-item-content">
                             <h3>Email</h3>
-                            <p>your.email@example.com</p>
+                            <p>papica777@gmail.com</p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -1165,7 +1176,7 @@
                         <a href="https://linkedin.com/in/yourprofile" target="_blank" class="social-link" aria-label="LinkedIn">
                             <i class="fab fa-linkedin"></i>
                         </a>
-                        <a href="mailto:your.email@example.com" class="social-link" aria-label="Email">
+                        <a href="mailto:papica777@gmail.com" class="social-link" aria-label="Email">
                             <i class="fas fa-envelope"></i>
                         </a>
                     </div>
@@ -1185,12 +1196,12 @@
                 <div class="footer-section">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About</a></li>
+                        <li><a href="#home">Overview</a></li>
                         <li><a href="#skills">Skills</a></li>
+                        <li><a href="#about">Analysis</a></li>
                         <li><a href="#experience">Experience</a></li>
                         <li><a href="#projects">Projects</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#contact">Contact Me</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -1198,12 +1209,12 @@
                     <ul>
                         <li><a href="https://github.com/papica777-eng" target="_blank"><i class="fab fa-github"></i> GitHub</a></li>
                         <li><a href="https://linkedin.com/in/yourprofile" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
-                        <li><a href="mailto:your.email@example.com"><i class="fas fa-envelope"></i> Email</a></li>
+                        <li><a href="mailto:papica777@gmail.com"><i class="fas fa-envelope"></i> Email</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 Dimitar Prodromov. All rights reserved. | Built with <i class="fas fa-heart" style="color: var(--accent-color);"></i> and dedication to quality.</p>
+                <p>&copy; 2025 Dimitar Prodromov. All rights reserved. | Generated for Portfolio purposes.</p>
             </div>
         </div>
     </footer>
@@ -1280,9 +1291,7 @@
         const typedTextElement = document.getElementById('typedText');
         const phrases = [
             'Manual QA Engineer',
-            'uTest Rated Tester',
-            'Aspiring Automation Engineer',
-            'Quality Assurance Specialist'
+            'Aspiring Automation Dev'
         ];
         let phraseIndex = 0;
         let charIndex = 0;
@@ -1327,10 +1336,10 @@
             const updateCounter = () => {
                 current += increment;
                 if (current < target) {
-                    element.textContent = Math.floor(current);
+                    element.textContent = Math.floor(current) + '+';
                     requestAnimationFrame(updateCounter);
                 } else {
-                    element.textContent = target;
+                    element.textContent = target + '+';
                 }
             };
 
