@@ -1565,6 +1565,68 @@
         </div>
     </section>
 
+    <!-- Test Status Dashboard -->
+    <section id="test-status" style="padding: 60px 0;">
+        <div class="container">
+            <h2 style="margin-bottom: 40px;">Latest Test Report</h2>
+            <div class="bento-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                <div class="bento-card" style="text-align: center;">
+                    <div class="pulse-dot" style="width: 12px; height: 12px; margin: 0 auto 15px;"></div>
+                    <div style="font-size: 3em; font-weight: 700; color: var(--success-color); font-family: var(--font-mono); margin-bottom: 10px;">95%</div>
+                    <div style="color: var(--subtle-text-color); font-size: 1em;">Test Coverage</div>
+                </div>
+                <div class="bento-card" style="text-align: center;">
+                    <div style="font-size: 3em; font-weight: 700; color: var(--success-color); font-family: var(--font-mono); margin-bottom: 10px;">0</div>
+                    <div style="color: var(--subtle-text-color); font-size: 1em;">Failures</div>
+                    <div style="color: var(--success-color); font-size: 0.85em; margin-top: 5px;">✓ All tests passing</div>
+                </div>
+                <div class="bento-card" style="text-align: center;">
+                    <div style="font-size: 3em; font-weight: 700; color: var(--primary-color); font-family: var(--font-mono); margin-bottom: 10px;">127</div>
+                    <div style="color: var(--subtle-text-color); font-size: 1em;">Tests Executed</div>
+                </div>
+                <div class="bento-card" style="text-align: center;">
+                    <div style="font-size: 3em; font-weight: 700; color: var(--info-color); font-family: var(--font-mono); margin-bottom: 10px;">3.2s</div>
+                    <div style="color: var(--subtle-text-color); font-size: 1em;">Avg. Test Time</div>
+                </div>
+            </div>
+            
+            <div class="bento-card bento-card-large" style="margin-top: 30px; grid-column: 1 / -1;">
+                <h3 style="color: var(--primary-color); margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-chart-line"></i> Recent Test Runs
+                </h3>
+                <div style="display: grid; gap: 15px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: rgba(16, 185, 129, 0.1); border-radius: 8px; border-left: 3px solid var(--success-color);">
+                        <div>
+                            <div style="color: var(--text-color); font-weight: 600; margin-bottom: 5px;">✓ Payment Integration Suite</div>
+                            <div style="color: var(--subtle-text-color); font-size: 0.9em;">All 45 tests passed • 2.1s</div>
+                        </div>
+                        <div class="status-badge">PASSED</div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: rgba(16, 185, 129, 0.1); border-radius: 8px; border-left: 3px solid var(--success-color);">
+                        <div>
+                            <div style="color: var(--text-color); font-weight: 600; margin-bottom: 5px;">✓ API Validation Tests</div>
+                            <div style="color: var(--subtle-text-color); font-size: 0.9em;">All 32 tests passed • 1.8s</div>
+                        </div>
+                        <div class="status-badge">PASSED</div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: rgba(16, 185, 129, 0.1); border-radius: 8px; border-left: 3px solid var(--success-color);">
+                        <div>
+                            <div style="color: var(--text-color); font-weight: 600; margin-bottom: 5px;">✓ E2E User Workflows</div>
+                            <div style="color: var(--subtle-text-color); font-size: 0.9em;">All 50 tests passed • 4.5s</div>
+                        </div>
+                        <div class="status-badge">PASSED</div>
+                    </div>
+                </div>
+                <div style="margin-top: 20px; text-align: center;">
+                    <a href="#test-examples" style="color: var(--primary-color); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 8px;">
+                        <i class="fas fa-terminal"></i> Try Interactive Terminal
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Skills Section -->
     <section id="skills">
         <div class="container">
@@ -2357,11 +2419,11 @@
 <span style="color: var(--secondary-color);">  about</span>      - Display information about Dimitar
 <span style="color: var(--secondary-color);">  skills</span>     - List technical skills
 <span style="color: var(--secondary-color);">  run-tests</span>  - Run Playwright test suite simulation
+<span style="color: var(--secondary-color);">  test-run</span>   - Alias for run-tests
 <span style="color: var(--secondary-color);">  clear</span>      - Clear the terminal
 <span style="color: var(--secondary-color);">  contact</span>    - Show contact information
 `;
                 }
-            },
             about: {
                 description: 'Show information about Dimitar',
                 execute: () => {
@@ -2414,7 +2476,7 @@ Passionate about test automation and delivering quality software.</span>
                 execute: async () => {
                     const progressBar = `<div class="test-progress-bar"><div class="test-progress-fill" id="testProgressFill"></div></div>`;
                     const initialOutput = `
-<span style="color: var(--primary-color);">Running Playwright Test Suite...</span>
+<span style="color: var(--primary-color);">🚀 Running Playwright Test Suite...</span>
 ${progressBar}
 <div id="testResults"></div>
 `;
@@ -2422,13 +2484,13 @@ ${progressBar}
                     // Display initial state
                     appendToTerminal(initialOutput, false);
                     
-                    // Simulate test execution
+                    // Simulate test execution with more details
                     const tests = [
-                        { name: 'Login functionality', duration: 800 },
-                        { name: 'API endpoint validation', duration: 600 },
-                        { name: 'E2E checkout flow', duration: 1200 },
-                        { name: 'Mobile responsive design', duration: 900 },
-                        { name: 'Cross-browser compatibility', duration: 700 }
+                        { name: 'Login functionality', duration: 800, file: 'auth.spec.ts' },
+                        { name: 'API endpoint validation', duration: 600, file: 'api.spec.ts' },
+                        { name: 'E2E checkout flow', duration: 1200, file: 'checkout.spec.ts' },
+                        { name: 'Mobile responsive design', duration: 900, file: 'mobile.spec.ts' },
+                        { name: 'Cross-browser compatibility', duration: 700, file: 'browsers.spec.ts' }
                     ];
                     
                     const progressFill = document.getElementById('testProgressFill');
@@ -2436,22 +2498,37 @@ ${progressBar}
                     let completedTests = 0;
                     
                     for (const test of tests) {
+                        // Show running status
+                        testResults.innerHTML += `<span style="color: #FFA500;">⏳ Running: ${test.name}...</span><br>`;
+                        scrollTerminalToBottom();
+                        
                         await new Promise(resolve => setTimeout(resolve, test.duration));
                         completedTests++;
                         const progress = (completedTests / tests.length) * 100;
                         progressFill.style.width = `${progress}%`;
                         
-                        const result = `<span style="color: var(--success-color);">✓</span> ${test.name} <span style="color: var(--subtle-text-color);">(${test.duration}ms)</span>`;
-                        testResults.innerHTML += result + '<br>';
+                        // Update to passed status
+                        const lines = testResults.innerHTML.split('<br>');
+                        lines[lines.length - 2] = `<span style="color: var(--success-color);">✓</span> ${test.name} <span style="color: var(--subtle-text-color);">(${test.duration}ms) - ${test.file}</span>`;
+                        testResults.innerHTML = lines.join('<br>');
+                        scrollTerminalToBottom();
                     }
                     
                     await new Promise(resolve => setTimeout(resolve, 500));
                     testResults.innerHTML += `
-<br><span style="color: var(--success-color); font-weight: bold;">All tests passed! ✓</span>
+<br><span style="color: var(--success-color); font-weight: bold;">✅ All tests passed!</span>
 <span style="color: var(--subtle-text-color);">${tests.length} tests completed in ${tests.reduce((sum, t) => sum + t.duration, 0)}ms</span>
+<br><span style="color: var(--info-color);">📊 Coverage: 95% | 0 failures | 5 passed</span>
 `;
+                    scrollTerminalToBottom();
                     
                     return ''; // Already appended
+                }
+            },
+            'test-run': {
+                description: 'Alias for run-tests',
+                execute: async () => {
+                    return await commands['run-tests'].execute();
                 }
             },
             clear: {
