@@ -91,5 +91,61 @@ function copyEmail() {
     const email = "papica777@gmail.com";
     navigator.clipboard.writeText(email).then(() => {
         alert("Email copied to clipboard!");
+        if (window.devConsole) {
+            window.devConsole.log('Email copied to clipboard!');
+        } else {
+            console.log('Email copied to clipboard!');
+        }
     });
+
+// Developer Console Widget
+class DevConsole {
+    constructor() {
+        this.logs = [];
+        this.createConsole();
+    }
+    createConsole() {
+        this.consoleDiv = document.createElement('div');
+        this.consoleDiv.style.position = 'fixed';
+        this.consoleDiv.style.bottom = '10px';
+        this.consoleDiv.style.right = '10px';
+        this.consoleDiv.style.width = '350px';
+        this.consoleDiv.style.height = '180px';
+        this.consoleDiv.style.background = 'rgba(30,41,59,0.95)';
+        this.consoleDiv.style.color = '#fff';
+        this.consoleDiv.style.fontSize = '13px';
+        this.consoleDiv.style.zIndex = '9999';
+        this.consoleDiv.style.borderRadius = '8px';
+        this.consoleDiv.style.boxShadow = '0 2px 8px rgba(0,0,0,0.2)';
+        this.consoleDiv.style.overflowY = 'auto';
+        this.consoleDiv.style.padding = '10px';
+        this.consoleDiv.innerHTML = '<div style="font-weight:bold;margin-bottom:6px;">Dev Console <button id="devConsoleClear" style="float:right;background:#2563eb;color:#fff;border:none;padding:2px 8px;border-radius:4px;cursor:pointer;">Clear</button></div><div id="devConsoleLogs"></div>';
+        document.body.appendChild(this.consoleDiv);
+        document.getElementById('devConsoleClear').onclick = () => this.clear();
+        this.logsDiv = document.getElementById('devConsoleLogs');
+    }
+    log(msg) {
+        this.logs.push(msg);
+        this.render();
+    }
+    error(msg) {
+        this.logs.push('[ERROR] ' + msg);
+        this.render();
+    }
+    clear() {
+        this.logs = [];
+        this.render();
+    }
+    render() {
+        this.logsDiv.innerHTML = this.logs.map(l => `<div>${l}</div>`).join('');
+    }
+}
+
+window.devConsole = new DevConsole();
+console.log = function(msg) {
+    window.devConsole.log(msg);
+};
+console.error = function(msg) {
+    window.devConsole.error(msg);
+};
 }
