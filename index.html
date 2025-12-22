@@ -3537,7 +3537,7 @@ ${progressBar}
 
         function showFirstVisitTooltip() {
             const hasVisited = localStorage.getItem('hasVisitedPortfolio');
-            if (!hasVisited) {
+            if (firstVisitTooltip && !hasVisited) {
                 setTimeout(() => {
                     firstVisitTooltip.classList.add('show');
                 }, 1500); // Show after 1.5 seconds
@@ -3545,8 +3545,10 @@ ${progressBar}
         }
 
         function hideFirstVisitTooltip() {
-            firstVisitTooltip.classList.remove('show');
-            localStorage.setItem('hasVisitedPortfolio', 'true');
+            if (firstVisitTooltip) {
+                firstVisitTooltip.classList.remove('show');
+                localStorage.setItem('hasVisitedPortfolio', 'true');
+            }
         }
 
         if (closeTooltipBtn) {
