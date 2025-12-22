@@ -301,7 +301,12 @@ const App = (() => {
       console.log('✅ All modules initialized successfully');
       
       // Expose limited API for debugging in development
-      if (process?.env?.NODE_ENV !== 'production') {
+      // Check if running in production by looking for common production indicators
+      const isProduction = window.location.hostname !== 'localhost' && 
+                          window.location.hostname !== '127.0.0.1' &&
+                          !window.location.hostname.includes('local');
+      
+      if (!isProduction) {
         window.__DEBUG__ = {
           Terminal,
           Theme,
