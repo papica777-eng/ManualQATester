@@ -5490,18 +5490,19 @@ Comprehensive training on Bug Reports, Functional Testing, API Basics, and UX
             showKeyboardHint();
         }, 2000);
 
-        // Improved mobile menu functionality
-        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-        const navMenu = document.getElementById('navMenu');
-        
+        // Improved mobile menu functionality - reuse already declared variables
         // Close mobile menu when clicking on a nav link
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', () => {
-                if (window.innerWidth <= 768) {
+                const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+                const navMenu = document.getElementById('navMenu');
+                if (window.innerWidth <= 768 && mobileMenuToggle && navMenu) {
                     navMenu.classList.remove('mobile-menu-active');
                     const icon = mobileMenuToggle.querySelector('i');
-                    icon.classList.add('fa-bars');
-                    icon.classList.remove('fa-times');
+                    if (icon) {
+                        icon.classList.add('fa-bars');
+                        icon.classList.remove('fa-times');
+                    }
                 }
             });
         });
