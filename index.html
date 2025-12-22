@@ -2547,18 +2547,23 @@
             
             // Simulate form submission with delay
             setTimeout(() => {
-                // Simulate form submission
-                alert('Thank you for your message! This is a demo contact form. In a production environment, this would send your message.');
-                
-                // Reset form
-                contactForm.reset();
-                
-                // Restore button
-                submitButton.innerHTML = originalText;
-                submitButton.disabled = false;
-                
-                // In a real application, you would send this data to a backend server
-                console.log('Form data:', data);
+                try {
+                    // Simulate form submission
+                    alert('Thank you for your message! This is a demo contact form. In a production environment, this would send your message.');
+                    
+                    // Reset form
+                    contactForm.reset();
+                    
+                    // In a real application, you would send this data to a backend server
+                    console.log('Form data:', data);
+                } catch (error) {
+                    console.error('Form submission error:', error);
+                    alert('An error occurred. Please try again.');
+                } finally {
+                    // Always restore button state
+                    submitButton.innerHTML = originalText;
+                    submitButton.disabled = false;
+                }
             }, 500);
         });
 
