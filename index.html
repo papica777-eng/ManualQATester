@@ -1436,15 +1436,46 @@
             font-family: var(--font-mono);
             font-size: 0.9em;
             outline: none;
+            padding: 5px;
+            cursor: text;
         }
 
         .terminal-input:focus {
             color: #00ff00;
             caret-color: #00ff00;
+            background: rgba(0, 255, 0, 0.03);
         }
 
         .terminal-input::placeholder {
-            color: rgba(0, 255, 0, 0.3);
+            color: rgba(0, 255, 0, 0.4);
+            font-style: italic;
+        }
+
+        /* Blinking cursor effect */
+        @keyframes blink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0; }
+        }
+
+        .terminal-input-container {
+            position: relative;
+        }
+
+        .terminal-input-container::after {
+            content: '';
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 2px;
+            height: 16px;
+            background: #00ff00;
+            animation: blink 1s infinite;
+            pointer-events: none;
+        }
+
+        .terminal-input:focus + .terminal-input-container::after {
+            display: none;
         }
 
         .typing-animation {
@@ -2665,7 +2696,10 @@
                         <span style="color: var(--primary-color); font-size: 1.1em;">🚀 Welcome to Interactive Terminal</span>
                     </div>
                     <div class="terminal-line">
-                        <span style="color: var(--subtle-text-color);">System ready • <span id="initTime"></span></span>
+                        <span style="color: var(--success-color);">●</span> <span style="color: var(--subtle-text-color);">System ready • <span id="initTime"></span></span>
+                    </div>
+                    <div class="terminal-line">
+                        <span style="color: var(--success-color);">●</span> <span style="color: var(--subtle-text-color);">Input active - <span style="color: var(--primary-color);">Click anywhere to type!</span></span>
                     </div>
                     <div class="terminal-line" style="margin-top: 8px;">
                         <span style="color: var(--success-color);">→</span> <span style="color: var(--subtle-text-color);">Try: <span class="cmd-clickable" data-cmd="help">help</span> | <span class="cmd-clickable" data-cmd="npm test">npm test</span> | <span class="cmd-clickable" data-cmd="bio">bio</span></span>
@@ -2676,7 +2710,7 @@
                 </div>
                 <div class="terminal-input-container">
                     <span class="terminal-input-prompt">$</span>
-                    <input type="text" class="terminal-input" id="terminalInput" placeholder="Type a command..." autofocus>
+                    <input type="text" class="terminal-input" id="terminalInput" placeholder="Type or click a command (try 'help')..." autofocus autocomplete="off" spellcheck="false">
                 </div>
             </div>
         </div>
