@@ -1484,6 +1484,114 @@
             display: flex;
         }
 
+        /* --- First Visit Tooltip --- */
+        .first-visit-tooltip {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 25px;
+            border-radius: var(--radius-default);
+            box-shadow: 0 10px 40px rgba(59, 130, 246, 0.4);
+            z-index: 1001;
+            max-width: 350px;
+            animation: slideInRight 0.5s ease-out;
+            display: none;
+        }
+
+        .first-visit-tooltip.show {
+            display: block;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .first-visit-tooltip .tooltip-content h3 {
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .first-visit-tooltip .tooltip-content p {
+            margin-bottom: 10px;
+            font-size: 1em;
+            line-height: 1.5;
+        }
+
+        .first-visit-tooltip .tooltip-content ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 15px 0;
+        }
+
+        .first-visit-tooltip .tooltip-content li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .first-visit-tooltip .tooltip-content kbd {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: var(--font-mono);
+            font-size: 0.85em;
+        }
+
+        .close-tooltip {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 1.5em;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .close-tooltip:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        .btn-got-it {
+            background: white;
+            color: var(--primary-color);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 15px;
+            width: 100%;
+            transition: all 0.3s;
+        }
+
+        .btn-got-it:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
         /* --- Skip to Content Link (Accessibility) --- */
         .skip-to-content {
             position: absolute;
@@ -2251,22 +2359,31 @@
             <div class="contact-content">
                 <div class="contact-form">
                     <h3>Send me a message</h3>
+                    <p style="color: var(--subtle-text-color); margin-bottom: 20px; font-size: 0.95em;">
+                        <i class="fas fa-info-circle"></i> I typically respond within 24 hours. Feel free to ask about opportunities or projects!
+                    </p>
                     <form id="contactForm">
                         <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" required>
+                            <label for="name">Name <span style="color: var(--accent-color);">*</span></label>
+                            <input type="text" id="name" name="name" placeholder="Your full name" required aria-required="true">
+                            <small style="color: var(--subtle-text-color); display: block; margin-top: 5px;">How should I address you?</small>
                         </div>
                         <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
+                            <label for="email">Email <span style="color: var(--accent-color);">*</span></label>
+                            <input type="email" id="email" name="email" placeholder="your.email@example.com" required aria-required="true">
+                            <small style="color: var(--subtle-text-color); display: block; margin-top: 5px;">I'll reply to this address</small>
                         </div>
                         <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" required></textarea>
+                            <label for="message">Message <span style="color: var(--accent-color);">*</span></label>
+                            <textarea id="message" name="message" placeholder="Tell me about the opportunity, project, or question..." required aria-required="true" rows="6"></textarea>
+                            <small style="color: var(--subtle-text-color); display: block; margin-top: 5px;">Be as detailed as you'd like - I read every message!</small>
                         </div>
                         <button type="submit" class="btn btn-primary">
                             <i class="fas fa-paper-plane"></i> Send Message
                         </button>
+                        <p style="color: var(--subtle-text-color); font-size: 0.85em; margin-top: 10px;">
+                            <i class="fas fa-lock"></i> Your information is kept private and won't be shared.
+                        </p>
                     </form>
                 </div>
                 <div class="contact-info">
@@ -2333,6 +2450,22 @@
         <div><kbd>Home</kbd> - Top</div>
         <div><kbd>End</kbd> - Bottom</div>
         <div><kbd>↑↓</kbd> - Scroll</div>
+    </div>
+
+    <!-- First Visit Tooltip -->
+    <div class="first-visit-tooltip" id="firstVisitTooltip">
+        <button class="close-tooltip" id="closeTooltip" aria-label="Close tooltip">×</button>
+        <div class="tooltip-content">
+            <h3><i class="fas fa-lightbulb"></i> Welcome!</h3>
+            <p>👋 First time here? Here are some quick tips:</p>
+            <ul>
+                <li>🖱️ Use the navigation menu to explore sections</li>
+                <li>💬 Try the <strong>Interactive Terminal</strong> below</li>
+                <li>🌓 Toggle dark/light mode in the header</li>
+                <li>⌨️ Press <kbd>Home</kbd>/<kbd>End</kbd> for quick navigation</li>
+            </ul>
+            <button class="btn-got-it" id="btnGotIt">Got it!</button>
+        </div>
     </div>
 
     <!-- Footer -->
@@ -3396,6 +3529,36 @@ ${progressBar}
         console.log('%c👋 Hello Developer!', 'color: #2563EB; font-size: 20px; font-weight: bold;');
         console.log('%cInterested in my work? Let\'s connect!', 'color: #60A5FA; font-size: 14px;');
         console.log('%cEmail: papica777@gmail.com', 'color: #10B981; font-size: 12px;');
+
+        // First Visit Tooltip
+        const firstVisitTooltip = document.getElementById('firstVisitTooltip');
+        const closeTooltipBtn = document.getElementById('closeTooltip');
+        const btnGotIt = document.getElementById('btnGotIt');
+
+        function showFirstVisitTooltip() {
+            const hasVisited = localStorage.getItem('hasVisitedPortfolio');
+            if (!hasVisited) {
+                setTimeout(() => {
+                    firstVisitTooltip.classList.add('show');
+                }, 1500); // Show after 1.5 seconds
+            }
+        }
+
+        function hideFirstVisitTooltip() {
+            firstVisitTooltip.classList.remove('show');
+            localStorage.setItem('hasVisitedPortfolio', 'true');
+        }
+
+        if (closeTooltipBtn) {
+            closeTooltipBtn.addEventListener('click', hideFirstVisitTooltip);
+        }
+
+        if (btnGotIt) {
+            btnGotIt.addEventListener('click', hideFirstVisitTooltip);
+        }
+
+        // Show tooltip on first visit
+        showFirstVisitTooltip();
     </script>
 </body>
 </html>
