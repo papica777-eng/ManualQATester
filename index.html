@@ -3964,7 +3964,7 @@ ${progressBar}
         showFirstVisitTooltip();
 
         // Playwright Demo Tab Switching
-        function showDemoTab(tabName) {
+        window.showDemoTab = function(tabName) {
             // Hide all tab contents
             document.querySelectorAll('.demo-tab-content').forEach(content => {
                 content.classList.remove('active');
@@ -3981,12 +3981,14 @@ ${progressBar}
                 selectedContent.classList.add('active');
             }
             
-            // Add active class to clicked tab
-            event.target.closest('.demo-tab').classList.add('active');
-        }
-
-        // Make function globally available
-        window.showDemoTab = showDemoTab;
+            // Add active class to clicked tab - use event from window
+            if (window.event && window.event.target) {
+                const clickedTab = window.event.target.closest('.demo-tab');
+                if (clickedTab) {
+                    clickedTab.classList.add('active');
+                }
+            }
+        };
     </script>
 </body>
 </html>
