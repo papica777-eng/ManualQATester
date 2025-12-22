@@ -4953,10 +4953,10 @@ Comprehensive training on Bug Reports, Functional Testing, API Basics, and UX
 
         // ==================== BUG STATS COUNTER ANIMATION ====================
         function animateBugStats() {
-            const statNumbers = document.querySelectorAll('.stat-number');
+            const statNumbers = document.querySelectorAll('.stat-number[data-target]');
             
             const observerOptions = {
-                threshold: 0.5,
+                threshold: 0.1,
                 rootMargin: '0px'
             };
             
