@@ -1438,6 +1438,15 @@
             outline: none;
         }
 
+        .terminal-input:focus {
+            color: #00ff00;
+            caret-color: #00ff00;
+        }
+
+        .terminal-input::placeholder {
+            color: rgba(0, 255, 0, 0.3);
+        }
+
         .typing-animation {
             display: inline-block;
             opacity: 0;
@@ -1464,6 +1473,29 @@
             background: linear-gradient(90deg, var(--primary-color), var(--success-color));
             width: 0%;
             transition: width 0.3s ease;
+        }
+
+        /* Clickable commands */
+        .cmd-clickable {
+            color: var(--secondary-color);
+            cursor: pointer;
+            text-decoration: underline;
+            text-decoration-style: dotted;
+            transition: all 0.2s;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        .cmd-clickable:hover {
+            color: var(--primary-color);
+            text-decoration-style: solid;
+            text-shadow: 0 0 8px var(--primary-color);
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .cmd-clickable:active {
+            transform: scale(0.95);
+            background: rgba(59, 130, 246, 0.2);
         }
 
         .terminal-actions {
@@ -2611,7 +2643,7 @@
         <div class="container">
             <h2><i class="fas fa-terminal"></i> Interactive Terminal</h2>
             <p style="text-align: center; color: var(--subtle-text-color); max-width: 800px; margin: 0 auto 40px; font-size: 1.1em;">
-                Try out the interactive terminal below. Type <strong>help</strong> to see available commands.
+                <strong>Click on any command</strong> to run it instantly, or type manually. Every command has clickable suggestions!
             </p>
             
             <div class="terminal-container">
@@ -2623,18 +2655,20 @@
                 </div>
                 <div class="terminal-actions" aria-label="Quick commands">
                     <button class="terminal-action-btn" data-cmd="help" aria-label="Run help command"><i class="fas fa-question-circle"></i> help</button>
-                    <button class="terminal-action-btn" data-cmd="run-tests" aria-label="Run tests command"><i class="fas fa-play"></i> run-tests</button>
-                    <button class="terminal-action-btn" data-cmd="skills" aria-label="Show skills command"><i class="fas fa-tools"></i> skills</button>
-                    <button class="terminal-action-btn" data-cmd="about" aria-label="Show about command"><i class="fas fa-id-badge"></i> about</button>
-                    <button class="terminal-action-btn" data-cmd="contact" aria-label="Show contact command"><i class="fas fa-envelope"></i> contact</button>
+                    <button class="terminal-action-btn" data-cmd="npm test" aria-label="Run npm test command"><i class="fas fa-vial"></i> npm test</button>
+                    <button class="terminal-action-btn" data-cmd="bio" aria-label="Show bio command"><i class="fas fa-user"></i> bio</button>
+                    <button class="terminal-action-btn" data-cmd="system" aria-label="Show system health"><i class="fas fa-heartbeat"></i> system</button>
                     <button class="terminal-action-btn" data-cmd="clear" aria-label="Clear terminal command"><i class="fas fa-eraser"></i> clear</button>
                 </div>
                 <div class="terminal-output" id="terminalOutput">
                     <div class="terminal-line">
-                        <span style="color: var(--primary-color);">Welcome to Dimitar's QA Portfolio Terminal v1.0</span>
+                        <span style="color: var(--primary-color); font-size: 1.1em;">🚀 Welcome to Interactive Terminal</span>
                     </div>
                     <div class="terminal-line">
-                        <span style="color: var(--subtle-text-color);">Type 'help' to see available commands</span>
+                        <span style="color: var(--subtle-text-color);">System ready • <span id="initTime"></span></span>
+                    </div>
+                    <div class="terminal-line" style="margin-top: 8px;">
+                        <span style="color: var(--success-color);">→</span> <span style="color: var(--subtle-text-color);">Try: <span class="cmd-clickable" data-cmd="help">help</span> | <span class="cmd-clickable" data-cmd="npm test">npm test</span> | <span class="cmd-clickable" data-cmd="bio">bio</span></span>
                     </div>
                     <div class="terminal-line" style="margin-top: 10px;">
                         <span class="terminal-prompt">dimitar@qa-portfolio:~$</span>
@@ -3783,14 +3817,31 @@ test('should login with valid credentials', async ({ page }) => {
                 description: 'Show available commands',
                 execute: () => {
                     return `
-<span style="color: var(--primary-color);">Available Commands:</span>
-<span style="color: var(--secondary-color);">  help</span>       - Show this help message
-<span style="color: var(--secondary-color);">  about</span>      - Display information about Dimitar
-<span style="color: var(--secondary-color);">  skills</span>     - List technical skills
-<span style="color: var(--secondary-color);">  run-tests</span>  - Run Playwright test suite simulation
-<span style="color: var(--secondary-color);">  test-run</span>   - Alias for run-tests
-<span style="color: var(--secondary-color);">  clear</span>      - Clear the terminal
-<span style="color: var(--secondary-color);">  contact</span>    - Show contact information
+<span style="color: var(--primary-color); font-size: 1.1em;">📚 Available Commands - Click to Run:</span>
+
+<span class="cmd-clickable" data-cmd="bio">  bio</span>          - Quick bio information
+<span class="cmd-clickable" data-cmd="npm test">  npm test</span>     - 🧪 Run Playwright tests (Must see!)
+<span class="cmd-clickable" data-cmd="system">  system</span>       - 💻 Real-time system health
+<span class="cmd-clickable" data-cmd="projects">  projects</span>     - 📁 View live deployments
+<span class="cmd-clickable" data-cmd="time">  time</span>         - ⏰ Current timestamp
+<span class="cmd-clickable" data-cmd="skills">  skills</span>       - 🛠️ Technical skills
+<span class="cmd-clickable" data-cmd="about">  about</span>        - 👤 Detailed information
+<span class="cmd-clickable" data-cmd="contact">  contact</span>      - 📧 Contact info
+<span class="cmd-clickable" data-cmd="clear">  clear</span>        - 🧹 Clear terminal
+
+<span style="color: var(--subtle-text-color); font-size: 0.9em;">💡 Tip: Click any command above or type it manually!</span>
+`;
+                }
+            },
+            bio: {
+                description: 'Quick bio',
+                execute: () => {
+                    return `
+<span style="color: var(--success-color); font-size: 1.2em; font-weight: bold;">👨‍💻 Dimitar Prodromov</span>
+<span style="color: var(--info-color);">Senior QA Automation Engineer</span>
+<span style="color: var(--subtle-text-color);">Playwright | TypeScript | Docker | CI/CD</span>
+
+<span style="color: var(--subtle-text-color); font-size: 0.9em;">Try: <span class="cmd-clickable" data-cmd="skills">skills</span> | <span class="cmd-clickable" data-cmd="npm test">npm test</span> | <span class="cmd-clickable" data-cmd="projects">projects</span></span>
 `;
                 }
             },
@@ -3810,6 +3861,8 @@ test('should login with valid credentials', async ({ page }) => {
 <span style="color: var(--subtle-text-color);">Specialized in functional, usability, and localization testing.
 Currently transitioning to full-stack QA with Python & SQL.
 Passionate about test automation and delivering quality software.</span>
+
+<span style="color: var(--subtle-text-color); font-size: 0.9em;">Next: <span class="cmd-clickable" data-cmd="skills">skills</span> | <span class="cmd-clickable" data-cmd="npm test">npm test</span></span>
 `;
                 }
             },
@@ -3838,7 +3891,55 @@ Passionate about test automation and delivering quality software.</span>
 <span style="color: var(--info-color);">▸ Other:</span>
   • Git/GitHub             • SQL
   • REST API               • Chrome DevTools
+
+<span style="color: var(--subtle-text-color); font-size: 0.9em;">See them in action: <span class="cmd-clickable" data-cmd="npm test">npm test</span> | <span class="cmd-clickable" data-cmd="projects">projects</span></span>
 `;
+                }
+            },
+            'npm test': {
+                description: 'Run Playwright test suite (realistic output)',
+                execute: async () => {
+                    const timestamp = new Date().toLocaleTimeString();
+                    const progressBar = `<div class="test-progress-bar"><div class="test-progress-fill" id="testProgressFill"></div></div>`;
+                    const initialOutput = `
+<span style="color: var(--primary-color);">${timestamp} > playwright test</span>
+${progressBar}
+<div id="testResults"></div>
+`;
+                    
+                    // Display initial state
+                    appendToTerminal(initialOutput, false);
+                    
+                    const tests = [
+                        { name: 'login.spec.ts', status: 'OK', duration: '1.2s' },
+                        { name: 'api-validation.spec.ts', status: 'OK', duration: '0.8s' },
+                        { name: 'checkout.spec.ts', status: 'OK', duration: '2.1s' },
+                        { name: 'auth-flow.spec.ts', status: 'OK', duration: '1.5s' }
+                    ];
+                    
+                    const progressFill = document.getElementById('testProgressFill');
+                    const testResults = document.getElementById('testResults');
+                    
+                    testResults.innerHTML = '<span style="color: var(--subtle-text-color);">Running 12 tests using 4 workers</span><br><br>';
+                    scrollTerminalToBottom();
+                    
+                    let completedTests = 0;
+                    for (const test of tests) {
+                        await new Promise(resolve => setTimeout(resolve, 400));
+                        completedTests++;
+                        const progress = (completedTests / tests.length) * 100;
+                        progressFill.style.width = `${progress}%`;
+                        
+                        testResults.innerHTML += `<span style="color: var(--success-color);">[${test.status}]</span> ${test.name} <span style="color: var(--subtle-text-color);">(${test.duration})</span><br>`;
+                        scrollTerminalToBottom();
+                    }
+                    
+                    await new Promise(resolve => setTimeout(resolve, 300));
+                    testResults.innerHTML += `<br><span style="color: var(--success-color); font-weight: bold;">  ✅ 12 passed (2.0s)</span>
+<br><span style="color: var(--subtle-text-color); font-size: 0.9em;">More: <span class="cmd-clickable" data-cmd="system">system</span> | <span class="cmd-clickable" data-cmd="projects">projects</span></span>`;
+                    scrollTerminalToBottom();
+                    
+                    return '';
                 }
             },
             'run-tests': {
@@ -3929,6 +4030,65 @@ ${progressBar}
 <span style="color: var(--success-color);">▸ Language:</span> English (C1)
 
 <span style="color: var(--subtle-text-color);">Feel free to reach out for collaboration opportunities!</span>
+<span style="color: var(--subtle-text-color); font-size: 0.9em;">Learn more: <span class="cmd-clickable" data-cmd="about">about</span> | <span class="cmd-clickable" data-cmd="projects">projects</span></span>
+`;
+                }
+            },
+            projects: {
+                description: 'Show projects and deployments',
+                execute: () => {
+                    return `
+<span style="color: var(--primary-color); font-weight: bold;">Live Projects & Deployments:</span>
+
+<span style="color: var(--success-color);">▸ QA Portfolio:</span> <span style="color: var(--info-color);">https://dpengeneering.site</span>
+  <span style="color: var(--subtle-text-color);">Interactive terminal, bug reports, test automation examples</span>
+
+<span style="color: var(--success-color);">▸ Playwright Demo:</span> <span style="color: var(--info-color);">github.com/papica777-eng/ManualQATester</span>
+  <span style="color: var(--subtle-text-color);">TypeScript, Page Object Model, API testing</span>
+
+<span style="color: var(--success-color);">▸ Test Cases Repository:</span>
+  <span style="color: var(--subtle-text-color);">Professional test documentation and bug reports</span>
+
+<span style="color: var(--subtle-text-color); font-size: 0.9em;">Related: <span class="cmd-clickable" data-cmd="npm test">npm test</span> | <span class="cmd-clickable" data-cmd="skills">skills</span></span>
+`;
+                }
+            },
+            system: {
+                description: 'Show system health',
+                execute: () => {
+                    const uptime = Math.floor((Date.now() - performance.timing.navigationStart) / 1000);
+                    const memory = performance.memory ? (performance.memory.usedJSHeapSize / 1048576).toFixed(2) : 'N/A';
+                    const timestamp = new Date().toLocaleString();
+                    const health = Math.random() > 0.1 ? '<span style="color: var(--success-color);">●</span> HEALTHY' : '<span style="color: var(--warning-color);">●</span> WARNING';
+                    
+                    return `
+<span style="color: var(--primary-color); font-weight: bold;">System Health Monitor</span>
+<span style="color: var(--primary-color);">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>
+
+<span style="color: var(--info-color);">Status:</span>          ${health}
+<span style="color: var(--info-color);">Uptime:</span>          ${uptime}s
+<span style="color: var(--info-color);">Memory:</span>          ${memory} MB
+<span style="color: var(--info-color);">Timestamp:</span>       ${timestamp}
+<span style="color: var(--info-color);">Browser:</span>         ${navigator.userAgent.match(/(Chrome|Firefox|Safari|Edge)\/(\d+)/)?.[0] || 'Unknown'}
+<span style="color: var(--info-color);">Tests Ready:</span>     <span style="color: var(--success-color);">✓</span> All systems operational
+
+<span style="color: var(--subtle-text-color); font-size: 0.9em;">Run: <span class="cmd-clickable" data-cmd="npm test">npm test</span> | <span class="cmd-clickable" data-cmd="time">time</span></span>
+`;
+                }
+            },
+            time: {
+                description: 'Display current timestamp',
+                execute: () => {
+                    const now = new Date();
+                    const timestamp = now.toLocaleString();
+                    const iso = now.toISOString();
+                    const unix = Math.floor(now.getTime() / 1000);
+                    
+                    return `
+<span style="color: var(--primary-color);">Current Time:</span>
+<span style="color: var(--success-color);">Local:</span>     ${timestamp}
+<span style="color: var(--success-color);">ISO:</span>       ${iso}
+<span style="color: var(--success-color);">Unix:</span>      ${unix}
 `;
                 }
             }
@@ -4002,8 +4162,19 @@ ${progressBar}
 
         // Auto-focus terminal on load and show help so output is visible immediately
         window.addEventListener('load', async () => {
-            terminalInput.focus();
-            await executeCommand('help');
+            // Set initialization timestamp
+            const initTimeEl = document.getElementById('initTime');
+            if (initTimeEl) {
+                initTimeEl.textContent = new Date().toLocaleTimeString();
+            }
+            
+            // Make sure terminal input exists and is focused
+            if (terminalInput) {
+                terminalInput.focus();
+                console.log('✅ Terminal input is ready and focused');
+            } else {
+                console.error('❌ Terminal input not found!');
+            }
             
             // Initialize bug stats counter animation
             animateBugStats();
@@ -4087,6 +4258,36 @@ ${progressBar}
                 }
             }
         });
+
+        // Make commands clickable everywhere in terminal output
+        terminalOutput.addEventListener('click', async (e) => {
+            if (e.target.classList.contains('cmd-clickable')) {
+                const cmd = e.target.getAttribute('data-cmd');
+                if (cmd) {
+                    // Show the command in input first for visual feedback
+                    terminalInput.value = cmd;
+                    terminalInput.focus();
+                    
+                    // Add a small delay for visual effect
+                    await new Promise(resolve => setTimeout(resolve, 200));
+                    
+                    // Execute the command
+                    terminalInput.value = '';
+                    await executeCommand(cmd);
+                }
+            } else {
+                // Click anywhere in terminal to focus input
+                terminalInput.focus();
+            }
+        });
+
+        // Also make terminal container clickable to focus input
+        const terminalContainer = document.querySelector('.terminal-container');
+        if (terminalContainer) {
+            terminalContainer.addEventListener('click', () => {
+                terminalInput.focus();
+            });
+        }
 
         // ==================== GITHUB API INTEGRATION ====================
         async function fetchGitHubActivity() {
