@@ -2535,18 +2535,31 @@
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
             
+            // Add loading indicator
+            const submitButton = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitButton.innerHTML;
+            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitButton.disabled = true;
+            
             // Get form data
             const formData = new FormData(contactForm);
             const data = Object.fromEntries(formData);
             
-            // Simulate form submission
-            alert('Thank you for your message! This is a demo contact form. In a production environment, this would send your message.');
-            
-            // Reset form
-            contactForm.reset();
-            
-            // In a real application, you would send this data to a backend server
-            console.log('Form data:', data);
+            // Simulate form submission with delay
+            setTimeout(() => {
+                // Simulate form submission
+                alert('Thank you for your message! This is a demo contact form. In a production environment, this would send your message.');
+                
+                // Reset form
+                contactForm.reset();
+                
+                // Restore button
+                submitButton.innerHTML = originalText;
+                submitButton.disabled = false;
+                
+                // In a real application, you would send this data to a backend server
+                console.log('Form data:', data);
+            }, 500);
         });
 
         // Playwright Test Examples Rotation
@@ -3356,41 +3369,6 @@ ${progressBar}
         setTimeout(() => {
             showKeyboardHint();
         }, 2000);
-
-        // Improved mobile menu functionality
-        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-        const navMenu = document.getElementById('navMenu');
-        
-        // Close mobile menu when clicking on a nav link
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                if (window.innerWidth <= 768) {
-                    navMenu.classList.remove('mobile-menu-active');
-                    const icon = mobileMenuToggle.querySelector('i');
-                    icon.classList.add('fa-bars');
-                    icon.classList.remove('fa-times');
-                }
-            });
-        });
-
-        // Add loading indicator for contact form
-        const contactForm = document.getElementById('contactForm');
-        if (contactForm) {
-            const originalSubmitHandler = contactForm.onsubmit;
-            contactForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const submitButton = contactForm.querySelector('button[type="submit"]');
-                const originalText = submitButton.innerHTML;
-                submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-                submitButton.disabled = true;
-                
-                setTimeout(() => {
-                    submitButton.innerHTML = originalText;
-                    submitButton.disabled = false;
-                    if (originalSubmitHandler) originalSubmitHandler.call(contactForm, e);
-                }, 500);
-            });
-        }
 
         // Add console message for developers
         console.log('%c👋 Hello Developer!', 'color: #2563EB; font-size: 20px; font-weight: bold;');
