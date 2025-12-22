@@ -108,15 +108,23 @@ function setActiveNav(element) {
 // eslint-disable-next-line no-unused-vars
 function copyEmail() {
   const email = 'papica777@gmail.com';
-  navigator.clipboard.writeText(email).then(() => {
-    alert('Email copied to clipboard!');
-    if (window.devConsole) {
-      window.devConsole.log('Email copied to clipboard!');
-    } else {
-      // eslint-disable-next-line no-console
-      console.log('Email copied to clipboard!');
-    }
-  });
+  navigator.clipboard
+    .writeText(email)
+    .then(() => {
+      alert('Email copied to clipboard!');
+      if (window.devConsole) {
+        window.devConsole.log('Email copied to clipboard!');
+      } else {
+        // eslint-disable-next-line no-console
+        console.log('Email copied to clipboard!');
+      }
+    })
+    .catch((err) => {
+      alert('Failed to copy email. Please copy manually: ' + email);
+      if (window.devConsole) {
+        window.devConsole.error('Failed to copy email: ' + err);
+      }
+    });
 }
 // Developer Console Widget
 class DevConsole {
