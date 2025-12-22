@@ -3701,20 +3701,15 @@ test('should login with valid credentials', async ({ page }) => {
                         
                         // Simulate form submission with delay for UX
                         setTimeout(() => {
-                            try {
-                                // Simulate form submission
-                                alert('Thank you for your message! This is a demo contact form. In a production environment, this would send your message.');
-                                
-                                // Reset form
-                                contactForm.reset();
-                            } catch (error) {
-                                console.error('Error during form submission:', error);
-                                alert('An error occurred. Please try again.');
-                            } finally {
-                                // Restore button state
-                                submitButton.innerHTML = originalText;
-                                submitButton.disabled = false;
-                            }
+                            // Simulate form submission
+                            alert('Thank you for your message! This is a demo contact form. In a production environment, this would send your message.');
+                            
+                            // Reset form
+                            contactForm.reset();
+                            
+                            // Restore button state
+                            submitButton.innerHTML = originalText;
+                            submitButton.disabled = false;
                         }, 500);
                     } else {
                         // If no submit button, just show alert and reset
