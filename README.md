@@ -6,6 +6,26 @@
 
 ---
 
+## 🚀 Quick Start
+
+**New to this portfolio?** Here's how to get the most out of it:
+
+1. **📱 View the Live Portfolio**: Visit [dpengeneering.site](https://dpengeneering.site) or open `index.html` in your browser
+2. **📖 Read the Navigation Guide**: Check out [NAVIGATION_GUIDE.md](./NAVIGATION_GUIDE.md) for tips on exploring the portfolio
+3. **🎯 For Recruiters**: Jump directly to [Professional Experience](#-professional-experience) and [Featured Work](#-featured-work)
+4. **💻 For Technical Review**: Explore the [test-cases](./test-cases/), [bug-reports](./bug-reports/), and [test-plans](./test-plans/) directories
+5. **📞 Contact Me**: Email [papica777@gmail.com](mailto:papica777@gmail.com) or connect via [GitHub](https://github.com/papica777-eng)
+
+### Portfolio Features
+
+- ✨ **Interactive Terminal** - Try commands like `help`, `run-tests`, `skills`
+- 🌓 **Dark/Light Mode** - Toggle for your viewing preference
+- 📱 **Fully Responsive** - Works on all devices
+- ♿ **Accessible** - Keyboard navigation and screen reader friendly
+- 🎨 **Modern Design** - Glassmorphism UI with smooth animations
+
+---
+
 ## 🎯 About This Portfolio
 
 Welcome to my Manual QA portfolio! This repository showcases **professional-grade testing work** that goes beyond basic test execution. You'll find:
