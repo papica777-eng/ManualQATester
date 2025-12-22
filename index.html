@@ -1478,6 +1478,31 @@
             display: none;
         }
 
+        .terminal-send-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            margin-left: 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .terminal-send-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        }
+
+        .terminal-send-btn:active {
+            transform: translateY(0);
+        }
+
         .typing-animation {
             display: inline-block;
             opacity: 0;
@@ -2379,6 +2404,39 @@
             .stat-number {
                 font-size: 2.5em;
             }
+
+            /* Terminal Mobile Optimization */
+            .terminal-container {
+                margin: 10px 0;
+            }
+
+            .terminal-output {
+                min-height: 300px;
+                max-height: 400px;
+                font-size: 0.85em;
+                padding: 15px;
+            }
+
+            .terminal-input-container {
+                padding: 10px 15px;
+                flex-wrap: wrap;
+            }
+
+            .terminal-input {
+                font-size: 0.85em;
+                min-width: 0;
+            }
+
+            .terminal-send-btn {
+                padding: 6px 12px;
+                font-size: 0.85em;
+                margin-left: 8px;
+            }
+
+            .terminal-action-btn {
+                padding: 6px 10px;
+                font-size: 0.8em;
+            }
         }
 
         /* --- Animations --- */
@@ -3112,6 +3170,9 @@
                 <div class="terminal-input-container">
                     <span class="terminal-input-prompt">$</span>
                     <input type="text" class="terminal-input" id="terminalInput" placeholder="Type or click a command (try 'help')..." autofocus autocomplete="off" spellcheck="false">
+                    <button id="terminalSendBtn" class="terminal-send-btn" title="Send command (or press Enter)">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -4473,6 +4534,7 @@ test('should login with valid credentials', async ({ page }) => {
 <span class="cmd-clickable" data-cmd="npm test">  npm test</span>     - 🧪 Run Playwright tests (Must see!)
 <span class="cmd-clickable" data-cmd="system">  system</span>       - 💻 Real-time system health
 <span class="cmd-clickable" data-cmd="projects">  projects</span>     - 📁 View live deployments
+<span class="cmd-clickable" data-cmd="download-cv">  download-cv</span>  - 📄 Download my CV/Resume
 <span class="cmd-clickable" data-cmd="time">  time</span>         - ⏰ Current timestamp
 <span class="cmd-clickable" data-cmd="skills">  skills</span>       - 🛠️ Technical skills
 <span class="cmd-clickable" data-cmd="about">  about</span>        - 👤 Detailed information
@@ -4726,6 +4788,65 @@ ${progressBar}
 `;
                 }
             },
+            'download-cv': {
+                description: 'Download CV/Resume',
+                execute: () => {
+                    // Create a simple CV text content
+                    const cvContent = `DIMITAR PRODROMOV
+QA Engineer & Automation Specialist
+
+Contact:
+Email: papica777@gmail.com
+Location: Sofia, Bulgaria
+Language: English (C1)
+
+Professional Summary:
+Detail-oriented QA Engineer with 2+ years of intensive experience as a freelance tester for uTest (Applause). 
+Specialized in functional, usability, and localization testing. Currently transitioning to full-stack QA with Python & SQL.
+
+Skills:
+• Testing Types: Functional, Regression, Exploratory, Usability, Payment, Localization
+• Tools & Platforms: uTest Platform, Jira, TestRail, Charles Proxy, Postman, Android Studio
+• Automation: Python, Selenium WebDriver, Playwright, Test Automation
+• Other: Git/GitHub, SQL, REST API, Chrome DevTools
+
+Experience:
+Freelance QA / Rated Tester - uTest (Applause)
+Jan 2021 – Jan 2023 | Remote / Sofia, Bulgaria
+• Executed over 150 test cycles for e-commerce, media, and fintech apps
+• Maintained high bug approval rate with professional documentation
+• Progressed from "Unrated" to "Rated" tier
+
+Education:
+uTest Academy - Rated Testing Specialist (2021)
+Comprehensive training on Bug Reports, Functional Testing, API Basics, and UX
+`;
+
+                    // Create a blob and download it
+                    const blob = new Blob([cvContent], { type: 'text/plain' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'Dimitar_Prodromov_CV.txt';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                    
+                    return `
+<span style="color: var(--success-color); font-size: 1.2em;">📄 CV Download Started!</span>
+
+<span style="color: var(--primary-color);">File:</span> Dimitar_Prodromov_CV.txt
+<span style="color: var(--primary-color);">Format:</span> Plain Text
+<span style="color: var(--primary-color);">Status:</span> <span style="color: var(--success-color);">✓ Download initiated</span>
+
+<span style="color: var(--subtle-text-color);">💡 The CV has been downloaded to your Downloads folder.</span>
+<span style="color: var(--subtle-text-color);">For full professional CV, please contact: papica777@gmail.com</span>
+
+<span style="color: var(--subtle-text-color); font-size: 0.9em;">Next: <span class="cmd-clickable" data-cmd="contact">contact</span> | <span class="cmd-clickable" data-cmd="about">about</span></span>
+`;
+                }
+            },
             time: {
                 description: 'Display current timestamp',
                 execute: () => {
@@ -4908,6 +5029,19 @@ ${progressBar}
                 }
             }
         });
+
+        // Terminal Send Button
+        const terminalSendBtn = document.getElementById('terminalSendBtn');
+        if (terminalSendBtn) {
+            terminalSendBtn.addEventListener('click', async () => {
+                const command = terminalInput.value;
+                if (command.trim()) {
+                    terminalInput.value = '';
+                    await executeCommand(command);
+                    terminalInput.focus();
+                }
+            });
+        }
 
         // Make commands clickable everywhere in terminal output
         terminalOutput.addEventListener('click', async (e) => {
