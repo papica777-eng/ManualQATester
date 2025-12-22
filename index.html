@@ -1478,6 +1478,31 @@
             display: none;
         }
 
+        .terminal-send-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            margin-left: 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .terminal-send-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        }
+
+        .terminal-send-btn:active {
+            transform: translateY(0);
+        }
+
         .typing-animation {
             display: inline-block;
             opacity: 0;
@@ -2379,6 +2404,39 @@
             .stat-number {
                 font-size: 2.5em;
             }
+
+            /* Terminal Mobile Optimization */
+            .terminal-container {
+                margin: 10px 0;
+            }
+
+            .terminal-output {
+                min-height: 300px;
+                max-height: 400px;
+                font-size: 0.85em;
+                padding: 15px;
+            }
+
+            .terminal-input-container {
+                padding: 10px 15px;
+                flex-wrap: wrap;
+            }
+
+            .terminal-input {
+                font-size: 0.85em;
+                min-width: 0;
+            }
+
+            .terminal-send-btn {
+                padding: 6px 12px;
+                font-size: 0.85em;
+                margin-left: 8px;
+            }
+
+            .terminal-action-btn {
+                padding: 6px 10px;
+                font-size: 0.8em;
+            }
         }
 
         /* --- Animations --- */
@@ -2406,6 +2464,406 @@
             to {
                 opacity: 1;
                 transform: translateY(0);
+            }
+        }
+
+        /* --- QA Demo Section Styles --- */
+        .qa-demo-section {
+            background: linear-gradient(135deg, var(--secondary-background-color) 0%, var(--tertiary-background-color) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .qa-demo-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .qa-demo-left, .qa-demo-right {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .demo-app {
+            background: var(--secondary-background-color);
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-default);
+            padding: 20px;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .demo-app h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .demo-app.bug-triggered {
+            border-color: var(--warning-color);
+            animation: bugShake 0.5s;
+        }
+
+        @keyframes bugShake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .demo-app input,
+        .demo-app select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid var(--border-color);
+            background-color: var(--tertiary-background-color);
+            color: var(--text-color);
+            border-radius: 8px;
+            font-family: var(--font-main);
+            font-size: 1em;
+        }
+
+        .demo-app button {
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s;
+        }
+
+        .demo-app button:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .demo-result {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.95em;
+        }
+
+        .bug-tracker-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-default);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .bug-tracker-panel h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .progress-bar {
+            background: var(--tertiary-background-color);
+            border-radius: 10px;
+            height: 30px;
+            overflow: hidden;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, var(--primary-color), var(--success-color));
+            height: 100%;
+            transition: width 0.5s ease-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .bug-checklist {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .bug-item {
+            background: var(--secondary-background-color);
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+
+        .bug-item.found {
+            background: rgba(16, 185, 129, 0.1);
+            border-color: var(--success-color);
+        }
+
+        .bug-status {
+            font-size: 1.5em;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .bug-hint {
+            color: var(--subtle-text-color);
+            font-size: 0.9em;
+            flex: 1;
+        }
+
+        .bug-item.found .bug-hint {
+            color: var(--success-color);
+            font-weight: 600;
+        }
+
+        .bug-found-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: linear-gradient(135deg, var(--warning-color), var(--accent-color));
+            color: white;
+            padding: 30px 50px;
+            border-radius: 20px;
+            font-size: 1.5em;
+            font-weight: bold;
+            z-index: 9999;
+            animation: popIn 0.3s ease-out forwards;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        @keyframes popIn {
+            from { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+            to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        }
+
+        .bug-report-builder {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-default);
+            padding: 20px;
+            display: none;
+        }
+
+        .bug-report-builder.active {
+            display: block;
+        }
+
+        .bug-report-builder h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .bug-report-builder .form-group {
+            margin-bottom: 15px;
+        }
+
+        .bug-report-builder label {
+            display: block;
+            color: var(--text-color);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .bug-report-builder input,
+        .bug-report-builder select,
+        .bug-report-builder textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            background-color: var(--tertiary-background-color);
+            color: var(--text-color);
+            border-radius: 8px;
+            font-family: var(--font-main);
+            font-size: 1em;
+        }
+
+        .bug-report-builder textarea {
+            resize: vertical;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .submitted-reports {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-default);
+            padding: 20px;
+        }
+
+        .submitted-reports h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .reports-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .report-card {
+            background: var(--secondary-background-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 15px;
+            transition: all 0.3s;
+        }
+
+        .report-card:hover {
+            border-color: var(--primary-color);
+            transform: translateX(5px);
+        }
+
+        .report-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .report-id {
+            font-family: var(--font-mono);
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .report-severity {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .report-severity.critical {
+            background: rgba(239, 68, 68, 0.2);
+            color: #EF4444;
+        }
+
+        .report-severity.high {
+            background: rgba(251, 146, 60, 0.2);
+            color: #FB923C;
+        }
+
+        .report-severity.medium {
+            background: rgba(251, 191, 36, 0.2);
+            color: #FFC107;
+        }
+
+        .report-severity.low {
+            background: rgba(74, 222, 128, 0.2);
+            color: #4ADE80;
+        }
+
+        .report-summary {
+            color: var(--text-color);
+            font-size: 1em;
+            margin-bottom: 5px;
+        }
+
+        .report-meta {
+            color: var(--subtle-text-color);
+            font-size: 0.85em;
+        }
+
+        .report-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 15px;
+            background: var(--secondary-background-color);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .stat-value {
+            display: block;
+            font-size: 2em;
+            font-weight: bold;
+            color: var(--primary-color);
+            font-family: var(--font-mono);
+        }
+
+        .stat-label {
+            display: block;
+            color: var(--subtle-text-color);
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        .achievement-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: linear-gradient(135deg, gold, orange);
+            color: #333;
+            border-radius: 20px;
+            font-weight: bold;
+            animation: achievementPop 0.5s;
+            margin: 5px;
+        }
+
+        @keyframes achievementPop {
+            0% { transform: scale(0) rotate(-10deg); }
+            50% { transform: scale(1.2) rotate(5deg); }
+            100% { transform: scale(1) rotate(0); }
+        }
+
+        .achievements-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .educational-tip {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            font-size: 0.9em;
+        }
+
+        .educational-tip strong {
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .educational-tip p {
+            color: var(--subtle-text-color);
+            margin: 5px 0;
+        }
+
+        /* Mobile responsive for QA Demo */
+        @media (max-width: 968px) {
+            .qa-demo-container {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -2436,6 +2894,7 @@
                     <li><a href="#skills" class="nav-link">Skills</a></li>
                     <li><a href="#bug-workflow" class="nav-link">Bug Process</a></li>
                     <li><a href="#test-examples" class="nav-link">Terminal</a></li>
+                    <li><a href="#qa-demo" class="nav-link">QA Demo</a></li>
                     <li><a href="#case-studies" class="nav-link">Case Studies</a></li>
                     <li><a href="#philosophy" class="nav-link">Philosophy</a></li>
                     <li><a href="#about" class="nav-link">About</a></li>
@@ -2711,6 +3170,222 @@
                 <div class="terminal-input-container">
                     <span class="terminal-input-prompt">$</span>
                     <input type="text" class="terminal-input" id="terminalInput" placeholder="Type or click a command (try 'help')..." autofocus autocomplete="off" spellcheck="false">
+                    <button id="terminalSendBtn" class="terminal-send-btn" title="Send command (or press Enter)">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive QA Demo Section -->
+    <section id="qa-demo" class="qa-demo-section">
+        <div class="container">
+            <h2>🐛 Interactive QA Demo</h2>
+            <p style="text-align: center; color: var(--subtle-text-color); margin-bottom: 30px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                Experience what it's like to be a QA engineer! Find bugs in the demo applications below and create professional bug reports. Can you find all 10 bugs?
+            </p>
+            
+            <div class="qa-demo-container">
+                <!-- Left Panel: Buggy Applications -->
+                <div class="qa-demo-left">
+                    <!-- Bug Discovery Tracker -->
+                    <div class="bug-tracker-panel">
+                        <h3>🐛 Bug Discovery Progress</h3>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="bugProgress" style="width: 0%;">0 / 10</div>
+                        </div>
+                        <p style="text-align: center; color: var(--subtle-text-color); margin-top: 10px;">
+                            <span id="bugsFound">0</span> bugs discovered
+                        </p>
+                        
+                        <div class="bug-checklist" id="bugChecklist">
+                            <div class="bug-item" data-bug="DEMO-001">
+                                <span class="bug-status">❓</span>
+                                <span class="bug-hint">Login: Try submitting empty form</span>
+                            </div>
+                            <div class="bug-item" data-bug="DEMO-002">
+                                <span class="bug-status">❓</span>
+                                <span class="bug-hint">Login: Check browser console</span>
+                            </div>
+                            <div class="bug-item" data-bug="DEMO-003">
+                                <span class="bug-status">❓</span>
+                                <span class="bug-hint">Login: Try SQL injection</span>
+                            </div>
+                            <div class="bug-item" data-bug="DEMO-004">
+                                <span class="bug-status">❓</span>
+                                <span class="bug-hint">Cart: Enter negative quantity</span>
+                            </div>
+                            <div class="bug-item" data-bug="DEMO-005">
+                                <span class="bug-status">❓</span>
+                                <span class="bug-hint">Cart: Enter very large quantity</span>
+                            </div>
+                            <div class="bug-item" data-bug="DEMO-006">
+                                <span class="bug-status">❓</span>
+                                <span class="bug-hint">Cart: Enter decimal quantity</span>
+                            </div>
+                            <div class="bug-item" data-bug="DEMO-007">
+                                <span class="bug-status">❓</span>
+                                <span class="bug-hint">Search: Try XSS attack</span>
+                            </div>
+                            <div class="bug-item" data-bug="DEMO-008">
+                                <span class="bug-status">❓</span>
+                                <span class="bug-hint">Search: Submit empty search</span>
+                            </div>
+                            <div class="bug-item" data-bug="DEMO-009">
+                                <span class="bug-status">❓</span>
+                                <span class="bug-hint">Date: End date before start date</span>
+                            </div>
+                            <div class="bug-item" data-bug="DEMO-010">
+                                <span class="bug-status">❓</span>
+                                <span class="bug-hint">Date: Select past dates</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Login Form -->
+                    <div class="demo-app" id="buggyLoginApp">
+                        <h3>🔐 Demo Login</h3>
+                        <form id="buggyLoginForm">
+                            <input type="text" id="demoUsername" placeholder="Username">
+                            <input type="password" id="demoPassword" placeholder="Password">
+                            <button type="submit">Login</button>
+                        </form>
+                        <div id="loginResult" class="demo-result"></div>
+                    </div>
+
+                    <!-- Shopping Cart -->
+                    <div class="demo-app" id="buggyCartApp">
+                        <h3>🛒 Demo Cart</h3>
+                        <div class="cart-item" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <span>Product A - $29.99</span>
+                            <input type="number" id="cartQuantity" value="1" style="width: 80px; margin: 0;">
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                            <strong>Total: <span id="cartTotal">$29.99</span></strong>
+                        </div>
+                        <button id="checkoutBtn">Checkout</button>
+                        <div id="cartResult" class="demo-result"></div>
+                    </div>
+
+                    <!-- Search Box -->
+                    <div class="demo-app" id="buggySearchApp">
+                        <h3>🔍 Demo Search</h3>
+                        <input type="text" id="demoSearch" placeholder="Search products...">
+                        <button id="searchBtn">Search</button>
+                        <div id="searchResults" class="demo-result"></div>
+                    </div>
+
+                    <!-- Date Picker -->
+                    <div class="demo-app" id="buggyDateApp">
+                        <h3>📅 Demo Booking</h3>
+                        <input type="date" id="demoStartDate" placeholder="Start Date">
+                        <input type="date" id="demoEndDate" placeholder="End Date">
+                        <button id="bookBtn">Book Now</button>
+                        <div id="bookingResult" class="demo-result"></div>
+                    </div>
+                </div>
+
+                <!-- Right Panel: Bug Reports -->
+                <div class="qa-demo-right">
+                    <!-- Bug Report Builder -->
+                    <div class="bug-report-builder" id="reportBuilder">
+                        <h3>📝 Create Bug Report</h3>
+                        
+                        <div class="form-group">
+                            <label>Bug ID</label>
+                            <input type="text" id="reportBugId" readonly>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Summary *</label>
+                            <input type="text" id="reportSummary" placeholder="Brief description of the bug">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Severity</label>
+                            <select id="reportSeverity">
+                                <option value="">Select severity...</option>
+                                <option value="critical">🔴 Critical</option>
+                                <option value="high">🟠 High</option>
+                                <option value="medium">🟡 Medium</option>
+                                <option value="low">🟢 Low</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Priority</label>
+                            <select id="reportPriority">
+                                <option value="">Select priority...</option>
+                                <option value="p1">P1 - Fix Immediately</option>
+                                <option value="p2">P2 - Fix This Sprint</option>
+                                <option value="p3">P3 - Fix Next Sprint</option>
+                                <option value="p4">P4 - Backlog</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Steps to Reproduce *</label>
+                            <textarea id="reportSteps" rows="4" placeholder="1. Go to...&#10;2. Enter...&#10;3. Click..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Expected Result</label>
+                            <textarea id="reportExpected" rows="2" placeholder="What should happen..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Actual Result</label>
+                            <textarea id="reportActual" rows="2" placeholder="What actually happened..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Environment</label>
+                            <input type="text" id="reportEnvironment" readonly>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button id="submitReport" class="btn-primary">Submit Bug Report</button>
+                            <button id="resetReport" class="btn-secondary">Reset</button>
+                        </div>
+                    </div>
+
+                    <!-- Submitted Reports Gallery -->
+                    <div class="submitted-reports" id="reportsGallery">
+                        <h3>📋 Your Bug Reports</h3>
+                        
+                        <div class="report-stats">
+                            <div class="stat">
+                                <span class="stat-value" id="totalReports">0</span>
+                                <span class="stat-label">Reports</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value" id="criticalCount">0</span>
+                                <span class="stat-label">Critical</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value" id="qaScore">0</span>
+                                <span class="stat-label">QA Score</span>
+                            </div>
+                        </div>
+
+                        <div class="reports-list" id="reportsList">
+                            <p style="text-align: center; color: var(--subtle-text-color);">
+                                No reports yet. Find bugs and create reports!
+                            </p>
+                        </div>
+
+                        <div class="achievements-container" id="achievementsContainer"></div>
+                        
+                        <div style="display: flex; gap: 10px; margin-top: 20px;">
+                            <button id="exportReports" class="btn-secondary" style="flex: 1;">
+                                📥 Export (Markdown)
+                            </button>
+                            <button id="shareResults" class="btn-primary" style="flex: 1;">
+                                🔗 Share Results
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -3427,6 +4102,7 @@ test('should login with valid credentials', async ({ page }) => {
         <div class="quick-jump-dot" data-tooltip="About" data-section="about"></div>
         <div class="quick-jump-dot" data-tooltip="Skills" data-section="skills"></div>
         <div class="quick-jump-dot" data-tooltip="Terminal" data-section="test-examples"></div>
+        <div class="quick-jump-dot" data-tooltip="QA Demo" data-section="qa-demo"></div>
         <div class="quick-jump-dot" data-tooltip="Cases" data-section="case-studies"></div>
         <div class="quick-jump-dot" data-tooltip="Philosophy" data-section="philosophy"></div>
         <div class="quick-jump-dot" data-tooltip="Experience" data-section="experience"></div>
@@ -3474,6 +4150,7 @@ test('should login with valid credentials', async ({ page }) => {
                         <li><a href="#home">Overview</a></li>
                         <li><a href="#skills">Skills</a></li>
                         <li><a href="#test-examples">Terminal</a></li>
+                        <li><a href="#qa-demo">QA Demo</a></li>
                         <li><a href="#case-studies">Case Studies</a></li>
                         <li><a href="#philosophy">Philosophy</a></li>
                         <li><a href="#about">About</a></li>
@@ -3857,6 +4534,7 @@ test('should login with valid credentials', async ({ page }) => {
 <span class="cmd-clickable" data-cmd="npm test">  npm test</span>     - 🧪 Run Playwright tests (Must see!)
 <span class="cmd-clickable" data-cmd="system">  system</span>       - 💻 Real-time system health
 <span class="cmd-clickable" data-cmd="projects">  projects</span>     - 📁 View live deployments
+<span class="cmd-clickable" data-cmd="download-cv">  download-cv</span>  - 📄 Download my CV/Resume
 <span class="cmd-clickable" data-cmd="time">  time</span>         - ⏰ Current timestamp
 <span class="cmd-clickable" data-cmd="skills">  skills</span>       - 🛠️ Technical skills
 <span class="cmd-clickable" data-cmd="about">  about</span>        - 👤 Detailed information
@@ -4110,6 +4788,65 @@ ${progressBar}
 `;
                 }
             },
+            'download-cv': {
+                description: 'Download CV/Resume',
+                execute: () => {
+                    // Create a simple CV text content
+                    const cvContent = `DIMITAR PRODROMOV
+QA Engineer & Automation Specialist
+
+Contact:
+Email: papica777@gmail.com
+Location: Sofia, Bulgaria
+Language: English (C1)
+
+Professional Summary:
+Detail-oriented QA Engineer with 2+ years of intensive experience as a freelance tester for uTest (Applause). 
+Specialized in functional, usability, and localization testing. Currently transitioning to full-stack QA with Python & SQL.
+
+Skills:
+• Testing Types: Functional, Regression, Exploratory, Usability, Payment, Localization
+• Tools & Platforms: uTest Platform, Jira, TestRail, Charles Proxy, Postman, Android Studio
+• Automation: Python, Selenium WebDriver, Playwright, Test Automation
+• Other: Git/GitHub, SQL, REST API, Chrome DevTools
+
+Experience:
+Freelance QA / Rated Tester - uTest (Applause)
+Jan 2021 – Jan 2023 | Remote / Sofia, Bulgaria
+• Executed over 150 test cycles for e-commerce, media, and fintech apps
+• Maintained high bug approval rate with professional documentation
+• Progressed from "Unrated" to "Rated" tier
+
+Education:
+uTest Academy - Rated Testing Specialist (2021)
+Comprehensive training on Bug Reports, Functional Testing, API Basics, and UX
+`;
+
+                    // Create a blob and download it
+                    const blob = new Blob([cvContent], { type: 'text/plain' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'Dimitar_Prodromov_CV.txt';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                    
+                    return `
+<span style="color: var(--success-color); font-size: 1.2em;">📄 CV Download Started!</span>
+
+<span style="color: var(--primary-color);">File:</span> Dimitar_Prodromov_CV.txt
+<span style="color: var(--primary-color);">Format:</span> Plain Text
+<span style="color: var(--primary-color);">Status:</span> <span style="color: var(--success-color);">✓ Download initiated</span>
+
+<span style="color: var(--subtle-text-color);">💡 The CV has been downloaded to your Downloads folder.</span>
+<span style="color: var(--subtle-text-color);">For full professional CV, please contact: papica777@gmail.com</span>
+
+<span style="color: var(--subtle-text-color); font-size: 0.9em;">Next: <span class="cmd-clickable" data-cmd="contact">contact</span> | <span class="cmd-clickable" data-cmd="about">about</span></span>
+`;
+                }
+            },
             time: {
                 description: 'Display current timestamp',
                 execute: () => {
@@ -4216,10 +4953,10 @@ ${progressBar}
 
         // ==================== BUG STATS COUNTER ANIMATION ====================
         function animateBugStats() {
-            const statNumbers = document.querySelectorAll('.stat-number');
+            const statNumbers = document.querySelectorAll('.stat-number[data-target]');
             
             const observerOptions = {
-                threshold: 0.5,
+                threshold: 0.1,
                 rootMargin: '0px'
             };
             
@@ -4292,6 +5029,19 @@ ${progressBar}
                 }
             }
         });
+
+        // Terminal Send Button
+        const terminalSendBtn = document.getElementById('terminalSendBtn');
+        if (terminalSendBtn) {
+            terminalSendBtn.addEventListener('click', async () => {
+                const command = terminalInput.value;
+                if (command.trim()) {
+                    terminalInput.value = '';
+                    await executeCommand(command);
+                    terminalInput.focus();
+                }
+            });
+        }
 
         // Make commands clickable everywhere in terminal output
         terminalOutput.addEventListener('click', async (e) => {
@@ -4623,7 +5373,7 @@ ${progressBar}
 
         // Update active quick jump dot based on scroll position
         function updateQuickJumpActive() {
-            const sections = ['home', 'about', 'skills', 'test-examples', 'case-studies', 'philosophy', 'experience', 'projects', 'contact'];
+            const sections = ['home', 'about', 'skills', 'test-examples', 'qa-demo', 'case-studies', 'philosophy', 'experience', 'projects', 'contact'];
             let currentSection = 'home';
             
             sections.forEach(sectionId => {
@@ -4809,6 +5559,692 @@ ${progressBar}
                 }
             }
         };
+
+        // ==================== INTERACTIVE QA DEMO MODULE ====================
+        const QADemo = (() => {
+            // State management
+            let discoveredBugs = new Set();
+            let submittedReports = [];
+            let score = 0;
+            let sessionStartTime = Date.now();
+
+            // Bug definitions with expected values
+            const BUGS = {
+                'DEMO-001': {
+                    app: 'login',
+                    title: 'Empty credentials accepted',
+                    severity: 'high',
+                    priority: 'p1',
+                    tip: 'Always validate required fields on both frontend AND backend!',
+                    owasp: 'A03:2021 – Injection',
+                    realWorld: 'This bug could allow unauthorized access to accounts.'
+                },
+                'DEMO-002': {
+                    app: 'login',
+                    title: 'Password visible in console log',
+                    severity: 'critical',
+                    priority: 'p1',
+                    tip: 'Never log sensitive information like passwords!',
+                    owasp: 'A01:2021 – Broken Access Control',
+                    realWorld: 'Sensitive data in logs can be exposed to attackers.'
+                },
+                'DEMO-003': {
+                    app: 'login',
+                    title: 'SQL injection not sanitized',
+                    severity: 'critical',
+                    priority: 'p1',
+                    tip: 'Always sanitize user input to prevent SQL injection attacks!',
+                    owasp: 'A03:2021 – Injection',
+                    realWorld: 'SQL injection can compromise entire databases.'
+                },
+                'DEMO-004': {
+                    app: 'cart',
+                    title: 'Negative quantity accepted',
+                    severity: 'high',
+                    priority: 'p2',
+                    tip: 'Never trust user input. Validate data types and ranges.',
+                    owasp: 'A03:2021 – Injection',
+                    realWorld: 'E-commerce sites have lost money due to negative quantity bugs.'
+                },
+                'DEMO-005': {
+                    app: 'cart',
+                    title: 'Quantity over 9999 breaks layout',
+                    severity: 'medium',
+                    priority: 'p3',
+                    tip: 'Test UI with boundary values to prevent layout issues.',
+                    owasp: 'N/A',
+                    realWorld: 'Poor UX can lead to lost sales and customer frustration.'
+                },
+                'DEMO-006': {
+                    app: 'cart',
+                    title: 'Decimal quantities accepted',
+                    severity: 'medium',
+                    priority: 'p3',
+                    tip: 'Validate input types - items should be integers only.',
+                    owasp: 'N/A',
+                    realWorld: 'Accepting 2.5 items makes no logical sense for physical products.'
+                },
+                'DEMO-007': {
+                    app: 'search',
+                    title: 'XSS vulnerability in search',
+                    severity: 'critical',
+                    priority: 'p1',
+                    tip: 'Always sanitize user input before displaying it in HTML.',
+                    owasp: 'A03:2021 – Injection (XSS)',
+                    realWorld: 'XSS attacks can steal session cookies and user data.'
+                },
+                'DEMO-008': {
+                    app: 'search',
+                    title: 'Empty search returns undefined',
+                    severity: 'low',
+                    priority: 'p4',
+                    tip: 'Handle edge cases like empty inputs gracefully.',
+                    owasp: 'N/A',
+                    realWorld: 'Poor error messages confuse users and reduce trust.'
+                },
+                'DEMO-009': {
+                    app: 'date',
+                    title: 'End date before start date accepted',
+                    severity: 'high',
+                    priority: 'p2',
+                    tip: 'Validate date ranges to ensure logical consistency.',
+                    owasp: 'N/A',
+                    realWorld: 'Invalid date ranges can cause booking system failures.'
+                },
+                'DEMO-010': {
+                    app: 'date',
+                    title: 'Past dates can be selected',
+                    severity: 'medium',
+                    priority: 'p2',
+                    tip: 'Restrict date selection to valid ranges for the business logic.',
+                    owasp: 'N/A',
+                    realWorld: 'Allowing past dates for future bookings creates confusion.'
+                }
+            };
+
+            // Scoring system
+            const SCORING = {
+                bugFound: 10,
+                correctSeverity: 5,
+                correctPriority: 5,
+                goodSteps: 10,
+                allBugsFound: 50,
+                speedBonus: 20
+            };
+
+            // Achievements
+            const ACHIEVEMENTS = {
+                'first_bug': { name: '🎯 First Blood', desc: 'Found your first bug' },
+                'security_expert': { name: '🔒 Security Expert', desc: 'Found all security bugs' },
+                'speed_demon': { name: '⚡ Speed Demon', desc: 'Found a bug in under 30 seconds' },
+                'perfectionist': { name: '✨ Perfectionist', desc: 'Created a perfect bug report' },
+                'bug_hunter': { name: '🏆 Master Bug Hunter', desc: 'Found all 10 bugs' }
+            };
+
+            let unlockedAchievements = new Set();
+
+            // Initialize QA Demo
+            const init = () => {
+                setupBuggyApps();
+                setupReportBuilder();
+                loadSavedSession();
+                updateProgress();
+                updateEnvironment();
+            };
+
+            // Setup event listeners for buggy applications
+            const setupBuggyApps = () => {
+                // Login form
+                const loginForm = document.getElementById('buggyLoginForm');
+                if (loginForm) {
+                    loginForm.addEventListener('submit', (e) => {
+                        e.preventDefault();
+                        const username = document.getElementById('demoUsername').value;
+                        const password = document.getElementById('demoPassword').value;
+                        const result = document.getElementById('loginResult');
+                        
+                        // BUG-DEMO-001: Empty credentials accepted
+                        if (!username || !password) {
+                            triggerBug('DEMO-001');
+                            result.innerHTML = '<span style="color: var(--success-color);">✓ Login successful!</span>';
+                            result.style.background = 'rgba(16, 185, 129, 0.1)';
+                            result.style.padding = '10px';
+                            return;
+                        }
+                        
+                        // BUG-DEMO-002: Password in console log
+                        console.log('Login attempt:', { username, password });
+                        triggerBug('DEMO-002');
+                        
+                        // BUG-DEMO-003: SQL injection
+                        if (username.toLowerCase().includes("' or '1'='1") || 
+                            username.toLowerCase().includes("'; drop table") ||
+                            password.toLowerCase().includes("' or '1'='1")) {
+                            triggerBug('DEMO-003');
+                            result.innerHTML = '<span style="color: var(--accent-color);">⚠️ SQL Injection detected! (This is a bug)</span>';
+                            result.style.background = 'rgba(239, 68, 68, 0.1)';
+                            result.style.padding = '10px';
+                            return;
+                        }
+                        
+                        result.innerHTML = '<span style="color: var(--success-color);">✓ Login successful!</span>';
+                        result.style.background = 'rgba(16, 185, 129, 0.1)';
+                        result.style.padding = '10px';
+                    });
+                }
+
+                // Shopping cart
+                const quantityInput = document.getElementById('cartQuantity');
+                const checkoutBtn = document.getElementById('checkoutBtn');
+                
+                if (quantityInput) {
+                    quantityInput.addEventListener('input', () => {
+                        const quantity = parseFloat(quantityInput.value);
+                        const total = document.getElementById('cartTotal');
+                        const result = document.getElementById('cartResult');
+                        const price = 29.99;
+                        
+                        // BUG-DEMO-004: Negative quantity
+                        if (quantity < 0) {
+                            triggerBug('DEMO-004');
+                            total.textContent = `$${(price * quantity).toFixed(2)}`;
+                            result.innerHTML = '<span style="color: var(--warning-color);">⚠️ Negative quantity bug found!</span>';
+                            result.style.background = 'rgba(251, 191, 36, 0.1)';
+                            result.style.padding = '10px';
+                            return;
+                        }
+                        
+                        // BUG-DEMO-005: Large quantity breaks layout
+                        if (quantity > 9999) {
+                            triggerBug('DEMO-005');
+                            total.textContent = `$${(price * quantity).toFixed(2)}`;
+                            result.innerHTML = '<span style="color: var(--warning-color);">⚠️ Large number breaks UI!</span>';
+                            result.style.background = 'rgba(251, 191, 36, 0.1)';
+                            result.style.padding = '10px';
+                            return;
+                        }
+                        
+                        // BUG-DEMO-006: Decimal quantity
+                        if (!Number.isInteger(quantity) && quantity > 0) {
+                            triggerBug('DEMO-006');
+                            total.textContent = `$${(price * quantity).toFixed(2)}`;
+                            result.innerHTML = '<span style="color: var(--info-color);">ℹ️ Decimal quantity accepted (should be integer)</span>';
+                            result.style.background = 'rgba(59, 130, 246, 0.1)';
+                            result.style.padding = '10px';
+                            return;
+                        }
+                        
+                        total.textContent = `$${(price * quantity).toFixed(2)}`;
+                        result.innerHTML = '';
+                    });
+                }
+
+                if (checkoutBtn) {
+                    checkoutBtn.addEventListener('click', () => {
+                        const result = document.getElementById('cartResult');
+                        result.innerHTML = '<span style="color: var(--success-color);">✓ Checkout successful!</span>';
+                        result.style.background = 'rgba(16, 185, 129, 0.1)';
+                        result.style.padding = '10px';
+                    });
+                }
+
+                // Search box
+                const searchBtn = document.getElementById('searchBtn');
+                const searchInput = document.getElementById('demoSearch');
+                
+                if (searchBtn) {
+                    searchBtn.addEventListener('click', () => {
+                        const query = searchInput.value;
+                        const results = document.getElementById('searchResults');
+                        
+                        // BUG-DEMO-007: XSS vulnerability
+                        if (query.toLowerCase().includes('<script>') || 
+                            query.toLowerCase().includes('alert(') ||
+                            query.toLowerCase().includes('javascript:')) {
+                            triggerBug('DEMO-007');
+                            results.innerHTML = `<span style="color: var(--accent-color);">⚠️ XSS vulnerability! Script tags accepted: ${query}</span>`;
+                            results.style.background = 'rgba(239, 68, 68, 0.1)';
+                            results.style.padding = '10px';
+                            // Don't actually execute the script for safety
+                            return;
+                        }
+                        
+                        // BUG-DEMO-008: Empty search returns undefined
+                        if (query === '') {
+                            triggerBug('DEMO-008');
+                            results.innerHTML = '<span style="color: var(--warning-color);">Search results: undefined</span>';
+                            results.style.background = 'rgba(251, 191, 36, 0.1)';
+                            results.style.padding = '10px';
+                            return;
+                        }
+                        
+                        results.innerHTML = `<span style="color: var(--success-color);">Found 3 results for "${query}"</span>`;
+                        results.style.background = 'rgba(16, 185, 129, 0.1)';
+                        results.style.padding = '10px';
+                    });
+                }
+
+                // Date picker
+                const bookBtn = document.getElementById('bookBtn');
+                
+                if (bookBtn) {
+                    bookBtn.addEventListener('click', () => {
+                        const startDate = new Date(document.getElementById('demoStartDate').value);
+                        const endDate = new Date(document.getElementById('demoEndDate').value);
+                        const result = document.getElementById('bookingResult');
+                        const today = new Date();
+                        today.setHours(0, 0, 0, 0);
+                        
+                        // BUG-DEMO-009: End date before start date
+                        if (endDate < startDate && !isNaN(startDate) && !isNaN(endDate)) {
+                            triggerBug('DEMO-009');
+                            result.innerHTML = '<span style="color: var(--warning-color);">⚠️ Booking accepted with end date before start date!</span>';
+                            result.style.background = 'rgba(251, 191, 36, 0.1)';
+                            result.style.padding = '10px';
+                            return;
+                        }
+                        
+                        // BUG-DEMO-010: Past dates accepted
+                        if ((startDate < today || endDate < today) && !isNaN(startDate) && !isNaN(endDate)) {
+                            triggerBug('DEMO-010');
+                            result.innerHTML = '<span style="color: var(--info-color);">ℹ️ Past dates accepted for future booking!</span>';
+                            result.style.background = 'rgba(59, 130, 246, 0.1)';
+                            result.style.padding = '10px';
+                            return;
+                        }
+                        
+                        if (isNaN(startDate) || isNaN(endDate)) {
+                            result.innerHTML = '<span style="color: var(--accent-color);">Please select valid dates</span>';
+                            result.style.background = 'rgba(239, 68, 68, 0.1)';
+                            result.style.padding = '10px';
+                            return;
+                        }
+                        
+                        result.innerHTML = '<span style="color: var(--success-color);">✓ Booking successful!</span>';
+                        result.style.background = 'rgba(16, 185, 129, 0.1)';
+                        result.style.padding = '10px';
+                    });
+                }
+            };
+
+            // Trigger bug found
+            const triggerBug = (bugId) => {
+                if (discoveredBugs.has(bugId)) return;
+                
+                discoveredBugs.add(bugId);
+                score += SCORING.bugFound;
+                
+                // Visual feedback
+                showBugFoundPopup(bugId);
+                updateBugChecklist(bugId);
+                updateProgress();
+                showReportBuilder(bugId);
+                checkAchievements();
+                saveSession();
+            };
+
+            // Show bug found popup
+            const showBugFoundPopup = (bugId) => {
+                const popup = document.createElement('div');
+                popup.className = 'bug-found-popup';
+                popup.innerHTML = `🐛 Bug Found!<br><span style="font-size: 0.7em;">${bugId}</span>`;
+                document.body.appendChild(popup);
+                
+                setTimeout(() => {
+                    popup.remove();
+                }, 2000);
+            };
+
+            // Update bug checklist
+            const updateBugChecklist = (bugId) => {
+                const bugItem = document.querySelector(`[data-bug="${bugId}"]`);
+                if (bugItem) {
+                    bugItem.classList.add('found');
+                    bugItem.querySelector('.bug-status').textContent = '✅';
+                    const hint = bugItem.querySelector('.bug-hint');
+                    hint.textContent = BUGS[bugId].title;
+                }
+            };
+
+            // Update progress
+            const updateProgress = () => {
+                const total = Object.keys(BUGS).length;
+                const found = discoveredBugs.size;
+                const percentage = (found / total) * 100;
+                
+                const progressFill = document.getElementById('bugProgress');
+                const bugsFoundSpan = document.getElementById('bugsFound');
+                
+                if (progressFill) {
+                    progressFill.style.width = `${percentage}%`;
+                    progressFill.textContent = `${found} / ${total}`;
+                }
+                
+                if (bugsFoundSpan) {
+                    bugsFoundSpan.textContent = found;
+                }
+            };
+
+            // Show report builder for bug
+            const showReportBuilder = (bugId) => {
+                const builder = document.getElementById('reportBuilder');
+                const bugIdField = document.getElementById('reportBugId');
+                
+                if (builder && bugIdField) {
+                    builder.classList.add('active');
+                    bugIdField.value = bugId;
+                    builder.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
+            };
+
+            // Setup report builder
+            const setupReportBuilder = () => {
+                const submitBtn = document.getElementById('submitReport');
+                const resetBtn = document.getElementById('resetReport');
+                const exportBtn = document.getElementById('exportReports');
+                const shareBtn = document.getElementById('shareResults');
+                
+                if (submitBtn) {
+                    submitBtn.addEventListener('click', () => {
+                        const report = {
+                            bugId: document.getElementById('reportBugId').value,
+                            summary: document.getElementById('reportSummary').value,
+                            severity: document.getElementById('reportSeverity').value,
+                            priority: document.getElementById('reportPriority').value,
+                            steps: document.getElementById('reportSteps').value,
+                            expected: document.getElementById('reportExpected').value,
+                            actual: document.getElementById('reportActual').value,
+                            environment: document.getElementById('reportEnvironment').value,
+                            timestamp: new Date().toISOString()
+                        };
+                        
+                        if (!report.summary || !report.steps) {
+                            alert('Please fill in required fields (Summary and Steps)');
+                            return;
+                        }
+                        
+                        submitReport(report);
+                    });
+                }
+                
+                if (resetBtn) {
+                    resetBtn.addEventListener('click', () => {
+                        document.getElementById('reportSummary').value = '';
+                        document.getElementById('reportSeverity').value = '';
+                        document.getElementById('reportPriority').value = '';
+                        document.getElementById('reportSteps').value = '';
+                        document.getElementById('reportExpected').value = '';
+                        document.getElementById('reportActual').value = '';
+                    });
+                }
+
+                if (exportBtn) {
+                    exportBtn.addEventListener('click', () => {
+                        exportToMarkdown();
+                    });
+                }
+
+                if (shareBtn) {
+                    shareBtn.addEventListener('click', () => {
+                        const shareText = `I found ${discoveredBugs.size}/10 bugs and scored ${score} points in the Interactive QA Demo! 🐛🏆`;
+                        if (navigator.share) {
+                            navigator.share({
+                                title: 'My QA Demo Results',
+                                text: shareText
+                            });
+                        } else {
+                            navigator.clipboard.writeText(shareText);
+                            alert('Results copied to clipboard!');
+                        }
+                    });
+                }
+            };
+
+            // Submit bug report
+            const submitReport = (report) => {
+                const bug = BUGS[report.bugId];
+                
+                // Calculate bonus points
+                let bonus = 0;
+                if (bug && report.severity === bug.severity) bonus += SCORING.correctSeverity;
+                if (bug && report.priority === bug.priority) bonus += SCORING.correctPriority;
+                if (report.steps.length > 50) bonus += SCORING.goodSteps;
+                
+                score += bonus;
+                submittedReports.push(report);
+                
+                // Update UI
+                addReportToGallery(report);
+                updateStats();
+                checkAchievements();
+                saveSession();
+                
+                // Show educational tip
+                if (bug) {
+                    showEducationalTip(bug);
+                }
+                
+                // Reset form
+                document.getElementById('reportBuilder').classList.remove('active');
+                document.getElementById('reportSummary').value = '';
+                document.getElementById('reportSeverity').value = '';
+                document.getElementById('reportPriority').value = '';
+                document.getElementById('reportSteps').value = '';
+                document.getElementById('reportExpected').value = '';
+                document.getElementById('reportActual').value = '';
+                
+                alert(`Bug report submitted! +${SCORING.bugFound + bonus} points`);
+            };
+
+            // Add report to gallery
+            const addReportToGallery = (report) => {
+                const reportsList = document.getElementById('reportsList');
+                
+                if (reportsList.querySelector('p')) {
+                    reportsList.innerHTML = '';
+                }
+                
+                const reportCard = document.createElement('div');
+                reportCard.className = 'report-card';
+                reportCard.innerHTML = `
+                    <div class="report-card-header">
+                        <span class="report-id">${report.bugId}</span>
+                        <span class="report-severity ${report.severity}">${report.severity.toUpperCase()}</span>
+                    </div>
+                    <div class="report-summary">${report.summary}</div>
+                    <div class="report-meta">
+                        Priority: ${report.priority} • ${new Date(report.timestamp).toLocaleString()}
+                    </div>
+                `;
+                
+                reportsList.insertBefore(reportCard, reportsList.firstChild);
+            };
+
+            // Update statistics
+            const updateStats = () => {
+                document.getElementById('totalReports').textContent = submittedReports.length;
+                document.getElementById('criticalCount').textContent = 
+                    submittedReports.filter(r => r.severity === 'critical').length;
+                document.getElementById('qaScore').textContent = score;
+            };
+
+            // Check and award achievements
+            const checkAchievements = () => {
+                const container = document.getElementById('achievementsContainer');
+                
+                // First bug
+                if (discoveredBugs.size === 1 && !unlockedAchievements.has('first_bug')) {
+                    unlockedAchievements.add('first_bug');
+                    showAchievement('first_bug', container);
+                    score += 20;
+                }
+                
+                // Security expert (found DEMO-002, DEMO-003, DEMO-007)
+                if (discoveredBugs.has('DEMO-002') && discoveredBugs.has('DEMO-003') && 
+                    discoveredBugs.has('DEMO-007') && !unlockedAchievements.has('security_expert')) {
+                    unlockedAchievements.add('security_expert');
+                    showAchievement('security_expert', container);
+                    score += 30;
+                }
+                
+                // Bug hunter (all 10 bugs)
+                if (discoveredBugs.size === 10 && !unlockedAchievements.has('bug_hunter')) {
+                    unlockedAchievements.add('bug_hunter');
+                    showAchievement('bug_hunter', container);
+                    score += SCORING.allBugsFound;
+                }
+                
+                updateStats();
+            };
+
+            // Show achievement badge
+            const showAchievement = (achievementId, container) => {
+                const achievement = ACHIEVEMENTS[achievementId];
+                const badge = document.createElement('div');
+                badge.className = 'achievement-badge';
+                badge.innerHTML = `${achievement.name}<br><small style="font-size: 0.75em;">${achievement.desc}</small>`;
+                container.appendChild(badge);
+            };
+
+            // Show educational tip
+            const showEducationalTip = (bug) => {
+                const reportBuilder = document.getElementById('reportBuilder');
+                
+                // Remove existing tip
+                const existingTip = reportBuilder.querySelector('.educational-tip');
+                if (existingTip) existingTip.remove();
+                
+                const tip = document.createElement('div');
+                tip.className = 'educational-tip';
+                tip.innerHTML = `
+                    <strong>💡 Learning Point:</strong>
+                    <p>${bug.tip}</p>
+                    <p><strong>OWASP:</strong> ${bug.owasp}</p>
+                    <p><strong>Real-world impact:</strong> ${bug.realWorld}</p>
+                `;
+                
+                reportBuilder.appendChild(tip);
+                
+                setTimeout(() => tip.remove(), 10000);
+            };
+
+            // Update environment info
+            const updateEnvironment = () => {
+                const envField = document.getElementById('reportEnvironment');
+                if (envField) {
+                    const browser = navigator.userAgent.match(/(Chrome|Firefox|Safari|Edge)\/(\d+)/)?.[0] || 'Unknown';
+                    const os = navigator.platform || 'Unknown';
+                    envField.value = `${browser}, ${os}`;
+                }
+            };
+
+            // Export to markdown
+            const exportToMarkdown = () => {
+                if (submittedReports.length === 0) {
+                    alert('No reports to export!');
+                    return;
+                }
+                
+                let markdown = `# QA Demo Session Report\n\n`;
+                markdown += `**Date:** ${new Date().toLocaleDateString()}\n`;
+                markdown += `**Bugs Found:** ${discoveredBugs.size}/10\n`;
+                markdown += `**Reports Created:** ${submittedReports.length}\n`;
+                markdown += `**Score:** ${score}\n\n`;
+                markdown += `---\n\n`;
+                
+                submittedReports.forEach((report, index) => {
+                    markdown += `## Bug Report ${index + 1}: ${report.bugId}\n\n`;
+                    markdown += `**Summary:** ${report.summary}\n\n`;
+                    markdown += `**Severity:** ${report.severity}\n`;
+                    markdown += `**Priority:** ${report.priority}\n\n`;
+                    markdown += `**Steps to Reproduce:**\n${report.steps}\n\n`;
+                    markdown += `**Expected Result:** ${report.expected}\n\n`;
+                    markdown += `**Actual Result:** ${report.actual}\n\n`;
+                    markdown += `**Environment:** ${report.environment}\n\n`;
+                    markdown += `---\n\n`;
+                });
+                
+                // Download markdown file
+                const blob = new Blob([markdown], { type: 'text/markdown' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `qa-demo-report-${Date.now()}.md`;
+                a.click();
+                URL.revokeObjectURL(url);
+            };
+
+            // Save session to localStorage
+            const saveSession = () => {
+                const session = {
+                    discoveredBugs: [...discoveredBugs],
+                    submittedReports,
+                    score,
+                    unlockedAchievements: [...unlockedAchievements],
+                    timestamp: Date.now()
+                };
+                localStorage.setItem('qaDemoSession', JSON.stringify(session));
+            };
+
+            // Load saved session
+            const loadSavedSession = () => {
+                const saved = localStorage.getItem('qaDemoSession');
+                if (!saved) return;
+                
+                try {
+                    const session = JSON.parse(saved);
+                    
+                    // Check if session is less than 24 hours old
+                    const age = Date.now() - session.timestamp;
+                    if (age > 24 * 60 * 60 * 1000) {
+                        localStorage.removeItem('qaDemoSession');
+                        return;
+                    }
+                    
+                    discoveredBugs = new Set(session.discoveredBugs);
+                    submittedReports = session.submittedReports || [];
+                    score = session.score || 0;
+                    unlockedAchievements = new Set(session.unlockedAchievements || []);
+                    
+                    // Restore UI state
+                    session.discoveredBugs.forEach(bugId => {
+                        updateBugChecklist(bugId);
+                    });
+                    
+                    submittedReports.forEach(report => {
+                        addReportToGallery(report);
+                    });
+                    
+                    unlockedAchievements.forEach(achievementId => {
+                        const container = document.getElementById('achievementsContainer');
+                        const achievement = ACHIEVEMENTS[achievementId];
+                        if (achievement && container) {
+                            const badge = document.createElement('div');
+                            badge.className = 'achievement-badge';
+                            badge.innerHTML = `${achievement.name}<br><small style="font-size: 0.75em;">${achievement.desc}</small>`;
+                            container.appendChild(badge);
+                        }
+                    });
+                    
+                    updateProgress();
+                    updateStats();
+                } catch (e) {
+                    console.error('Failed to load session:', e);
+                    localStorage.removeItem('qaDemoSession');
+                }
+            };
+
+            return {
+                init,
+                getScore: () => score,
+                getDiscoveredBugs: () => [...discoveredBugs]
+            };
+        })();
+
+        // Initialize QA Demo when DOM is ready
+        if (document.getElementById('qa-demo')) {
+            QADemo.init();
+        }
     </script>
 </body>
 </html>
