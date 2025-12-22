@@ -133,11 +133,60 @@
         }
 
         .logo {
-            font-family: var(--font-mono);
-            font-size: 1.8em;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: var(--font-sans);
             font-weight: 700;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: all var(--transition-speed);
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.3em;
+            color: var(--background-color);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+            transition: all var(--transition-speed);
+        }
+
+        .logo:hover .logo-icon {
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+            transform: rotate(-5deg);
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .logo-name {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: var(--text-color);
+            letter-spacing: -0.5px;
+        }
+
+        .logo-title {
+            font-size: 0.75em;
+            font-weight: 500;
             color: var(--primary-color);
-            letter-spacing: -1px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: var(--font-mono);
         }
 
         nav {
@@ -1591,6 +1640,21 @@
                 display: none; /* Hide keyboard hints on mobile */
             }
 
+            /* Logo mobile responsive */
+            .logo-icon {
+                width: 36px;
+                height: 36px;
+                font-size: 1.1em;
+            }
+
+            .logo-name {
+                font-size: 1.1em;
+            }
+
+            .logo-title {
+                font-size: 0.7em;
+            }
+
             section {
                 padding: 30px 0;
             }
@@ -1701,7 +1765,13 @@
     <!-- Header -->
     <header>
         <div class="container">
-            <div class="logo">Dimitar Prodromov<span style="color: var(--text-color);">.QA</span></div>
+            <a href="#home" class="logo">
+                <div class="logo-icon">DP</div>
+                <div class="logo-text">
+                    <span class="logo-name">Dimitar Prodromov</span>
+                    <span class="logo-title">QA Engineer</span>
+                </div>
+            </a>
             <nav>
                 <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
                     <i class="fas fa-bars"></i>
