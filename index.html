@@ -2,10 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Dimitar Prodromov - Manual QA Engineer | uTest Rated Tester | Professional Portfolio showcasing 1+ years of testing experience">
-    <meta name="keywords" content="Manual QA, Quality Assurance, Software Testing, uTest, Rated Tester, QA Engineer, Test Automation, Dimitar Prodromov">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Dimitar Prodromov - Manual QA Engineer | uTest Rated Tester | Professional Portfolio showcasing 2+ years of testing experience in functional, usability, and localization testing">
+    <meta name="keywords" content="Manual QA, Quality Assurance, Software Testing, uTest, Rated Tester, QA Engineer, Test Automation, Dimitar Prodromov, Playwright, TypeScript">
     <meta name="author" content="Dimitar Prodromov">
+    <meta name="theme-color" content="#3B82F6" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#007BFF" media="(prefers-color-scheme: light)">
+    <link rel="canonical" href="https://dpengeneering.site/">
+    
+    <!-- Security Headers -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    
+    <!-- Performance & Resource Hints -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://api.github.com">
     
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="Dimitar Prodromov | QA Automation Architect">
@@ -13,17 +26,19 @@
     <meta property="og:image" content="https://dpengeneering.site/og-image.png">
     <meta property="og:url" content="https://dpengeneering.site">
     <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_US">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Dimitar Prodromov | QA Automation Architect">
     <meta name="twitter:description" content="Specialized in Playwright, TypeScript and Enterprise Testing Systems.">
+    <meta name="twitter:image" content="https://dpengeneering.site/og-image.png">
     
     <title>Dimitar Prodromov | Manual QA Engineer Portfolio</title>
     
-    <!-- Google Fonts -->
+    <!-- Google Fonts with optimized loading -->
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Font Awesome with SRI for security -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
     
     <style>
         /* --- CSS Variables for Theming --- */
@@ -69,6 +84,48 @@
             --border-color: #CED4DA;
             --shadow-light: rgba(0, 123, 255, 0.2);
             --shadow-dark: rgba(0, 0, 0, 0.1);
+        }
+
+        /* --- Accessibility & Motion Preferences --- */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        /* Focus visible for better keyboard navigation */
+        *:focus-visible {
+            outline: 3px solid var(--primary-color);
+            outline-offset: 2px;
+            border-radius: 4px;
+        }
+
+        /* Remove default focus styles for mouse users */
+        *:focus:not(:focus-visible) {
+            outline: none;
+        }
+
+        /* Skip to main content link for accessibility */
+        .skip-to-main {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary-color);
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 0 0 8px 0;
+            z-index: 9999;
+            font-weight: 600;
+        }
+
+        .skip-to-main:focus {
+            top: 0;
         }
 
         /* --- General Styling --- */
@@ -224,11 +281,17 @@
             color: var(--text-color);
             font-size: 1.2em;
             cursor: pointer;
-            padding: 5px;
+            padding: 10px; /* Increased for better touch target */
+            min-width: 44px;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             transition: color var(--transition-speed), transform 0.2s ease;
         }
 
-        .theme-toggle-btn:hover {
+        .theme-toggle-btn:hover,
+        .theme-toggle-btn:focus-visible {
             color: var(--primary-color);
             transform: rotate(30deg);
         }
@@ -240,7 +303,9 @@
             color: var(--text-color);
             font-size: 1.5em;
             cursor: pointer;
-            padding: 5px;
+            padding: 10px; /* Increased for better touch target */
+            min-width: 44px;
+            min-height: 44px;
         }
 
         /* --- Hero Section --- */
@@ -307,6 +372,8 @@
             transition: all var(--transition-speed);
             border: none;
             text-align: center;
+            min-height: 44px; /* WCAG touch target minimum */
+            min-width: 44px;
         }
 
         .btn-primary {
@@ -315,7 +382,8 @@
             box-shadow: 0 5px 15px var(--shadow-light);
         }
 
-        .btn-primary:hover {
+        .btn-primary:hover,
+        .btn-primary:focus-visible {
             background-color: var(--secondary-color);
             transform: translateY(-2px);
             box-shadow: 0 8px 20px var(--shadow-light);
@@ -327,7 +395,8 @@
             border: 2px solid var(--primary-color);
         }
 
-        .btn-secondary:hover {
+        .btn-secondary:hover,
+        .btn-secondary:focus-visible {
             background-color: var(--primary-color);
             color: var(--background-color);
             transform: translateY(-2px);
@@ -1164,7 +1233,7 @@
             border: 1px solid var(--border-color);
             background: var(--tertiary-background-color);
             color: var(--text-color);
-            padding: 8px 12px;
+            padding: 10px 14px;
             border-radius: 10px;
             font-size: 0.9em;
             cursor: pointer;
@@ -1172,9 +1241,11 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
+            min-height: 44px; /* WCAG touch target minimum */
         }
 
-        .terminal-action-btn:hover {
+        .terminal-action-btn:hover,
+        .terminal-action-btn:focus-visible {
             background: var(--primary-color);
             color: var(--background-color);
             border-color: var(--primary-color);
@@ -1755,13 +1826,51 @@
             }
         }
     </style>
+    
+    <!-- Structured Data (JSON-LD) for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Dimitar Prodromov",
+        "jobTitle": "Manual QA Engineer",
+        "description": "Detail-oriented QA Engineer with 2+ years of experience as a freelance tester for uTest (Applause). Specializing in functional, usability, and localization testing.",
+        "url": "https://dpengeneering.site",
+        "sameAs": [
+            "https://github.com/papica777-eng",
+            "https://linkedin.com/in/yourprofile"
+        ],
+        "email": "papica777@gmail.com",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Sofia",
+            "addressCountry": "Bulgaria"
+        },
+        "alumniOf": {
+            "@type": "EducationalOrganization",
+            "name": "uTest Academy"
+        },
+        "knowsAbout": [
+            "Manual Testing",
+            "Quality Assurance",
+            "Functional Testing",
+            "Regression Testing",
+            "Usability Testing",
+            "Test Automation",
+            "Python",
+            "Selenium WebDriver",
+            "Playwright",
+            "TypeScript"
+        ]
+    }
+    </script>
 </head>
 <body>
     <!-- Scroll Progress Bar -->
     <div class="scroll-progress" id="scrollProgress"></div>
 
     <!-- Skip to Content Link for Accessibility -->
-    <a href="#home" class="skip-to-content">Skip to main content</a>
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
 
     <!-- Header -->
     <header>
@@ -1795,8 +1904,10 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section id="home" class="hero">
         <div class="hero-content">
             <div style="display: inline-block; background-color: var(--success-color); color: var(--background-color); padding: 5px 15px; border-radius: 20px; font-size: 0.9em; font-weight: 600; margin-bottom: 20px;">
                 <i class="fas fa-circle" style="font-size: 0.6em; margin-right: 5px;"></i> Open to Work
@@ -2251,18 +2362,18 @@
             <div class="contact-content">
                 <div class="contact-form">
                     <h3>Send me a message</h3>
-                    <form id="contactForm">
+                    <form id="contactForm" novalidate>
                         <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" required>
+                            <label for="name">Name <span aria-label="required">*</span></label>
+                            <input type="text" id="name" name="name" required aria-required="true" autocomplete="name" placeholder="Enter your name">
                         </div>
                         <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
+                            <label for="email">Email <span aria-label="required">*</span></label>
+                            <input type="email" id="email" name="email" required aria-required="true" autocomplete="email" placeholder="your.email@example.com">
                         </div>
                         <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" required></textarea>
+                            <label for="message">Message <span aria-label="required">*</span></label>
+                            <textarea id="message" name="message" required aria-required="true" rows="5" placeholder="Tell me about your project or inquiry..."></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary">
                             <i class="fas fa-paper-plane"></i> Send Message
@@ -2334,6 +2445,7 @@
         <div><kbd>End</kbd> - Bottom</div>
         <div><kbd>↑↓</kbd> - Scroll</div>
     </div>
+    </main>
 
     <!-- Footer -->
     <footer>
