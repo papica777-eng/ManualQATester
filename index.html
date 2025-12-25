@@ -4029,7 +4029,8 @@ test('should login with valid credentials', async ({ page }) => {
                     <p style="color: var(--subtle-text-color); margin-bottom: 20px; font-size: 0.95em;">
                         <i class="fas fa-info-circle"></i> I typically respond within 24 hours. Feel free to ask about opportunities or projects!
                     </p>
-                    <form id="contactForm">
+                    <form id="contactForm" action="https://formspree.io/f/xgvewpqj" method="POST">
+                        <input type="hidden" name="_subject" value="New message from Portfolio Contact Form">
                         <div class="form-group">
                             <label for="name">Name <span style="color: var(--accent-color);">*</span></label>
                             <input type="text" id="name" name="name" placeholder="Your full name" required aria-required="true">
@@ -4045,7 +4046,7 @@ test('should login with valid credentials', async ({ page }) => {
                             <textarea id="message" name="message" placeholder="Tell me about the opportunity, project, or question..." required aria-required="true" rows="6"></textarea>
                             <small style="color: var(--subtle-text-color); display: block; margin-top: 5px;">Be as detailed as you'd like - I read every message!</small>
                         </div>
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary" id="submitBtn">
                             <i class="fas fa-paper-plane"></i> Send Message
                         </button>
                         <p style="color: var(--subtle-text-color); font-size: 0.85em; margin-top: 10px;">
@@ -4354,20 +4355,56 @@ test('should login with valid credentials', async ({ page }) => {
             event.currentTarget.classList.add('active');
         }
 
-        // Contact Form Submission (Frontend only - no backend)
+        // Contact Form Submission with Formspree
         const contactForm = document.getElementById('contactForm');
-        contactForm.addEventListener('submit', (e) => {
+        const submitBtn = document.getElementById('submitBtn');
+        
+        contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             
-            // Get form data
-            const formData = new FormData(contactForm);
-            const data = Object.fromEntries(formData);
+            // Update button state
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitBtn.disabled = true;
             
-            // Simulate form submission
-            alert('Thank you for your message! This is a demo contact form. In a production environment, this would send your message.');
-            
-            // Reset form
-            contactForm.reset();
+            try {
+                const formData = new FormData(contactForm);
+                const response = await fetch(contactForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    // Success!
+                    submitBtn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
+                    submitBtn.style.background = 'var(--success-color)';
+                    contactForm.reset();
+                    
+                    // Show success message
+                    setTimeout(() => {
+                        alert('Thank you! Your message has been sent. I\'ll get back to you soon!');
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.style.background = '';
+                        submitBtn.disabled = false;
+                    }, 1000);
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (error) {
+                console.error('Form error:', error);
+                submitBtn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error';
+                submitBtn.style.background = 'var(--accent-color)';
+                alert('Sorry, there was an error sending your message. Please try again or email me directly at papica777@gmail.com');
+                
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.style.background = '';
+                    submitBtn.disabled = false;
+                }, 2000);
+            }
         });
 
         // Playwright Test Examples Rotation
