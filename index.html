@@ -19,11 +19,17 @@
     
     <title>Dimitar Prodromov | QA Engineer Portfolio</title>
     
+    <!-- Resource Hints for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Font Awesome with SRI -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer">
     
     <style>
         /* --- CSS Variables for Theming --- */
@@ -4032,12 +4038,12 @@ test('should login with valid credentials', async ({ page }) => {
                     <form id="contactForm">
                         <div class="form-group">
                             <label for="name">Name <span style="color: var(--accent-color);">*</span></label>
-                            <input type="text" id="name" name="name" placeholder="Your full name" required aria-required="true">
+                            <input type="text" id="name" name="name" placeholder="Your full name" required aria-required="true" autocomplete="name">
                             <small style="color: var(--subtle-text-color); display: block; margin-top: 5px;">How should I address you?</small>
                         </div>
                         <div class="form-group">
                             <label for="email">Email <span style="color: var(--accent-color);">*</span></label>
-                            <input type="email" id="email" name="email" placeholder="your.email@example.com" required aria-required="true">
+                            <input type="email" id="email" name="email" placeholder="your.email@example.com" required aria-required="true" autocomplete="email">
                             <small style="color: var(--subtle-text-color); display: block; margin-top: 5px;">I'll reply to this address</small>
                         </div>
                         <div class="form-group">
@@ -4197,12 +4203,26 @@ test('should login with valid credentials', async ({ page }) => {
         const mobileMenuToggle = document.getElementById('mobileMenuToggle');
         const navMenu = document.getElementById('navMenu');
 
-        mobileMenuToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('mobile-menu-active');
-            const icon = mobileMenuToggle.querySelector('i');
-            icon.classList.toggle('fa-bars');
-            icon.classList.toggle('fa-times');
-        });
+        if (mobileMenuToggle && navMenu) {
+            mobileMenuToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('mobile-menu-active');
+                const icon = mobileMenuToggle.querySelector('i');
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-times');
+            });
+
+            // Close mobile menu when clicking on a nav link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth <= 768) {
+                        navMenu.classList.remove('mobile-menu-active');
+                        const icon = mobileMenuToggle.querySelector('i');
+                        icon.classList.add('fa-bars');
+                        icon.classList.remove('fa-times');
+                    }
+                });
+            });
+        }
 
         // Smooth Scroll Navigation
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -4212,10 +4232,16 @@ test('should login with valid credentials', async ({ page }) => {
                 if (target) {
                     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     // Close mobile menu if open
-                    navMenu.classList.remove('mobile-menu-active');
-                    const icon = mobileMenuToggle.querySelector('i');
-                    icon.classList.add('fa-bars');
-                    icon.classList.remove('fa-times');
+                    if (navMenu) {
+                        navMenu.classList.remove('mobile-menu-active');
+                        if (mobileMenuToggle) {
+                            const icon = mobileMenuToggle.querySelector('i');
+                            if (icon) {
+                                icon.classList.add('fa-bars');
+                                icon.classList.remove('fa-times');
+                            }
+                        }
+                    }
                 }
             });
         });
@@ -4334,19 +4360,45 @@ test('should login with valid credentials', async ({ page }) => {
 
         // Contact Form Submission (Frontend only - no backend)
         const contactForm = document.getElementById('contactForm');
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(contactForm);
-            const data = Object.fromEntries(formData);
-            
-            // Simulate form submission
-            alert('Thank you for your message! This is a demo contact form. In a production environment, this would send your message.');
-            
-            // Reset form
-            contactForm.reset();
-        });
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                try {
+                    // Get submit button and show loading state
+                    const submitButton = contactForm.querySelector('button[type="submit"]');
+                    if (submitButton) {
+                        const originalText = submitButton.innerHTML;
+                        submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                        submitButton.disabled = true;
+                        
+                        // Get form data
+                        const formData = new FormData(contactForm);
+                        const data = Object.fromEntries(formData);
+                        
+                        // Simulate form submission with delay for UX
+                        setTimeout(() => {
+                            // Simulate form submission
+                            alert('Thank you for your message! This is a demo contact form. In a production environment, this would send your message.');
+                            
+                            // Reset form
+                            contactForm.reset();
+                            
+                            // Restore button state
+                            submitButton.innerHTML = originalText;
+                            submitButton.disabled = false;
+                        }, 500);
+                    } else {
+                        // If no submit button, just show alert and reset
+                        alert('Thank you for your message! This is a demo contact form. In a production environment, this would send your message.');
+                        contactForm.reset();
+                    }
+                } catch (error) {
+                    console.error('Error handling form submission:', error);
+                    alert('An error occurred. Please try again.');
+                }
+            });
+        }
 
         // Playwright Test Examples Rotation
         const testExamples = [
@@ -5457,41 +5509,6 @@ Comprehensive training on Bug Reports, Functional Testing, API Basics, and UX
         setTimeout(() => {
             showKeyboardHint();
         }, 2000);
-
-        // Improved mobile menu functionality
-        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-        const navMenu = document.getElementById('navMenu');
-        
-        // Close mobile menu when clicking on a nav link
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                if (window.innerWidth <= 768) {
-                    navMenu.classList.remove('mobile-menu-active');
-                    const icon = mobileMenuToggle.querySelector('i');
-                    icon.classList.add('fa-bars');
-                    icon.classList.remove('fa-times');
-                }
-            });
-        });
-
-        // Add loading indicator for contact form
-        const contactForm = document.getElementById('contactForm');
-        if (contactForm) {
-            const originalSubmitHandler = contactForm.onsubmit;
-            contactForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const submitButton = contactForm.querySelector('button[type="submit"]');
-                const originalText = submitButton.innerHTML;
-                submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-                submitButton.disabled = true;
-                
-                setTimeout(() => {
-                    submitButton.innerHTML = originalText;
-                    submitButton.disabled = false;
-                    if (originalSubmitHandler) originalSubmitHandler.call(contactForm, e);
-                }, 500);
-            });
-        }
 
         // Developer console welcome message
         (function() {
