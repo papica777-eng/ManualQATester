@@ -1,5 +1,8 @@
 # Dimitar Prodromov
 
+![Lint Status](https://github.com/papica777-eng/ManualQATester/actions/workflows/lint.yml/badge.svg)
+![Code Style: Prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)
+
 **Manual QA Engineer | uTest Rated Tester | Aspiring Automation Engineer**
 
 > 💡 **This isn't course work—it's real QA that shows day-one readiness**
