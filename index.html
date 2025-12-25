@@ -4332,6 +4332,28 @@ test('should login with valid credentials', async ({ page }) => {
             observer.observe(section);
         });
 
+        // Demo Tab Switching Function
+        function showDemoTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.demo-tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.demo-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            const targetContent = document.getElementById(tabName + '-tab');
+            if (targetContent) {
+                targetContent.classList.add('active');
+            }
+            
+            // Add active class to clicked tab
+            event.currentTarget.classList.add('active');
+        }
+
         // Contact Form Submission (Frontend only - no backend)
         const contactForm = document.getElementById('contactForm');
         contactForm.addEventListener('submit', (e) => {
