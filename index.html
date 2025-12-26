@@ -22,7 +22,7 @@
                     <i class="fas fa-chart-bar fa-lg"></i> Allure Report (Demo)
                 </a>
             </div>
-            <p style="text-align: center; color: var(--subtle-text-color); margin-top: 24px; font-size: 0.95em;">* Може да предоставиш свои линкове към реални отчети, ако желаеш.</p>
+            <p style="text-align: center; color: var(--subtle-text-color); margin-top: 24px; font-size: 0.95em;">* You can provide your own links to real reports if you wish.</p>
         </div>
     </section>
 <!DOCTYPE html>
@@ -54,44 +54,56 @@
     <style>
         /* --- CSS Variables for Theming --- */
         :root {
-            /* Dark Mode Defaults */
-            --primary-color: #4ECDC4; /* Vibrant Teal */
-            --secondary-color: #A2D5C6; /* Lighter Teal */
-            --background-color: #0A192F; /* Deep Dark Blue */
-            --secondary-background-color: #172A45; /* Slightly Lighter Dark Blue */
-            --tertiary-background-color: #263859; /* For cards/panels */
-            --text-color: #F8F8F2; /* Light Text */
-            --subtle-text-color: #AAB7C4; /* Greyish for descriptions */
-            --accent-color: #FF6B6B; /* Reddish accent for errors/warnings */
-            --success-color: #8BC34A; /* Light Green */
-            --info-color: #87CEEB; /* Sky Blue */
-            --warning-color: #FFC107; /* Amber */
-            --border-color: #2F415D;
-            --shadow-light: rgba(78, 205, 196, 0.2);
-            --shadow-dark: rgba(0, 0, 0, 0.4);
+            /* Dark Mode Defaults - Enhanced Modern Palette */
+            --primary-color: #00D9FF; /* Bright Cyan */
+            --secondary-color: #7C3AED; /* Purple */
+            --accent-color: #F59E0B; /* Amber */
+            --background-color: #0F172A; /* Slate 900 */
+            --secondary-background-color: #1E293B; /* Slate 800 */
+            --tertiary-background-color: #334155; /* Slate 700 */
+            --text-color: #F1F5F9; /* Slate 100 */
+            --subtle-text-color: #94A3B8; /* Slate 400 */
+            --success-color: #10B981; /* Emerald 500 */
+            --info-color: #3B82F6; /* Blue 500 */
+            --warning-color: #F59E0B; /* Amber 500 */
+            --error-color: #EF4444; /* Red 500 */
+            --border-color: #475569;
+            --shadow-light: rgba(0, 217, 255, 0.3);
+            --shadow-dark: rgba(0, 0, 0, 0.5);
+            --gradient-primary: linear-gradient(135deg, #00D9FF 0%, #7C3AED 100%);
+            --gradient-secondary: linear-gradient(135deg, #F59E0B 0%, #EF4444 100%);
+            --glass-background: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(241, 245, 249, 0.1);
             
             --font-main: 'Montserrat', sans-serif;
             --font-mono: 'Fira Code', monospace;
             --transition-speed: 0.3s;
-            --radius-default: 8px;
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --radius-default: 12px;
+            --radius-large: 16px;
         }
 
-        /* --- Light Mode Variables --- */
+        /* --- Light Mode Variables - Enhanced --- */
         body.light-mode {
-            --primary-color: #007BFF; /* Bright Blue */
-            --secondary-color: #6C757D; /* Greyish */
-            --background-color: #F8F9FA; /* Light Grey */
+            --primary-color: #0EA5E9; /* Sky Blue 500 */
+            --secondary-color: #8B5CF6; /* Violet 500 */
+            --accent-color: #F59E0B; /* Amber 500 */
+            --background-color: #F8FAFC; /* Slate 50 */
             --secondary-background-color: #FFFFFF; /* White */
-            --tertiary-background-color: #E9ECEF; /* Light Grey for cards */
-            --text-color: #212529; /* Dark Text */
-            --subtle-text-color: #495057; /* Darker grey for descriptions */
-            --accent-color: #DC3545; /* Red */
-            --success-color: #28A745; /* Green */
-            --info-color: #17A2B8; /* Cyan */
-            --warning-color: #FFC107; /* Yellow */
-            --border-color: #CED4DA;
-            --shadow-light: rgba(0, 123, 255, 0.2);
-            --shadow-dark: rgba(0, 0, 0, 0.1);
+            --tertiary-background-color: #F1F5F9; /* Slate 100 */
+            --text-color: #0F172A; /* Slate 900 */
+            --subtle-text-color: #64748B; /* Slate 500 */
+            --success-color: #10B981; /* Emerald 500 */
+            --info-color: #3B82F6; /* Blue 500 */
+            --warning-color: #F59E0B; /* Amber 500 */
+            --error-color: #EF4444; /* Red 500 */
+            --border-color: #E2E8F0;
+            --shadow-light: rgba(14, 165, 233, 0.2);
+            --shadow-dark: rgba(0, 0, 0, 0.08);
+            --gradient-primary: linear-gradient(135deg, #0EA5E9 0%, #8B5CF6 100%);
+            --gradient-secondary: linear-gradient(135deg, #F59E0B 0%, #EF4444 100%);
+            --glass-background: rgba(255, 255, 255, 0.8);
+            --glass-border: rgba(15, 23, 42, 0.1);
         }
 
         /* --- General Styling --- */
@@ -984,6 +996,109 @@
             }
         }
 
+        /* --- New Interactive Demo Styles --- */
+        .demo-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .demo-tab-btn {
+            background: var(--tertiary-background-color);
+            color: var(--text-color);
+            border: 2px solid transparent;
+            padding: 12px 24px;
+            border-radius: var(--radius-default);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            font-family: var(--font-main);
+            font-size: 1em;
+        }
+
+        .demo-tab-btn:hover {
+            background: var(--secondary-background-color);
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .demo-tab-btn.active {
+            background: var(--gradient-primary);
+            color: white;
+            border-color: transparent;
+        }
+
+        .demo-content {
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .test-case-card:hover {
+            border-color: var(--primary-color) !important;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px var(--shadow-light);
+        }
+
+        .run-test-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 20px var(--shadow-light);
+        }
+
+        .bug-item {
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .quick-api-btn:hover {
+            background: var(--secondary-background-color);
+            border-color: var(--primary-color);
+            transform: translateX(5px);
+        }
+
+        #test-console::-webkit-scrollbar,
+        #bug-list::-webkit-scrollbar,
+        #test-timeline::-webkit-scrollbar,
+        #api-response::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        #test-console::-webkit-scrollbar-track,
+        #bug-list::-webkit-scrollbar-track,
+        #test-timeline::-webkit-scrollbar-track,
+        #api-response::-webkit-scrollbar-track {
+            background: var(--tertiary-background-color);
+            border-radius: 4px;
+        }
+
+        #test-console::-webkit-scrollbar-thumb,
+        #bug-list::-webkit-scrollbar-thumb,
+        #test-timeline::-webkit-scrollbar-thumb,
+        #api-response::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 4px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
         /* --- Animations --- */
         .fade-in {
             opacity: 0;
@@ -1026,6 +1141,7 @@
                     <li><a href="#home" class="nav-link active">Overview</a></li>
                     <li><a href="#skills" class="nav-link">Skills</a></li>
                     <li><a href="#test-examples" class="nav-link">Tests</a></li>
+                    <li><a href="#live-testing-demo" class="nav-link">Live Demos</a></li>
                     <li><a href="#about" class="nav-link">Analysis</a></li>
                     <li><a href="#experience" class="nav-link">Experience</a></li>
                     <li><a href="#projects" class="nav-link">Projects</a></li>
@@ -1111,11 +1227,11 @@
             <h2>Case Study: API Payment System</h2>
             <div class="case-study-block" style="background: var(--tertiary-background-color); border-radius: 14px; padding: 32px; margin: 24px 0; box-shadow: 0 2px 8px var(--shadow-light); color: var(--text-color);">
                 <div style="font-size:1.2em; font-weight:600; color: var(--primary-color); margin-bottom: 10px;">The Challenge:</div>
-                <div style="margin-bottom: 18px;">Тестване на разплащателна система с 50+ сценария.</div>
+                <div style="margin-bottom: 18px;">Testing a payment system with 50+ scenarios.</div>
                 <div style="font-size:1.2em; font-weight:600; color: var(--primary-color); margin-bottom: 10px;">The Solution:</div>
-                <div style="margin-bottom: 18px;">Автоматизиран фреймуърк с Playwright, съкращаващ времето за регресия от 4 часа на 10 минути.</div>
+                <div style="margin-bottom: 18px;">Automated framework with Playwright, reducing regression time from 4 hours to 10 minutes.</div>
                 <div style="font-size:1.2em; font-weight:600; color: var(--primary-color); margin-bottom: 10px;">Result:</div>
-                <div>0 критични бъга в продукция за 6 месеца.</div>
+                <div>0 critical bugs in production for 6 months.</div>
             </div>
         </div>
     </section>
@@ -1153,6 +1269,254 @@
                 <div class="indicator-dot" data-indicator="1"></div>
                 <div class="indicator-dot" data-indicator="2"></div>
                 <div class="indicator-dot" data-indicator="3"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Real-Time Interactive Testing Demo Section -->
+    <section id="live-testing-demo" style="background: linear-gradient(135deg, var(--secondary-background-color) 0%, var(--background-color) 100%); padding: 80px 0;">
+        <div class="container">
+            <h2><i class="fas fa-play-circle"></i> Live Testing Demonstrations</h2>
+            <p style="text-align: center; color: var(--subtle-text-color); max-width: 900px; margin: 0 auto 50px; font-size: 1.1em;">
+                Experience real-time testing workflows. Execute tests, report bugs, and track test cycles - all interactive and functional!
+            </p>
+
+            <!-- Tab Navigation -->
+            <div class="demo-tabs" style="display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; flex-wrap: wrap;">
+                <button class="demo-tab-btn active" data-tab="test-executor"><i class="fas fa-play"></i> Test Executor</button>
+                <button class="demo-tab-btn" data-tab="bug-reporter"><i class="fas fa-bug"></i> Bug Reporter</button>
+                <button class="demo-tab-btn" data-tab="test-cycle"><i class="fas fa-sync"></i> Test Cycle</button>
+                <button class="demo-tab-btn" data-tab="api-tester"><i class="fas fa-code"></i> API Tester</button>
+            </div>
+
+            <!-- Test Executor Demo -->
+            <div id="test-executor" class="demo-content active">
+                <div style="background: var(--glass-background); backdrop-filter: blur(10px); border: 1px solid var(--glass-border); border-radius: var(--radius-large); padding: 40px; box-shadow: 0 20px 60px var(--shadow-dark);">
+                    <h3 style="color: var(--primary-color); margin-bottom: 25px; font-size: 1.8em;"><i class="fas fa-terminal"></i> Real-Time Test Executor</h3>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px;">
+                        <div class="test-case-card" style="background: var(--tertiary-background-color); padding: 25px; border-radius: var(--radius-default); cursor: pointer; border: 2px solid transparent; transition: var(--transition-smooth);">
+                            <div style="display: flex; justify-content: between; align-items: center; margin-bottom: 15px;">
+                                <h4 style="color: var(--text-color); font-size: 1.2em;">TC-001: Login Flow</h4>
+                                <span class="status-badge pending" style="background: var(--warning-color); color: var(--background-color); padding: 5px 12px; border-radius: 20px; font-size: 0.85em; font-weight: 600;">Pending</span>
+                            </div>
+                            <p style="color: var(--subtle-text-color); margin-bottom: 15px;">Test user authentication with valid credentials</p>
+                            <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                                <span style="background: var(--secondary-background-color); padding: 5px 10px; border-radius: 5px; font-size: 0.85em; color: var(--info-color);">Priority: High</span>
+                                <span style="background: var(--secondary-background-color); padding: 5px 10px; border-radius: 5px; font-size: 0.85em; color: var(--success-color);">Type: Functional</span>
+                            </div>
+                            <button class="run-test-btn" data-test-id="tc-001" style="background: var(--gradient-primary); color: white; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; width: 100%; transition: var(--transition-smooth);"><i class="fas fa-play"></i> Run Test</button>
+                        </div>
+
+                        <div class="test-case-card" style="background: var(--tertiary-background-color); padding: 25px; border-radius: var(--radius-default); cursor: pointer; border: 2px solid transparent; transition: var(--transition-smooth);">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                                <h4 style="color: var(--text-color); font-size: 1.2em;">TC-002: Search Function</h4>
+                                <span class="status-badge pending" style="background: var(--warning-color); color: var(--background-color); padding: 5px 12px; border-radius: 20px; font-size: 0.85em; font-weight: 600;">Pending</span>
+                            </div>
+                            <p style="color: var(--subtle-text-color); margin-bottom: 15px;">Verify search returns correct results</p>
+                            <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                                <span style="background: var(--secondary-background-color); padding: 5px 10px; border-radius: 5px; font-size: 0.85em; color: var(--accent-color);">Priority: Medium</span>
+                                <span style="background: var(--secondary-background-color); padding: 5px 10px; border-radius: 5px; font-size: 0.85em; color: var(--success-color);">Type: Functional</span>
+                            </div>
+                            <button class="run-test-btn" data-test-id="tc-002" style="background: var(--gradient-primary); color: white; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; width: 100%; transition: var(--transition-smooth);"><i class="fas fa-play"></i> Run Test</button>
+                        </div>
+                    </div>
+
+                    <!-- Test Execution Console -->
+                    <div id="test-console" style="background: #1e1e1e; border-radius: var(--radius-default); padding: 20px; font-family: var(--font-mono); font-size: 0.9em; min-height: 250px; max-height: 400px; overflow-y: auto; color: #d4d4d4; border: 1px solid var(--border-color);">
+                        <div style="color: var(--success-color); margin-bottom: 10px;">✓ Test environment initialized</div>
+                        <div style="color: var(--subtle-text-color);">→ Ready to execute tests. Click "Run Test" on any test case above.</div>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
+                        <div id="test-stats" style="display: flex; gap: 25px;">
+                            <div><span style="color: var(--success-color); font-weight: 600;">✓ Passed: </span><span id="passed-count">0</span></div>
+                            <div><span style="color: var(--error-color); font-weight: 600;">✗ Failed: </span><span id="failed-count">0</span></div>
+                            <div><span style="color: var(--warning-color); font-weight: 600;">⊙ Running: </span><span id="running-count">0</span></div>
+                        </div>
+                        <button id="clear-console" style="background: var(--tertiary-background-color); color: var(--text-color); border: 1px solid var(--border-color); padding: 8px 16px; border-radius: 6px; cursor: pointer; transition: var(--transition-smooth);"><i class="fas fa-trash"></i> Clear Console</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bug Reporter Demo -->
+            <div id="bug-reporter" class="demo-content" style="display: none;">
+                <div style="background: var(--glass-background); backdrop-filter: blur(10px); border: 1px solid var(--glass-border); border-radius: var(--radius-large); padding: 40px; box-shadow: 0 20px 60px var(--shadow-dark);">
+                    <h3 style="color: var(--primary-color); margin-bottom: 25px; font-size: 1.8em;"><i class="fas fa-bug"></i> Interactive Bug Reporter</h3>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                        <!-- Bug Report Form -->
+                        <div>
+                            <form id="bug-report-form">
+                                <div style="margin-bottom: 20px;">
+                                    <label style="display: block; color: var(--text-color); font-weight: 600; margin-bottom: 8px;">Bug Title *</label>
+                                    <input type="text" id="bug-title" required style="width: 100%; padding: 12px; background: var(--tertiary-background-color); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-color); font-family: var(--font-main);" placeholder="e.g., Login button not responsive on mobile">
+                                </div>
+
+                                <div style="margin-bottom: 20px;">
+                                    <label style="display: block; color: var(--text-color); font-weight: 600; margin-bottom: 8px;">Severity *</label>
+                                    <select id="bug-severity" required style="width: 100%; padding: 12px; background: var(--tertiary-background-color); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-color); font-family: var(--font-main);">
+                                        <option value="">Select severity</option>
+                                        <option value="critical">Critical - System crash/Data loss</option>
+                                        <option value="high">High - Major feature broken</option>
+                                        <option value="medium">Medium - Feature partially working</option>
+                                        <option value="low">Low - Minor issue/Cosmetic</option>
+                                    </select>
+                                </div>
+
+                                <div style="margin-bottom: 20px;">
+                                    <label style="display: block; color: var(--text-color); font-weight: 600; margin-bottom: 8px;">Steps to Reproduce *</label>
+                                    <textarea id="bug-steps" required rows="4" style="width: 100%; padding: 12px; background: var(--tertiary-background-color); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-color); font-family: var(--font-main); resize: vertical;" placeholder="1. Navigate to...&#10;2. Click on...&#10;3. Observe..."></textarea>
+                                </div>
+
+                                <div style="margin-bottom: 20px;">
+                                    <label style="display: block; color: var(--text-color); font-weight: 600; margin-bottom: 8px;">Expected Result *</label>
+                                    <input type="text" id="bug-expected" required style="width: 100%; padding: 12px; background: var(--tertiary-background-color); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-color); font-family: var(--font-main);" placeholder="Button should respond to click">
+                                </div>
+
+                                <div style="margin-bottom: 20px;">
+                                    <label style="display: block; color: var(--text-color); font-weight: 600; margin-bottom: 8px;">Actual Result *</label>
+                                    <input type="text" id="bug-actual" required style="width: 100%; padding: 12px; background: var(--tertiary-background-color); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-color); font-family: var(--font-main);" placeholder="Button does not respond">
+                                </div>
+
+                                <div style="margin-bottom: 20px;">
+                                    <label style="display: block; color: var(--text-color); font-weight: 600; margin-bottom: 8px;">Environment</label>
+                                    <input type="text" id="bug-environment" style="width: 100%; padding: 12px; background: var(--tertiary-background-color); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-color); font-family: var(--font-main);" placeholder="Chrome 120, Windows 11">
+                                </div>
+
+                                <button type="submit" style="background: var(--gradient-secondary); color: white; border: none; padding: 14px 28px; border-radius: 8px; font-weight: 600; cursor: pointer; width: 100%; font-size: 1.1em; transition: var(--transition-smooth);"><i class="fas fa-paper-plane"></i> Submit Bug Report</button>
+                            </form>
+                        </div>
+
+                        <!-- Bug List -->
+                        <div>
+                            <h4 style="color: var(--text-color); margin-bottom: 20px; font-size: 1.3em;">Recent Bug Reports</h4>
+                            <div id="bug-list" style="max-height: 600px; overflow-y: auto;">
+                                <div class="bug-item" style="background: var(--tertiary-background-color); padding: 20px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid var(--error-color);">
+                                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px;">
+                                        <h5 style="color: var(--text-color); font-size: 1.1em;">BUG-001: Login timeout issue</h5>
+                                        <span style="background: var(--error-color); color: white; padding: 4px 10px; border-radius: 12px; font-size: 0.8em; font-weight: 600;">Critical</span>
+                                    </div>
+                                    <p style="color: var(--subtle-text-color); font-size: 0.9em; margin-bottom: 8px;">User sessions expire after 30 seconds causing login loops</p>
+                                    <div style="display: flex; gap: 10px; font-size: 0.85em; color: var(--subtle-text-color);">
+                                        <span><i class="fas fa-clock"></i> 2 hours ago</span>
+                                        <span><i class="fas fa-user"></i> QA Team</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Test Cycle Dashboard -->
+            <div id="test-cycle" class="demo-content" style="display: none;">
+                <div style="background: var(--glass-background); backdrop-filter: blur(10px); border: 1px solid var(--glass-border); border-radius: var(--radius-large); padding: 40px; box-shadow: 0 20px 60px var(--shadow-dark);">
+                    <h3 style="color: var(--primary-color); margin-bottom: 25px; font-size: 1.8em;"><i class="fas fa-sync"></i> Live Test Cycle Dashboard</h3>
+                    
+                    <!-- Cycle Progress -->
+                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 40px;">
+                        <div style="background: var(--tertiary-background-color); padding: 25px; border-radius: var(--radius-default); text-align: center;">
+                            <div style="font-size: 2.5em; font-weight: 700; color: var(--primary-color); margin-bottom: 10px;" id="total-tests">24</div>
+                            <div style="color: var(--subtle-text-color);">Total Tests</div>
+                        </div>
+                        <div style="background: var(--tertiary-background-color); padding: 25px; border-radius: var(--radius-default); text-align: center;">
+                            <div style="font-size: 2.5em; font-weight: 700; color: var(--success-color); margin-bottom: 10px;" id="passed-tests">18</div>
+                            <div style="color: var(--subtle-text-color);">Passed</div>
+                        </div>
+                        <div style="background: var(--tertiary-background-color); padding: 25px; border-radius: var(--radius-default); text-align: center;">
+                            <div style="font-size: 2.5em; font-weight: 700; color: var(--error-color); margin-bottom: 10px;" id="failed-tests">3</div>
+                            <div style="color: var(--subtle-text-color);">Failed</div>
+                        </div>
+                        <div style="background: var(--tertiary-background-color); padding: 25px; border-radius: var(--radius-default); text-align: center;">
+                            <div style="font-size: 2.5em; font-weight: 700; color: var(--warning-color); margin-bottom: 10px;" id="pending-tests">3</div>
+                            <div style="color: var(--subtle-text-color);">Pending</div>
+                        </div>
+                    </div>
+
+                    <!-- Progress Bar -->
+                    <div style="margin-bottom: 40px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                            <span style="color: var(--text-color); font-weight: 600;">Test Cycle Progress</span>
+                            <span style="color: var(--primary-color); font-weight: 600;" id="cycle-progress">75%</span>
+                        </div>
+                        <div style="background: var(--tertiary-background-color); height: 30px; border-radius: 15px; overflow: hidden; position: relative;">
+                            <div id="progress-bar" style="background: var(--gradient-primary); height: 100%; width: 75%; transition: width 0.5s ease; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 0.9em;">75% Complete</div>
+                        </div>
+                    </div>
+
+                    <!-- Test Execution Timeline -->
+                    <div>
+                        <h4 style="color: var(--text-color); margin-bottom: 20px; font-size: 1.3em;">Execution Timeline</h4>
+                        <div id="test-timeline" style="max-height: 400px; overflow-y: auto;">
+                            <!-- Timeline items will be added here -->
+                        </div>
+                        <button id="start-cycle" style="background: var(--gradient-primary); color: white; border: none; padding: 14px 28px; border-radius: 8px; font-weight: 600; cursor: pointer; margin-top: 20px; font-size: 1.1em; transition: var(--transition-smooth);"><i class="fas fa-play"></i> Start New Test Cycle</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- API Tester -->
+            <div id="api-tester" class="demo-content" style="display: none;">
+                <div style="background: var(--glass-background); backdrop-filter: blur(10px); border: 1px solid var(--glass-border); border-radius: var(--radius-large); padding: 40px; box-shadow: 0 20px 60px var(--shadow-dark);">
+                    <h3 style="color: var(--primary-color); margin-bottom: 25px; font-size: 1.8em;"><i class="fas fa-code"></i> Live API Testing Playground</h3>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                        <!-- API Request Form -->
+                        <div>
+                            <div style="margin-bottom: 20px;">
+                                <label style="display: block; color: var(--text-color); font-weight: 600; margin-bottom: 8px;">HTTP Method</label>
+                                <select id="api-method" style="width: 100%; padding: 12px; background: var(--tertiary-background-color); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-color); font-family: var(--font-main);">
+                                    <option value="GET">GET</option>
+                                    <option value="POST">POST</option>
+                                    <option value="PUT">PUT</option>
+                                    <option value="DELETE">DELETE</option>
+                                </select>
+                            </div>
+
+                            <div style="margin-bottom: 20px;">
+                                <label style="display: block; color: var(--text-color); font-weight: 600; margin-bottom: 8px;">API Endpoint</label>
+                                <input type="text" id="api-endpoint" value="https://jsonplaceholder.typicode.com/posts/1" style="width: 100%; padding: 12px; background: var(--tertiary-background-color); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-color); font-family: var(--font-mono); font-size: 0.9em;">
+                            </div>
+
+                            <div style="margin-bottom: 20px;">
+                                <label style="display: block; color: var(--text-color); font-weight: 600; margin-bottom: 8px;">Request Body (JSON)</label>
+                                <textarea id="api-body" rows="6" style="width: 100%; padding: 12px; background: var(--tertiary-background-color); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-color); font-family: var(--font-mono); font-size: 0.9em; resize: vertical;" placeholder='{\n  "key": "value"\n}'></textarea>
+                            </div>
+
+                            <button id="send-api-request" style="background: var(--gradient-primary); color: white; border: none; padding: 14px 28px; border-radius: 8px; font-weight: 600; cursor: pointer; width: 100%; font-size: 1.1em; transition: var(--transition-smooth);"><i class="fas fa-paper-plane"></i> Send Request</button>
+
+                            <div style="margin-top: 20px;">
+                                <h4 style="color: var(--text-color); margin-bottom: 15px;">Quick Test APIs</h4>
+                                <div style="display: flex; flex-direction: column; gap: 10px;">
+                                    <button class="quick-api-btn" data-url="https://jsonplaceholder.typicode.com/posts" data-method="GET" style="background: var(--tertiary-background-color); color: var(--text-color); border: 1px solid var(--border-color); padding: 10px; border-radius: 6px; cursor: pointer; text-align: left; transition: var(--transition-smooth);">GET /posts - Get all posts</button>
+                                    <button class="quick-api-btn" data-url="https://jsonplaceholder.typicode.com/users/1" data-method="GET" style="background: var(--tertiary-background-color); color: var(--text-color); border: 1px solid var(--border-color); padding: 10px; border-radius: 6px; cursor: pointer; text-align: left; transition: var(--transition-smooth);">GET /users/1 - Get user details</button>
+                                    <button class="quick-api-btn" data-url="https://jsonplaceholder.typicode.com/comments?postId=1" data-method="GET" style="background: var(--tertiary-background-color); color: var(--text-color); border: 1px solid var(--border-color); padding: 10px; border-radius: 6px; cursor: pointer; text-align: left; transition: var(--transition-smooth);">GET /comments - Get comments</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- API Response -->
+                        <div>
+                            <h4 style="color: var(--text-color); margin-bottom: 15px;">Response</h4>
+                            
+                            <div id="api-status" style="background: var(--tertiary-background-color); padding: 15px; border-radius: 8px; margin-bottom: 15px; display: none;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <span style="color: var(--text-color);">Status:</span>
+                                    <span id="status-code" style="font-weight: 600;"></span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+                                    <span style="color: var(--text-color);">Time:</span>
+                                    <span id="response-time" style="color: var(--primary-color); font-weight: 600;"></span>
+                                </div>
+                            </div>
+
+                            <div id="api-response" style="background: #1e1e1e; border-radius: 8px; padding: 20px; min-height: 400px; max-height: 500px; overflow-y: auto; font-family: var(--font-mono); font-size: 0.9em; color: #d4d4d4; border: 1px solid var(--border-color);">
+                                <div style="color: var(--subtle-text-color);">→ Configure and send an API request to see the response here</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1383,6 +1747,7 @@
                         <li><a href="#home">Overview</a></li>
                         <li><a href="#skills">Skills</a></li>
                         <li><a href="#test-examples">Tests</a></li>
+                        <li><a href="#live-testing-demo">Live Demos</a></li>
                         <li><a href="#about">Analysis</a></li>
                         <li><a href="#experience">Experience</a></li>
                         <li><a href="#projects">Projects</a></li>
@@ -1741,6 +2106,401 @@
                 setTimeout(startAutoRotate, 10000);
             });
         });
+
+        // ========================================
+        // INTERACTIVE TESTING DEMOS FUNCTIONALITY
+        // ========================================
+
+        // Tab Switching
+        document.querySelectorAll('.demo-tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetTab = btn.getAttribute('data-tab');
+                
+                // Update active tab button
+                document.querySelectorAll('.demo-tab-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // Show target content
+                document.querySelectorAll('.demo-content').forEach(content => {
+                    content.style.display = 'none';
+                });
+                document.getElementById(targetTab).style.display = 'block';
+            });
+        });
+
+        // ========================================
+        // TEST EXECUTOR FUNCTIONALITY
+        // ========================================
+        let testStats = {
+            passed: 0,
+            failed: 0,
+            running: 0
+        };
+
+        function updateTestStats() {
+            document.getElementById('passed-count').textContent = testStats.passed;
+            document.getElementById('failed-count').textContent = testStats.failed;
+            document.getElementById('running-count').textContent = testStats.running;
+        }
+
+        function addToConsole(message, type = 'info') {
+            const console = document.getElementById('test-console');
+            const timestamp = new Date().toLocaleTimeString();
+            const colors = {
+                info: '#94A3B8',
+                success: '#10B981',
+                error: '#EF4444',
+                warning: '#F59E0B'
+            };
+            
+            const logEntry = document.createElement('div');
+            logEntry.style.color = colors[type];
+            logEntry.style.marginBottom = '8px';
+            logEntry.innerHTML = `[${timestamp}] ${message}`;
+            console.appendChild(logEntry);
+            console.scrollTop = console.scrollHeight;
+        }
+
+        async function simulateTestExecution(testId, testName) {
+            const testCard = document.querySelector(`[data-test-id="${testId}"]`).closest('.test-case-card');
+            const statusBadge = testCard.querySelector('.status-badge');
+            const runButton = testCard.querySelector('.run-test-btn');
+            
+            // Update to running state
+            statusBadge.textContent = 'Running';
+            statusBadge.style.background = 'var(--info-color)';
+            runButton.disabled = true;
+            runButton.style.opacity = '0.6';
+            runButton.style.cursor = 'not-allowed';
+            testStats.running++;
+            updateTestStats();
+            
+            addToConsole(`🚀 Starting test execution: ${testName}`, 'info');
+            await new Promise(resolve => setTimeout(resolve, 500));
+            
+            addToConsole('→ Initializing test environment...', 'info');
+            await new Promise(resolve => setTimeout(resolve, 800));
+            
+            addToConsole('→ Opening browser session...', 'info');
+            await new Promise(resolve => setTimeout(resolve, 600));
+            
+            addToConsole('→ Navigating to application...', 'info');
+            await new Promise(resolve => setTimeout(resolve, 700));
+            
+            addToConsole('→ Executing test steps...', 'info');
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            // Simulate random pass/fail (80% pass rate)
+            const passed = Math.random() > 0.2;
+            
+            if (passed) {
+                addToConsole('✓ All assertions passed', 'success');
+                addToConsole(`✓ Test ${testName} completed successfully`, 'success');
+                statusBadge.textContent = 'Passed';
+                statusBadge.style.background = 'var(--success-color)';
+                testCard.style.borderColor = 'var(--success-color)';
+                testStats.passed++;
+            } else {
+                addToConsole('✗ Assertion failed: Expected element not found', 'error');
+                addToConsole(`✗ Test ${testName} failed`, 'error');
+                statusBadge.textContent = 'Failed';
+                statusBadge.style.background = 'var(--error-color)';
+                testCard.style.borderColor = 'var(--error-color)';
+                testStats.failed++;
+            }
+            
+            testStats.running--;
+            updateTestStats();
+            runButton.disabled = false;
+            runButton.style.opacity = '1';
+            runButton.style.cursor = 'pointer';
+            addToConsole('─'.repeat(50), 'info');
+        }
+
+        // Attach event listeners to test run buttons
+        document.querySelectorAll('.run-test-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const testId = btn.getAttribute('data-test-id');
+                const testName = btn.closest('.test-case-card').querySelector('h4').textContent;
+                simulateTestExecution(testId, testName);
+            });
+        });
+
+        // Clear console button
+        document.getElementById('clear-console').addEventListener('click', () => {
+            const console = document.getElementById('test-console');
+            console.innerHTML = '<div style="color: var(--success-color); margin-bottom: 10px;">✓ Test environment initialized</div><div style="color: var(--subtle-text-color);">→ Ready to execute tests. Click "Run Test" on any test case above.</div>';
+            testStats = { passed: 0, failed: 0, running: 0 };
+            updateTestStats();
+            
+            // Reset all test cards
+            document.querySelectorAll('.test-case-card').forEach(card => {
+                const badge = card.querySelector('.status-badge');
+                badge.textContent = 'Pending';
+                badge.style.background = 'var(--warning-color)';
+                card.style.borderColor = 'transparent';
+            });
+        });
+
+        // ========================================
+        // BUG REPORTER FUNCTIONALITY
+        // ========================================
+        let bugCounter = 2;
+
+        document.getElementById('bug-report-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const title = document.getElementById('bug-title').value;
+            const severity = document.getElementById('bug-severity').value;
+            const steps = document.getElementById('bug-steps').value;
+            const expected = document.getElementById('bug-expected').value;
+            const actual = document.getElementById('bug-actual').value;
+            const environment = document.getElementById('bug-environment').value;
+            
+            if (!title || !severity || !steps || !expected || !actual) {
+                alert('Please fill in all required fields!');
+                return;
+            }
+            
+            bugCounter++;
+            const bugNumber = String(bugCounter).padStart(3, '0');
+            
+            const severityColors = {
+                critical: 'var(--error-color)',
+                high: '#F59E0B',
+                medium: 'var(--warning-color)',
+                low: 'var(--info-color)'
+            };
+            
+            const severityLabels = {
+                critical: 'Critical',
+                high: 'High',
+                medium: 'Medium',
+                low: 'Low'
+            };
+            
+            const bugItem = document.createElement('div');
+            bugItem.className = 'bug-item';
+            bugItem.style.cssText = `background: var(--tertiary-background-color); padding: 20px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid ${severityColors[severity]};`;
+            bugItem.innerHTML = `
+                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px;">
+                    <h5 style="color: var(--text-color); font-size: 1.1em;">BUG-${bugNumber}: ${title}</h5>
+                    <span style="background: ${severityColors[severity]}; color: white; padding: 4px 10px; border-radius: 12px; font-size: 0.8em; font-weight: 600;">${severityLabels[severity]}</span>
+                </div>
+                <p style="color: var(--subtle-text-color); font-size: 0.9em; margin-bottom: 8px;"><strong>Expected:</strong> ${expected}</p>
+                <p style="color: var(--subtle-text-color); font-size: 0.9em; margin-bottom: 8px;"><strong>Actual:</strong> ${actual}</p>
+                <div style="display: flex; gap: 10px; font-size: 0.85em; color: var(--subtle-text-color);">
+                    <span><i class="fas fa-clock"></i> Just now</span>
+                    <span><i class="fas fa-user"></i> You</span>
+                    ${environment ? `<span><i class="fas fa-desktop"></i> ${environment}</span>` : ''}
+                </div>
+            `;
+            
+            const bugList = document.getElementById('bug-list');
+            bugList.insertBefore(bugItem, bugList.firstChild);
+            
+            // Reset form
+            document.getElementById('bug-report-form').reset();
+            
+            // Show success message
+            alert(`Bug BUG-${bugNumber} reported successfully!`);
+        });
+
+        // ========================================
+        // TEST CYCLE FUNCTIONALITY
+        // ========================================
+        let cycleRunning = false;
+
+        function createTimelineItem(testName, status, time) {
+            const statusColors = {
+                passed: 'var(--success-color)',
+                failed: 'var(--error-color)',
+                running: 'var(--info-color)'
+            };
+            
+            const statusIcons = {
+                passed: '✓',
+                failed: '✗',
+                running: '⊙'
+            };
+            
+            return `
+                <div style="background: var(--tertiary-background-color); padding: 20px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid ${statusColors[status]};">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <span style="color: ${statusColors[status]}; font-weight: 600; margin-right: 10px;">${statusIcons[status]}</span>
+                            <span style="color: var(--text-color); font-weight: 600;">${testName}</span>
+                        </div>
+                        <span style="color: var(--subtle-text-color); font-size: 0.9em;">${time}</span>
+                    </div>
+                </div>
+            `;
+        }
+
+        async function runTestCycle() {
+            if (cycleRunning) return;
+            
+            cycleRunning = true;
+            const startButton = document.getElementById('start-cycle');
+            startButton.disabled = true;
+            startButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Running...';
+            
+            const timeline = document.getElementById('test-timeline');
+            timeline.innerHTML = '';
+            
+            const tests = [
+                'TC-001: Login Authentication',
+                'TC-002: User Registration',
+                'TC-003: Password Reset',
+                'TC-004: Search Functionality',
+                'TC-005: Add to Cart',
+                'TC-006: Checkout Process',
+                'TC-007: Payment Gateway',
+                'TC-008: Order Confirmation'
+            ];
+            
+            let completed = 0;
+            const total = tests.length;
+            
+            for (let i = 0; i < tests.length; i++) {
+                const testName = tests[i];
+                const time = new Date().toLocaleTimeString();
+                
+                // Add running state
+                timeline.innerHTML = createTimelineItem(testName, 'running', time) + timeline.innerHTML;
+                
+                // Simulate test execution
+                await new Promise(resolve => setTimeout(resolve, 1500));
+                
+                // Random pass/fail
+                const passed = Math.random() > 0.15;
+                const status = passed ? 'passed' : 'failed';
+                
+                // Update timeline
+                timeline.innerHTML = createTimelineItem(testName, status, time) + timeline.innerHTML.substring(timeline.innerHTML.indexOf('</div>') + 6);
+                
+                // Update stats
+                completed++;
+                const passedTests = Math.floor(completed * 0.85);
+                const failedTests = completed - passedTests;
+                const pendingTests = total - completed;
+                
+                document.getElementById('total-tests').textContent = total;
+                document.getElementById('passed-tests').textContent = passedTests;
+                document.getElementById('failed-tests').textContent = failedTests;
+                document.getElementById('pending-tests').textContent = pendingTests;
+                
+                const progress = Math.round((completed / total) * 100);
+                document.getElementById('cycle-progress').textContent = progress + '%';
+                const progressBar = document.getElementById('progress-bar');
+                progressBar.style.width = progress + '%';
+                progressBar.textContent = progress + '% Complete';
+            }
+            
+            cycleRunning = false;
+            startButton.disabled = false;
+            startButton.innerHTML = '<i class="fas fa-redo"></i> Run Again';
+        }
+
+        document.getElementById('start-cycle').addEventListener('click', runTestCycle);
+
+        // ========================================
+        // API TESTER FUNCTIONALITY
+        // ========================================
+        document.getElementById('send-api-request').addEventListener('click', async () => {
+            const method = document.getElementById('api-method').value;
+            const endpoint = document.getElementById('api-endpoint').value;
+            const body = document.getElementById('api-body').value;
+            
+            const responseDiv = document.getElementById('api-response');
+            const statusDiv = document.getElementById('api-status');
+            const statusCodeSpan = document.getElementById('status-code');
+            const responseTimeSpan = document.getElementById('response-time');
+            
+            responseDiv.innerHTML = '<div style="color: var(--warning-color);"><i class="fas fa-spinner fa-spin"></i> Sending request...</div>';
+            
+            try {
+                const startTime = performance.now();
+                const options = {
+                    method: method,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                };
+                
+                if (method !== 'GET' && body) {
+                    options.body = body;
+                }
+                
+                const response = await fetch(endpoint, options);
+                const endTime = performance.now();
+                const responseTime = Math.round(endTime - startTime);
+                
+                const data = await response.json();
+                
+                // Update status
+                statusDiv.style.display = 'block';
+                statusCodeSpan.textContent = response.status + ' ' + response.statusText;
+                statusCodeSpan.style.color = response.ok ? 'var(--success-color)' : 'var(--error-color)';
+                responseTimeSpan.textContent = responseTime + ' ms';
+                
+                // Format and display response
+                const formatted = JSON.stringify(data, null, 2);
+                responseDiv.innerHTML = `<pre style="margin: 0; color: #d4d4d4; white-space: pre-wrap; word-wrap: break-word;">${syntaxHighlight(formatted)}</pre>`;
+                
+            } catch (error) {
+                statusDiv.style.display = 'block';
+                statusCodeSpan.textContent = 'Error';
+                statusCodeSpan.style.color = 'var(--error-color)';
+                responseTimeSpan.textContent = 'N/A';
+                responseDiv.innerHTML = `<div style="color: var(--error-color);">Error: ${error.message}</div>`;
+            }
+        });
+
+        // Quick API buttons
+        document.querySelectorAll('.quick-api-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.getElementById('api-endpoint').value = btn.getAttribute('data-url');
+                document.getElementById('api-method').value = btn.getAttribute('data-method');
+                document.getElementById('api-body').value = '';
+            });
+        });
+
+        // JSON syntax highlighting helper
+        function syntaxHighlight(json) {
+            json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+                let cls = 'number';
+                if (/^"/.test(match)) {
+                    if (/:$/.test(match)) {
+                        cls = 'key';
+                    } else {
+                        cls = 'string';
+                    }
+                } else if (/true|false/.test(match)) {
+                    cls = 'boolean';
+                } else if (/null/.test(match)) {
+                    cls = 'null';
+                }
+                const colors = {
+                    key: '#4EC9B0',
+                    string: '#CE9178',
+                    number: '#B5CEA8',
+                    boolean: '#569CD6',
+                    null: '#569CD6'
+                };
+                return `<span style="color: ${colors[cls]}">${match}</span>`;
+            });
+        }
+
+        // Initialize test cycle timeline with sample data
+        const timeline = document.getElementById('test-timeline');
+        timeline.innerHTML = `
+            ${createTimelineItem('TC-001: Login Flow', 'passed', '10:30:15')}
+            ${createTimelineItem('TC-002: Search Test', 'passed', '10:30:42')}
+            ${createTimelineItem('TC-003: Payment Test', 'failed', '10:31:05')}
+        `;
+
     </script>
 </body>
 </html>
