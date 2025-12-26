@@ -325,8 +325,8 @@ While this portfolio focuses on **manual testing mastery**, I'm actively develop
 
 ## 📞 Contact & Links
 
-**Email:** [Your email here]  
-**LinkedIn:** [Your LinkedIn profile]  
+**Email:** [papica777@gmail.com](mailto:papica777@gmail.com)  
+**LinkedIn:** [linkedin.com/in/dimitar-prodromov](https://linkedin.com/in/dimitar-prodromov)  
 **GitHub:** [github.com/papica777-eng](https://github.com/papica777-eng)  
 **Location:** Sofia, Bulgaria  
 
@@ -355,7 +355,7 @@ This portfolio content is available under the [MIT License](LICENSE). Feel free 
 
 ---
 
-**Last Updated:** December 2024  
+**Last Updated:** December 2025  
 **Portfolio Focus:** Professional Manual QA with Security & Strategic Testing  
 **Status:** Open to opportunities
 
