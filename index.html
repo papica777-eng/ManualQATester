@@ -54,44 +54,56 @@
     <style>
         /* --- CSS Variables for Theming --- */
         :root {
-            /* Dark Mode Defaults */
-            --primary-color: #4ECDC4; /* Vibrant Teal */
-            --secondary-color: #A2D5C6; /* Lighter Teal */
-            --background-color: #0A192F; /* Deep Dark Blue */
-            --secondary-background-color: #172A45; /* Slightly Lighter Dark Blue */
-            --tertiary-background-color: #263859; /* For cards/panels */
-            --text-color: #F8F8F2; /* Light Text */
-            --subtle-text-color: #AAB7C4; /* Greyish for descriptions */
-            --accent-color: #FF6B6B; /* Reddish accent for errors/warnings */
-            --success-color: #8BC34A; /* Light Green */
-            --info-color: #87CEEB; /* Sky Blue */
-            --warning-color: #FFC107; /* Amber */
-            --border-color: #2F415D;
-            --shadow-light: rgba(78, 205, 196, 0.2);
-            --shadow-dark: rgba(0, 0, 0, 0.4);
+            /* Dark Mode Defaults - Enhanced Modern Palette */
+            --primary-color: #00D9FF; /* Bright Cyan */
+            --secondary-color: #7C3AED; /* Purple */
+            --accent-color: #F59E0B; /* Amber */
+            --background-color: #0F172A; /* Slate 900 */
+            --secondary-background-color: #1E293B; /* Slate 800 */
+            --tertiary-background-color: #334155; /* Slate 700 */
+            --text-color: #F1F5F9; /* Slate 100 */
+            --subtle-text-color: #94A3B8; /* Slate 400 */
+            --success-color: #10B981; /* Emerald 500 */
+            --info-color: #3B82F6; /* Blue 500 */
+            --warning-color: #F59E0B; /* Amber 500 */
+            --error-color: #EF4444; /* Red 500 */
+            --border-color: #475569;
+            --shadow-light: rgba(0, 217, 255, 0.3);
+            --shadow-dark: rgba(0, 0, 0, 0.5);
+            --gradient-primary: linear-gradient(135deg, #00D9FF 0%, #7C3AED 100%);
+            --gradient-secondary: linear-gradient(135deg, #F59E0B 0%, #EF4444 100%);
+            --glass-background: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(241, 245, 249, 0.1);
             
             --font-main: 'Montserrat', sans-serif;
             --font-mono: 'Fira Code', monospace;
             --transition-speed: 0.3s;
-            --radius-default: 8px;
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --radius-default: 12px;
+            --radius-large: 16px;
         }
 
-        /* --- Light Mode Variables --- */
+        /* --- Light Mode Variables - Enhanced --- */
         body.light-mode {
-            --primary-color: #007BFF; /* Bright Blue */
-            --secondary-color: #6C757D; /* Greyish */
-            --background-color: #F8F9FA; /* Light Grey */
+            --primary-color: #0EA5E9; /* Sky Blue 500 */
+            --secondary-color: #8B5CF6; /* Violet 500 */
+            --accent-color: #F59E0B; /* Amber 500 */
+            --background-color: #F8FAFC; /* Slate 50 */
             --secondary-background-color: #FFFFFF; /* White */
-            --tertiary-background-color: #E9ECEF; /* Light Grey for cards */
-            --text-color: #212529; /* Dark Text */
-            --subtle-text-color: #495057; /* Darker grey for descriptions */
-            --accent-color: #DC3545; /* Red */
-            --success-color: #28A745; /* Green */
-            --info-color: #17A2B8; /* Cyan */
-            --warning-color: #FFC107; /* Yellow */
-            --border-color: #CED4DA;
-            --shadow-light: rgba(0, 123, 255, 0.2);
-            --shadow-dark: rgba(0, 0, 0, 0.1);
+            --tertiary-background-color: #F1F5F9; /* Slate 100 */
+            --text-color: #0F172A; /* Slate 900 */
+            --subtle-text-color: #64748B; /* Slate 500 */
+            --success-color: #10B981; /* Emerald 500 */
+            --info-color: #3B82F6; /* Blue 500 */
+            --warning-color: #F59E0B; /* Amber 500 */
+            --error-color: #EF4444; /* Red 500 */
+            --border-color: #E2E8F0;
+            --shadow-light: rgba(14, 165, 233, 0.2);
+            --shadow-dark: rgba(0, 0, 0, 0.08);
+            --gradient-primary: linear-gradient(135deg, #0EA5E9 0%, #8B5CF6 100%);
+            --gradient-secondary: linear-gradient(135deg, #F59E0B 0%, #EF4444 100%);
+            --glass-background: rgba(255, 255, 255, 0.8);
+            --glass-border: rgba(15, 23, 42, 0.1);
         }
 
         /* --- General Styling --- */
